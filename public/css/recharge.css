@@ -1,0 +1,234 @@
+.chosen{
+    color:rgb(169,141,84) !important;
+}
+.content{
+    margin-top:170px;
+}
+.recharge_Alipay {
+    width: 950px;
+    margin: 90px auto;
+    border: 1px solid #dadada;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    color: #666;
+}
+
+.recharge_image {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    left: 58px;
+    top: 8px;
+}
+
+.recharge_title {
+    width: 100%;
+    padding: 0 20px;
+    border-bottom: 1px solid #dadada;
+}
+
+.recharge_title p {
+    line-height: 22px;
+    font-size: 22px;
+    color: #666;
+    display: inline-block;
+    margin: 20px 0px;
+    padding: 0 100px;
+    border-right: 1px solid #dadada;
+}
+
+.recharge_count_num, .confirm-recharge_count_num {
+    margin-bottom: 20px;
+}
+
+.recharge_money {
+    line-height: 50px;
+}
+
+.input_attention {
+    color: #6ca200;
+}
+
+.recharge_button {
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    border: none;
+    width: 135px;
+    height: 50px;
+    border-radius: 7px;
+    display: block;
+    margin: 50px auto;
+}
+
+.recharge_container {
+    margin: 30px 120px;
+    font-size: 15px;
+}
+
+.recharge_attention {
+    background: #fcfaf1;
+    line-height: 30px;
+    padding: 20px;
+}
+
+.input_count_num, .confirm_input_count_num {
+    width: 238px;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #dadada;
+    padding-left: 15px;
+}
+
+.attention_red {
+    color: #ff0000;
+}
+
+.attention_gray {
+    color: #7b7a7a;
+}
+
+.recharge_attention ol {
+    position: relative;
+    left: 40px;
+    width: 950px;
+}
+
+.charge_chosen {
+    background: #ff6b00;
+}
+
+button {
+    outline: none;
+}
+
+.scanCode_mask {
+    display: none;
+}
+
+.alipay_div {
+    width: 500px;
+    height: 500px;
+    /*border: 1px solid #000;*/
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -250px;
+    /*background: #fff;*/
+}
+.scanCode_remind_mask{
+    display: none;
+}
+.scanCode_remind{
+    width:500px;
+    height:200px;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin-left: -250px;
+    margin-top: -100px;
+}
+
+.QRcodeimg {
+    width: 200px;
+    height: 200px;
+    /*border: 1px solid #000;*/
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
+}
+
+.scanCode {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.alipay_div .time {
+    color: #ff0000;
+}
+
+.remain_time {
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.close_scanCode {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.money_background {
+    line-height: 30px;
+    background: #eee;
+    padding: 2px 12px;
+    display: inline-block;
+    cursor: pointer;
+    color: #666;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    position: relative;
+}
+.chosen_money_1{
+    position: absolute;
+    width: 47px;
+    height: 34px;
+    left: 0;
+    top: 0;
+    padding-left: 10px;
+    padding-top: 1px;
+}
+.chosen_money_10,.chosen_money_30{
+    position: absolute;
+    width: 54px;
+    height: 34px;
+    left: 0;
+    top: 0;
+    padding-left: 10px;
+    padding-top: 1px;
+}
+.money_1{
+    padding-left:20px;
+}
+.money_10{
+    padding-left:27px;
+}
+.money_30{
+    padding-left:27px;
+}
+
+.other_money_background {
+    display: block;
+}
+
+.change_background_color {
+    background: #ff6b00;
+}
+
+.recharge_money_attention {
+    font-size: 13px;
+}
+.scanCode_remind_p{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 25px;
+}
+.closeBtn{
+    margin-left: 150px;
+    margin-top:50px;
+}
+
+@media screen and (min-width:768px){
+    .container{
+        width:970px;
+    }
+}
+@media screen and (max-width: 845px){
+    .navbar-collapse{
+        width:970px;
+    }
+}

@@ -1,0 +1,419 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "HanHei SC", "PingHei", "PingFang SC", "microsoft yahei", "sans-serif";
+}
+
+.main {
+    width: 7.5rem;
+    min-height: 13.34rem;
+    background: #f3f6e1;
+    overflow-x: hidden;
+    display: none;
+}
+
+.bannerContainer {
+    width: 7.5rem;
+    min-height: 5.7rem;
+}
+
+.bannerContent {
+    position: relative;
+    height: 4.19rem;
+}
+
+.banner {
+    width: 7.5rem;
+    height: 4.19rem !important;
+    display: block;
+}
+
+.bannerDescConatiner {
+    color: #555655;
+    padding: 0.27rem 0.27rem;
+    clear: both;
+    overflow: hidden;
+    position: relative;
+}
+
+.containerTitle {
+    width: 1.99rem;
+    line-height: 0.42rem;
+    -webkit-border-radius: 0.05rem;
+    -moz-border-radius: 0.05rem;
+    border-radius: 0.05rem;
+    background: #ed4e78;
+    color: #fff;
+    font-size: 0.3rem;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.descLineContainer {
+    float: left;
+    font-size: 0.25rem;
+    width: 5rem;
+}
+
+.descLine {
+    line-height: 0.4rem;
+}
+
+.rewardContainer {
+    width: 7.5rem;
+    padding: 0.21rem 0.09rem;
+}
+
+.borderDotted {
+    width: 7.2rem;
+    height: 0.11rem;
+    margin: 0 auto;
+    background: url(../img/img_share/bottom-dotted.png);
+    background-size: contain;
+    background-repeat-x: repeat;
+}
+
+.detailBtn {
+    width: 1.46rem;
+    line-height: 0.68rem;
+    background: url(../img/img_share/detailBtn1.png);
+    background-size: cover;
+    text-align: center;
+    font-size: 0.3rem;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.34rem;
+    right: 0.21rem;
+}
+
+.detailBtnDown {
+    width: 1.46rem;
+    line-height: 0.65rem;
+    background: url(../img/img_share/detailBtn2.png);
+    background-size: cover;
+    text-align: center;
+    display: none;
+    font-size: 0.3rem;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.34rem;
+    right: 0.21rem;
+}
+
+.debrisContrainer {
+    text-align: center;
+    font-size: 0.3rem;
+    margin: 0.28rem 0;
+    color: #585958;
+}
+
+.debrisItem {
+    width: 7.34rem;
+    height: 1.36rem;
+    background: #ebe5c9;
+    -webkit-border-radius: 0.07rem;
+    -moz-border-radius: 0.07rem;
+    border-radius: 0.07rem;
+    margin-bottom: 0.11rem;
+}
+
+.debrisListContrainer {
+    position: relative;
+}
+
+.debrisItem {
+    position: relative;
+}
+
+.debrisIcon {
+    width: 0.86rem;
+    height: 0.86rem;
+    position: absolute;
+    left: 0.3rem;
+    top: 50%;
+    margin-top: -0.43rem;
+}
+
+.rewardNameContainer {
+    position: absolute;
+    font-size: 0.3rem;
+    left: 1.49rem;
+    top: 0.25rem;
+}
+
+.rewardNameContainerNoLimit {
+    position: absolute;
+    font-size: 0.3rem;
+    left: 1.49rem;
+    top: 0.48rem;
+}
+
+.rewardName {
+    color: #585957;
+}
+
+.rewardCountContainer {
+    color: #a09a7b;
+    margin-top: 0.06rem;
+}
+
+.exchangeBtnContainer {
+    position: absolute;
+    right: 0.2rem;
+    top: 0.18rem;
+}
+
+.exchangeBtn {
+    font-size: 0.26rem;
+    color: #585956;
+    background: url(../img/img_share/exchangeBtn.png);
+    background-size: 100% 100%;
+    width: 2.06rem;
+    line-height: 0.63rem;
+    text-align: center;
+    padding: 0 0.2rem;
+}
+
+.exchangeBtnDone {
+    font-size: 0.26rem;
+    color: #bdb695;
+    background: url(../img/img_share/exchangeBtnDown.png);
+    background-size: cover;
+    width: 2.06rem;
+    line-height: 0.63rem;
+    text-align: center;
+    display: none;
+}
+
+.exchangeNumContainer {
+    font-size: 0.22rem;
+    color: #a09a7b;
+    text-align: center;
+    margin-top: 0.13rem;
+}
+
+.flex-nav-prev {
+    position: absolute;
+    z-index: 10;
+}
+
+.flex-nav-next {
+    position: absolute;
+    z-index: 10;
+}
+
+.flexslider {
+    margin: 0;
+    border: none;
+}
+
+.flex-direction-nav a:before {
+    font-family: flexslider-icon;
+    font-size: 0.25rem;
+    display: inline-block;
+    content: '\f001';
+    color: rgba(0, 0, 0, .8);
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, .3);
+}
+
+.flex-control-nav {
+    bottom: 0.4rem;
+    z-index: 10;
+    height: 0.2rem;
+}
+
+.flex-control-paging li a {
+    width: 0.2rem;
+    height: 0.2rem;
+}
+
+.flex-control-paging li a.flex-active {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.flexslider .slides {
+    position: relative;
+}
+
+.detailMaskContainer {
+    width: 7.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+}
+
+.detailMaskWindow {
+    width: 6.96rem;
+    height: 11rem;
+    border-radius: 0.2rem;
+    background: #f6f7e2;
+    position: relative;
+    left: 50%;
+    margin-left: -3.48rem;
+    top: 0.71rem;
+    overflow: hidden;
+}
+
+.windowTopBar {
+    width: 6.96rem;
+    height: 1rem;
+    background: #56bea6;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.detailTitle {
+    font-size: 0.3rem;
+    text-align: center;
+    line-height: 1rem;
+    color: #f6f7e2;
+}
+
+.windowCloseContainer {
+    width: 1.14rem;
+    height: 0.76rem;
+    position: absolute;
+    right: 0.1rem;
+    top: 50%;
+    margin-top: -0.38rem;
+}
+
+.closeBtnUp, .detailcloseBtnUp {
+    width: 1.14rem;
+    height: 0.76rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.closeBtnDown, .detailcloseBtnDown {
+    width: 1.14rem;
+    height: 0.76rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.detailContent {
+    width: 6.56rem;
+    height: 9.6rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size: 0.28rem;
+    color: #455058;
+    padding: 0.2rem;
+}
+
+.bannerDetailContainer {
+    width: 7.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+}
+
+.bannerWindow {
+    width: 6.96rem;
+    height: 8.78rem;
+    border-radius: 0.2rem;
+    background: #f6f7e2;
+    position: relative;
+    left: 50%;
+    margin-left: -3.48rem;
+    top: 0.71rem;
+    overflow: hidden;
+}
+
+.windowContent {
+    width: 6.96rem;
+    height: 6.62rem;
+}
+
+.windowBannerIcon {
+    display: block;
+    width: 3.13rem;
+    height: 3.13rem;
+    position: absolute;
+    left: 50%;
+    top: 1.58rem;
+    margin-left: -1.565rem;
+}
+
+.starLevel {
+    top: 5rem;
+    text-align: center;
+    font-size: 0;
+    margin-top: 4rem;
+}
+
+.starItem {
+    width: 0.24rem;
+    height: 0.24rem;
+    display: inline-block;
+    margin: 0 0.04rem;
+}
+
+.encounterName {
+    font-size: 0.3rem;
+    color: #555655;
+    text-align: center;
+    margin-top: 0.18rem;
+}
+
+.wechatLink {
+    font-size: 0.28rem;
+    display: block;
+    color: #59bfa7;
+    text-align: center;
+    margin-top: 0.81rem;
+    text-decoration: underline;
+}
+
+.windowBottomBar {
+    width: 6.96rem;
+    height: 1.2rem;
+    background: #56bea6;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.getAppFriendLink {
+    width: 3.27rem;
+    line-height: 0.9rem;
+    text-decoration: none;
+    color: #f6f7e2;
+    position: absolute;
+    left: 50%;
+    margin-left: -1.635rem;
+    top: 50%;
+    margin-top: -0.45rem;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.getAppBtn {
+    width: 3.27rem;
+    line-height: 0.9rem;
+    color: #f6f7e2;
+    font-size: 0.3rem;
+    text-align: center;
+}
+
+.getAppFriendUp {
+    background: url(../img/img_share/getAppFriendUp.png);
+    background-size: cover;
+}
+
+.getAppFriendDown {
+    background: url(../img/img_share/getAppFriendDown.png);
+    background-size: cover;
+    display: none;
+}

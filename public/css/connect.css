@@ -1,0 +1,86 @@
+.main {
+  margin-top: 124px;
+}
+.content {
+  width: 1000px;
+  margin: 0 auto;
+}
+.content .mapContainer {
+  position: relative;
+  width: 1000px;
+  height: 510px;
+}
+.content .mapContainer .map {
+  width: 1000px;
+  position: absolute;
+}
+.content .mapContainer .location {
+  width: 296px;
+  height: 364px;
+  background: rgba(206, 157, 109, 0.95);
+  position: absolute;
+  left: 30px;
+  color: #fff;
+  padding-top: 61px;
+  padding-left: 35px;
+}
+.content .mapContainer .location h2 {
+  font-size: 21px;
+}
+.content .mapContainer .location p {
+  font-size: 16px;
+}
+.content .qrCodes {
+  width: 1000px;
+  clear: both;
+  overflow: hidden;
+  margin-top: 61px;
+  line-height: 28px;
+  margin-bottom: 65px;
+}
+.content .qrCodes .webo {
+  width: 332px;
+  height: 190px;
+  float: left;
+  border-right: 2px #e4e4e4 dotted;
+  text-align: center;
+}
+.content .qrCodes .webo .weiboQr {
+  width: 119px;
+  height: 119px;
+  margin-top: 10px;
+}
+.content .qrCodes .wexin {
+  width: 332px;
+  height: 190px;
+  float: left;
+  border-right: 2px #e4e4e4 dotted;
+  text-align: center;
+  color: #a8a1a1;
+}
+.content .qrCodes .wexin .weixinQr {
+  width: 119px;
+  height: 119px;
+  margin-top: 10px;
+}
+.content .qrCodes .tieba {
+  width: 332px;
+  height: 190px;
+  float: left;
+  text-align: center;
+  color: #a8a1a1;
+}
+.content .qrCodes .tieba .tiebaQr {
+  width: 119px;
+  height: 119px;
+  margin-top: 10px;
+}
+.content .qrCodes .qrtitle {
+  font-size: 20px;
+}
+.qrtitle {
+  /*color: #2e2e2e;*/
+}
+.secondTitle {
+  /*color: #494949;*/
+}

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_share/logo-icon.png">
+    <link rel="stylesheet" href="../../css/activity_treasure.css">
+    <title>碎片夺宝</title>
+</head>
+<body>
+<div class="topBannerContainer">
+    <img class="banner" src="../../img/img_share/activitybanner.png">
+    <img class="fancyooIcon" src="../../img/img_share/activityIcon.png">
+</div>
+<div class="main">
+    <img class="leftUpName" src="../../img/img_share/leftUpName.png">
+    <img class="rightDownName" src="../../img/img_share/rightDownName.png">
+    <div class="myDebrisContainer">我的：
+        <span class="myDebrisNum"><?= $activity->user_fragment_amount ?></span><img class="myAwardIcon"
+                                                                                    src="../../img/img_share/awardIcon.png">
+    </div>
+    <div class="wholeContent">
+        <div class="activityTimeContainer">
+            <div class="activityTime">
+                活动时间：<span><?= date('Y年m月d日', strtotime($activity->start_time)) ?></span>—<span><?= date('Y年m月d日', strtotime($activity->end_time)) ?></span>
+            </div>
+            <div class="activityDesc"> <?= $activity->rules ?></div>
+        </div>
+        <div class="encounterContainer">
+            <img class="titleImg" src="../../img/img_share/title1.png">
+            <div class="encounterContent">
+                <?php foreach (json_decode($activity->extra_configs) as $exchange) {
+                    ?>
+                    <div class="encounterIconContainer">
+                        <img class="encounterIcon" data-sceneid="<?php echo $exchange->id ?>"
+                             src="<?php echo $exchange->banner ?>">
+                        <div class="encounterName"><?php echo $exchange->name ?></div>
+                    </div>
+                    <?php
+                }
+                ?>
+
+            </div>
+        </div>
+
+        <?php foreach ($activity->exchanges as $exchange) {
+            if ($exchange->is_group) {
+                ?>
+                <div class="activityImgContainer">
+                    <img class="suitImg" src="<?php echo $exchange->icon ?>">
+                    <div class="exchangeInfo_suit" id="exchange_id<?php echo $exchange->exchange_id ?>">
+                        <div class="btnContainer exchangeBtn" data-name="<?php echo $exchange->name; ?>">
+                            <P>立即兑换</P>
+                            <P><span class="exchangePrice"><?php echo $exchange->fragment_amount; ?></span><img
+                                        class="awardIcon_btn" src="../../img/img_share/awardIcon.png"></P>
+                        </div>
+                        <p class="exchangeCount">
+                            可兑换次数：<span
+                                    class="availableCount"><?php echo $exchange->available_exchange_times >= 0 ? $exchange->available_exchange_times : '无限' ?></span>
+                        </p>
+                    </div>
+                </div>
+            <?php }
+        } ?>
+
+        <div class="exchangeContainer">
+            <img class="titleImg" src="../../img/img_share/title4.png">
+            <div class="exchangeItemList">
+
+                <?php foreach ($activity->exchanges as $exchange) {
+                    if (!$exchange->is_group) {
+                        ?>
+                        <div class="itemList">
+                            <div class="awardIconContainer">
+                                <img class="awardIcon" src="<?php echo $exchange->icon; ?>">
+                            </div>
+                            <p class="awardName"><?php echo $exchange->name; ?></p>
+
+                            <div class="exchangeInfo_awardContainer"
+                                 id="exchange_id<?php echo $exchange->exchange_id ?>">
+                                <div class="exchangeInfo_award exchangeBtn" data-name="<?php echo $exchange->name; ?>">
+                                    <P class="">立即兑换</P>
+                                    <P><span class="exchangePrice"><?php echo $exchange->fragment_amount; ?></span><img
+                                                class="awardIcon_btn_2" src="../../img/img_share/awardIcon.png"></P>
+                                </div>
+                                <p class="exchangeCount_award">可兑换次数：<span
+                                            class="availableCount"><?php echo $exchange->available_exchange_times >= 0 ? $exchange->available_exchange_times : '无限'; ?></span>
+                                </p>
+                                <p class="remainCount_award">今日还剩余：<span
+                                            class="availableRemain"><?php echo $exchange->available_exchange_amount >= 0 ? $exchange->available_exchange_amount : '无限'; ?></span>
+                                </p>
+                            </div>
+                        </div>
+                    <?php }
+                } ?>
+
+            </div>
+        </div>
+
+        <div class="treasureContainer">
+            <img class="titleImg" src="../../img/img_share/title5.png">
+            <img class="roleIcon" src="../../img/img_share/roleIcon.png">
+            <div class="treasureListContainer">
+
+            </div>
+        </div>
+
+        <!--    <div class="historyContainer">-->
+        <!--        <p class="resetTime">剩余时间：<span>10h30min</span></p>-->
+        <!--        <div class="historyBtn">历史中奖名单</div>-->
+        <!--    </div>-->
+        <!--    <div class="rankContainer"></div>-->
+    </div>
+    <img class="bottomImg" src="../../img/img_share/bottomImg.png">
+    <P class="activityDetail"><a class="activityDetailLink">活动详情</a></P>
+</div>
+<div class="confirmContainer">
+    <div class="confirmContent">
+        <div class="topBar"></div>
+        <div class="middleContent">
+            <P class="confirmExchange">您是否确认用<strong class="exchangeCount_confirm">200</strong></P>
+            <P class="confirmNameContainer">兑换<strong class="nameContainer"><span class="exchangeName"></span><span
+                            class="confirmExchagneCount">1</span>张</strong></P>
+
+            <P class="errorMessage"></P>
+        </div>
+        <div class="bottomBar">
+            <div class="cancelConfirmBtn">取消</div>
+            <div class="exchangeConfirmBtn">兑换</div>
+            <div class="ensureConfirmBtn">确定</div>
+        </div>
+    </div>
+</div>
+
+<div class="detailMaskContainer">
+    <div class="detailMaskWindow">
+        <div class="windowTopBar">
+            <div class="detailTitle">活动详情</div>
+            <div class="windowCloseContainer">
+                <img class="detailcloseBtnUp " src="../../../img/img_share/closeBtnUp.png">
+                <img class="detailcloseBtnDown" src="../../../img/img_share/closeBtnDown.png">
+            </div>
+        </div>
+        <div class="detailContent">
+            <P><?= $activity->rules ?></p>
+        </div>
+    </div>
+</div>
+
+
+<div class="bannerDetailContainer">
+    <div class="bannerWindow">
+        <div class="windowTopBar">
+            <div class="windowCloseContainer">
+                <img class="closeBtnUp" src="../../../img/img_share/closeBtnUp.png">
+                <img class="closeBtnDown" src="../../../img/img_share/closeBtnDown.png">
+            </div>
+        </div>
+        <div class="windowContent">
+            <!--            <img class="windowBannerIcon" src="../../../img/img_share/windowIcon.jpg">-->
+            <img class="windowBannerIcon">
+            <div class="starLevel"></div>
+            <p class="encounterName_banner">一起去旅行</p>
+            <a class="wechatLink" href="#">找微信好友玩</a>
+        </div>
+        <div class="windowBottomBar">
+            <a class="getAppFriendLink getAppBtn getAppFriendUp"
+               href="fancyoo://match?user_id=<?= $user_id ?>">寻找有缘人</a>
+            <!--            <a class="getAppFriendLink getAppBtn getAppFriendDown" href="fancyoo://match">-->
+            <!--                寻找有缘人-->
+            <!--            </a>-->
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        adapt();
+        getGamingList();
+
+    });
+
+    function adapt() {
+        var width = document.documentElement.clientWidth, height = document.documentElement.clientHeight;
+        document.documentElement.style.fontSize = width / 7.5 + 'px';
+        $(".confirmContainer,.detailMaskContainer,.bannerDetailContainer").height(height);
+    }
+
+    var token = '<?=$token?>';
+
+    var totalCount;
+    var currentCount;
+
+    var gamingId, participateCount;
+
+    function renderProgress(count1, count2, gamingId) {
+        //此处重要，把px转换成rem
+        var outWidth = parseInt($(".progressOut").width());
+        var rootFontSize = parseInt(document.documentElement.style.fontSize);
+        var innerWidth = ((count1 / count2) * (outWidth)) / (rootFontSize);
+        $(".progressInner" + gamingId).width(innerWidth + "rem");
+
+    }
+
+    //点击参与xx碎片
+    $(".treasureListContainer").on("click", ".addFragment", function () {
+        join = true;
+        $(".confirmContainer").show();
+        $(".cancelConfirmBtn,.exchangeConfirmBtn").show();
+        $(".ensureConfirmBtn,.confirmExchange,.confirmNameContainer").hide();
+
+        currentCount = currentCount + parseInt($(this).text().replace(/[^0-9]/ig, ""));
+        renderProgress(currentCount, totalCount);
+        gamingId = parseInt($(this).parent().attr("id").replace(/[^0-9]/ig, ""));
+        participateCount = parseInt($(this).data("count"));
+        $(".errorMessage").show().text("您是否确认参与" + participateCount + "个碎片");
+//        participateGaming(gamingId, participateCount);
+    });
+
+    //点击邂逅主题图片打开弹窗
+    $(".encounterIcon").click(function () {
+        var sceneId = $(this).data("sceneid");
+        $(".bannerDetailContainer").show();
+        getScene(sceneId);
+        $(".wechatLink").attr('href', 'fancyoo://meet?scene_id=' + sceneId);
+    });
+
+    //点击立即兑换弹出确认框
+    var exchange_id, exchange_amount, exchangeGamingId, exchangeCount_confirm, exchange_name, exchange = false,
+        join = false;
+    $(".exchangeBtn").click(function () {
+        exchange = true;
+        exchange_id = parseInt($(this).parent().attr("id").replace(/[^0-9]/ig, ""));
+        exchange_amount = 1;
+        exchangeGamingId = parseInt($(this).parent().attr("id").replace(/[^0-9]/ig, ""));
+        exchange_name = $(this).data("name");
+        $(".confirmContainer,.confirmNameContainer,.confirmExchange,.cancelConfirmBtn,.exchangeConfirmBtn").show();
+        $(".ensureConfirmBtn").hide();
+        $(".errorMessage").hide();
+
+        exchangeCount_confirm = $(this).find(".exchangePrice").text();
+        $(".exchangeCount_confirm").text(exchangeCount_confirm);
+        $(".exchangeName").text(exchange_name);
+    });
+
+
+    //点击弹框中的兑换按钮
+    $(".exchangeConfirmBtn").click(function () {
+        if (exchange) {
+            exchangeEvent(exchangeUrl, user_id, exchange_id, exchange_amount, exchangeGamingId);
+        } else if (join) {
+            participateGaming(gamingId, participateCount);
+        }
+    });
+
+
+    //确认框点击取消,或者确认框点击确定
+    $(".cancelConfirmBtn,.ensureConfirmBtn").click(function () {
+        $(".confirmContainer").hide();
+        exchange = false;
+    });
+
+    //点击显示隐藏活动详情
+    $(".roleIcon,.activityDetailLink").click(function () {
+        $(".detailMaskContainer").show();
+    });
+
+    //活动banner关闭按钮点击和松开状态切换
+    BtnEvent(".closeBtnUp", ".closeBtnDown", ".bannerDetailContainer");
+
+    //活动详情关闭按钮点击松开状态切换
+    BtnEvent(".detailcloseBtnUp", ".detailcloseBtnDown", ".detailMaskContainer");
+
+    function BtnEvent(ele1, ele2, ele3, ele4) { //按钮事件
+        $(ele1).on('touchstart', function () {
+            $(this).hide();
+            $(ele2).show();
+        }).on('touchend', function () {
+            $(ele2).hide();
+            $(ele1).show();
+            if (ele3 || ele3 != '') {
+                $(ele3).hide();
+            }
+            if (ele4 || ele4 != '') {
+                $(ele4).show();
+            }
+            return false; //阻止事件继续往下传递
+        });
+    }
+
+    var activityId = '<?=$activity->id?>';
+
+    //参与集碎片夺宝
+    function participateGaming(gamingId, participateCount) {
+        var participateUrl = '/api/activities/' + activityId + '/participateGaming';
+        $.ajax({
+            headers: {
+                Authorization: 'Bearer ' + token
+            },
+            url: participateUrl,
+            type: 'POST',
+            data: {
+                gaming_id: gamingId,
+                amount: participateCount
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data == true) {
+//                    alert('参与成功');
+                    $(".confirmExchange,.confirmNameContainer,.cancelConfirmBtn,.exchangeConfirmBtn").hide();
+                    $(".ensureConfirmBtn").show();
+                    $(".errorMessage").show().text('参与成功！');
+
+                    refreshCount(gamingId, false);
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    }
+
+    //获取集碎片奖品列表
+    function getGamingList() {
+        var gamingUrl = '/api/activities/' + activityId;
+        $.ajax({
+            headers: {
+                Authorization: 'Bearer ' + token
+            },
+            url: gamingUrl,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data.gamingList);
+                var gamingList = data.gamingList;
+                for (var i = 0; i < gamingList.length; i++) {
+                    var gamingId = gamingList[i].gaming_id, icon = gamingList[i].award_icon,
+                        fragmentCount = gamingList[i].user_participant_fragment_amount,
+                        awardName = gamingList[i].award_name, totalFragCount = gamingList[i].total_fragment_amount,
+                        fragHasCount = gamingList[i].participant_fragment_amount,
+                        fragResCount = gamingList[i].remain_fragment_amount;
+                    insertFragmentsItem(gamingId, icon, fragmentCount, awardName, totalFragCount, fragHasCount, fragResCount);
+
+                    renderProgress(fragHasCount, totalFragCount, gamingId);
+
+
+                }
+            }
+        })
+    }
+
+    //生成碎片兑换列表
+    function insertFragmentsItem(gamingId, icon, fragmentCount, awardName, totalFragCount, fragHasCount, fragResCount) {
+        var fragmentItem = '<div class="rankItemContainer">' +
+            '<div class="awardContainer">' +
+            '<img class="awardIcon" src="' + icon + '">' +
+            '<p class="fragmentInfo">你参与：<span class="fragmentCount" id="userfragmentCount' + gamingId + '">' + fragmentCount + '</span><img class="joinFragmentIcon" src="../../img/img_share/awardIcon.png"></p>' +
+            '</div>' +
+            '<div class="progressContainer">' +
+            '<p class="rewardTitle">' + awardName + '</p>' +
+            '<p class="rewardFragmentCountContainer">总需：<span class="rewardFragmentCount">' + totalFragCount + '</span>碎片</p>' +
+            '<div class="progressOut">' +
+            '<div class="progressInner progressInner' + gamingId + '"></div>' +
+            '</div>\n' +
+            '<p class="fragmentAreadyContainer">已参与：<span class="framentHasCount" id="framentHasCount' + gamingId + '">' + fragHasCount + '</span>碎片</p>' +
+            '<p class="fragmentLastContainer">剩余：<span class="framentLastCount" id="framentLastCount' + gamingId + '">' + fragResCount + '</span>碎片</p>' +
+            '<div class="joinBtnContainer"  id="gamingId' + gamingId + '">' +
+            '<div class="addOne addFragment" data-count=1>参与1个<img class="addFragmentIcon" src="../../img/img_share/awardIcon.png"></div>' +
+            '<div class="addFive addFragment" data-count=5>参与5个<img class="addFragmentIcon" src="../../img/img_share/awardIcon.png"></div>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+        $(".treasureListContainer").append(fragmentItem);
+    }
+
+    //刷新碎片兑换列表
+    var user_id =<?=$user_id?>;
+
+    function refreshCount(gamingId, isgroup) {
+        var refreshUrl = '/api/activities/' + activityId;
+        $.ajax({
+            headers: {
+                Authorization: 'Bearer ' + '<?=$token?>'
+            },
+            url: refreshUrl,
+            type: 'GET',
+            dataType: 'json',
+            data: {user_id: user_id},
+            success: function (data) {
+                console.log(data);
+
+                if (!isgroup) {
+                    $("#userfragmentCount" + gamingId).text(data.gamingList[parseInt(gamingId) - 1].user_participant_fragment_amount);
+                    $("#framentHasCount" + gamingId).text(data.gamingList[parseInt(gamingId) - 1].participant_fragment_amount);
+                    $("#framentLastCount" + gamingId).text(data.gamingList[parseInt(gamingId) - 1].remain_fragment_amount);
+                    renderProgress(data.gamingList[parseInt(gamingId) - 1].participant_fragment_amount, data.gamingList[parseInt(gamingId) - 1].total_fragment_amount, gamingId);
+                } else {
+                    for (var i = 0; i < data.exchanges.length; i++) {
+                        if (data.exchanges[i].exchange_id == parseInt(gamingId)) {
+                            if (data.exchanges[i].available_exchange_times >= 0) {
+                                $("#exchange_id" + gamingId).find(".availableCount").text(data.exchanges[i].available_exchange_times);
+                            } else {
+                                $("#exchange_id" + gamingId).find(".availableCount").text("无限");
+                            }
+                            if ($("#exchange_id" + gamingId).find(".remainCount_award").length > 0) {
+                                if (data.exchanges[i].available_exchange_amount >= 0) {
+                                    $("#exchange_id" + gamingId).find(".availableRemain").text(data.exchanges[i].available_exchange_amount);
+                                } else {
+                                    $("#exchange_id" + gamingId).find(".availableRemain").text("无限");
+
+                                }
+                            }
+                        }
+                    }
+                }
+                $(".myDebrisNum").text(data.user_fragment_amount);
+
+            }
+        });
+    }
+
+
+    //点击兑换家具,套装,碎片
+    var exchangeUrl = '/api/activities/' + activityId + '/exchanges';
+
+    function exchangeEvent(exchangeUrl, user_id, exchange_id, exchange_amount, gamingId) {
+
+        $.ajax({
+            headers: {
+                Authorization: 'Bearer ' + '<?=$token?>'
+            },
+            url: exchangeUrl,
+            type: 'POST',
+            data: {user_id: user_id, exchange_id: exchange_id, amount: exchange_amount},
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data == true) {
+                    $(".confirmExchange,.confirmNameContainer,.cancelConfirmBtn,.exchangeConfirmBtn").hide();
+                    $(".ensureConfirmBtn").show();
+                    $(".errorMessage").show().text('兑换成功！');
+                    refreshCount(gamingId, true);
+                } else {
+                    $(".confirmExchange,.confirmNameContainer,.cancelConfirmBtn,.exchangeConfirmBtn").hide();
+                    $(".errorMessage").show().text(data.message);
+                    $(".ensureConfirmBtn").show();
+                }
+            }
+        })
+    }
+
+    //获取场景
+    function getScene(sceneId) {
+        $.ajax({
+            headers: {
+                Authorization: 'Bearer ' + '<?=$token?>'
+            },
+            type: 'GET',
+            dataType: 'json',
+            url: '/api/encounters/sceneInfo',
+            data: {
+                sceneId: sceneId
+            },
+            success: function (data) {
+                console.log(data);
+                $(".windowBannerIcon").attr('src', data.Icon);
+                $(".encounterName_banner").text(decodeURIComponent(data.Scene));
+                for (var m = 0; m < data.level; m++) {
+                    var starItem = "<img class=\"starItem\" src=\"../../../img/img_share/starIcon.png\">";
+                    $(".starLevel").append(starItem);
+                }
+            }
+        })
+    }
+
+    //获取历史名单
+    function getHistory() {
+        var participateUrl = '/api/activities/' + activityId + '/getHistoryGamingWinners';
+        $.ajax({
+            headers: {
+                Authorization: 'Bearer ' + token
+            },
+            url: participateUrl,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    }
+
+    $(".historyBtn").click(function () {
+        getHistory();
+    })
+
+
+</script>
+</body>
+</html>

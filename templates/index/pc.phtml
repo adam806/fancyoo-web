@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" class="htmlhidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name=”renderer” content=”webkit”>
+    <meta http-equiv=”X-UA-Compatible” content=”IE=Edge,chrome=1″>
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_pc/logo-icon.png">
+    <link href="https://cdn.bootcss.com/fullPage.js/2.9.4/jquery.fullpage.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/pc.css">
+
+    <title>Fancyoo</title>
+
+    <script>
+        //声明_czc对象:
+        var _czc = _czc || [];
+        //绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+        _czc.push(["_setAccount", 1268160576]);
+    </script>
+
+    <style>
+        .section {
+            /*overflow: hidden;*/
+        }
+
+        .footerBarContainer {
+            position: relative;
+            width: 100%;
+            height: 205px;
+            background: #383733;
+        }
+
+        .footerBarContainer a {
+            text-decoration: none;
+            color: #776859;
+        }
+
+        .footerBarContainer .footerContent {
+            width: 1200px;
+            top: 50px;
+            position: absolute;
+            left: 50%;
+            margin-left: -600px;
+            text-align: center;
+            color: #6a6765;
+            font-size: 12px;
+        }
+
+        .footerBarContainer .footerContent p {
+            /*margin: 8px auto;*/
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .footerBarContainer .privacy,
+        .footerBarContainer .agreement,
+        .footerBarContainer .recharge,
+        .footerBarContainer .guardian,
+        .footerBarContainer .help {
+            width: 75px;
+            display: inline-block;
+            color: rgba(255, 255, 2550, 0.35);
+            border-right: 1px solid rgba(255, 255, 2550, 0.35);
+            font-size: 12px;
+        }
+
+        .footerBarContainer .privacy:hover {
+            color: #cc9966;
+        }
+
+        .footerBarContainer .agreement:hover {
+            color: #cc9966;
+        }
+
+        .footerBarContainer .recharge:hover {
+            color: #cc9966;
+        }
+
+        .footerBarContainer .guardian:hover {
+            color: #cc9966;
+        }
+
+        .footerBarContainer .help:hover {
+            color: #cc9966;
+        }
+
+        .footerBarContainer .linkContainer {
+            /*margin-bottom:32px;*/
+        }
+
+        .footerCompanyName {
+            margin-top: 14px !important;
+        }
+
+        .footerNum {
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        .beianLink {
+            text-decoration: none;
+            color: #6a6765 !important;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="main">
+
+    <div id="fullpage">
+        <?php
+        include(__DIR__ . '/../component/header.phtml');
+        ?>
+        <div class="section section_diy firstPage" data-anchor="home">
+            <img class="fancyooLogo" src="../../../img/img_pc/fancyooLogo.png">
+            <p class="slogan"> 打造一个真诚的虚实世界</p>
+            <div class="downloadBtnContainer">
+                <div class="iosContainer">
+                    <a id="ios_cnzz" href="https://itunes.apple.com/us/app/howdyLand/id1311428217"
+                       onclick="_czc.push(['_trackEvent', 'ios', '下载', 'ios客户端下载','1','ios_cnzz'])" target="_blank">
+                        <img class="iosIcon" src="../../../img/img_pc/iosIcon.png">
+                        <span class="btnDesc">iPhone&nbsp;下载</span>
+                    </a>
+
+                </div>
+                <div class="androidContainer">
+                    <!--应用宝贝下载地址，暂时注释：http://android.myapp.com/myapp/detail.htm?apkName=com.shownfun.howdyland-->
+                    <a id="android_cnzz"
+                       href="http://android.myapp.com/myapp/detail.htm?apkName=com.hifreelight.fancy"
+                       onclick="_czc.push(['_trackEvent', 'android', '下载', '安卓客户端下载','1','android_cnzz'])"
+                       target="_blank">
+                        <img class="androidIcon" src="../../../img/img_pc/androidIcon.png">
+                        <span class="btnDesc">Android&nbsp;下载</span>
+                    </a>
+                </div>
+            </div>
+            <div class="qrContainer">
+                <img class="qrCode" src="../../../img/img_pc/downloadQr.png">
+                <p class="scanP">扫码下载</p>
+            </div>
+        </div>
+        <div class="section section_diy secondPage" data-anchor="meet">
+            <div class="p2Container">
+                <div class="secondTitle">
+                    <img class="p2title" src="../../../img/img_pc/p2title.png">
+                </div>
+                <div class="secondContent">
+                    <img class="p2content" src="../../../img/img_pc/p2content.png">
+                </div>
+            </div>
+        </div>
+        <div class="section section_diy thirdPage" data-anchor="city">
+            <div class="thirdContent">
+                <div class="thirdTitle">
+                    <img class="p3title" src="../../../img/img_pc/p3title.png">
+                </div>
+                <div class="thirdYard">
+
+                    <div class="cityPhone">
+                        <img class="cityPhoneImg" src="../../../img/img_pc/cityPhone.png">
+                    </div>
+                    <div class="cityContent">
+                        <div class="slidecity city1">
+                            <img class="beijing" src="../../../img/img_pc/citybeijing.png">
+                            <img class="bjperson" src="../../../img/img_pc/bjperson.png">
+                        </div>
+                        <div class="slidecity city2">
+                            <img class="shanghai" src="../../../img/img_pc/cityshanghai.png">
+                            <img class="shperson" src="../../../img/img_pc/shperson.png">
+                        </div>
+                        <div class="slidecity city3">
+                            <img class="guangzhou" src="../../../img/img_pc/cityguangzhou.png">
+                            <img class="gzperson" src="../../../img/img_pc/gzperson.png">
+                        </div>
+                        <div class="slidecity city4">
+                            <img class="nanjing" src="../../../img/img_pc/citynanjing.png">
+                            <img class="njperson" src="../../../img/img_pc/njperson.png">
+                        </div>
+                        <div class="slidecity city5">
+                            <img class="suzhou" src="../../../img/img_pc/citysuzhou.png">
+                            <img class="szperson" src="../../../img/img_pc/szperson.png">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="section section_diy fourthPage" data-anchor="game">
+            <div class="p4Container">
+                <div class="fourthTitle">
+                    <img class="p4title" src="../../../img/img_pc/p4title.png">
+                </div>
+                <div class="fourthContent">
+                    <img class="p4content" src="../../../img/img_pc/p4content.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="section section_diy fifthPage" data-anchor="party">
+            <div class="fifthContent">
+                <div class="fifthTitle">
+                    <img class="p5title" src="../../../img/img_pc/p5title.png">
+                </div>
+                <div class="fifthYard">
+                    <img class="p5Yard" src="../../../img/img_pc/p5yard.png">
+                    <img class="p5People" src="../../../img/img_pc/p5pets.png">
+                </div>
+                <div class="slideContainer">
+                    <div class="slide1 slideRoom"></div>
+                    <div class="slide2 slideRoom"></div>
+                    <div class="slide3 slideRoom"></div>
+                    <div class="slide4 slideRoom"></div>
+                    <div class="slide5 slideRoom"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section section_diy sixthPage" data-anchor="connect">
+            <div class="sixthContent">
+                <img class="p6nameleft" src="../../../img/img_pc/nameleft.png">
+                <img class="p6nameright" src="../../../img/img_pc/nameright.png">
+            </div>
+        </div>
+
+
+        <div class="section footerBarContainer fp-auto-height" data-anchor="footer">
+            <div class="footerContent">
+                <div class="linkContainer"><a class="privacy" href="/privacy">隐私条款</a><a
+                            class="agreement"
+                            href="/agreement">使用协议</a><a
+                            class="recharge" href="/recharge">充值中心</a><a class="guardian"
+                                                                         href="/guardian">家长监护</a><a
+                            class="help" href="/help">帮助中心</a></div>
+                <p class="footerCompanyName">北京无界光合科技有限公司版权所有</p>
+                <p>Copyright&nbsp;&nbsp;©2015-2017&nbsp;Hifreelight,&nbsp;All&nbsp;Rights&nbsp;Reserved</p>
+                <p><a class="beianLink" href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备15053345号-3</a></p>
+                <p class="footerNum">京网文（2017）1348-097 号</p>
+
+                <div class="cnzzContainer">
+                    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                        document.write(unescape("%3Cspan id='cnzz_stat_icon_1268160576'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1268160576%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--    <div class="downloadContainer">-->
+    <!--        <div class="downloadContent">-->
+    <!--            <img class="closeBtn" src="../../../img/img_pc/closeBtn.png">-->
+    <!--            <div class="qrCodeContainer">-->
+    <!--                <img class="qrBorder" src="../../../img/img_pc/qrdotted.png">-->
+    <!--                <img class="qrCode" src="../../../img/img_pc/downloadQr.png">-->
+    <!--                <P>扫一扫，立即下载</P>-->
+    <!--            </div>-->
+    <!--            <div class="downloadBtns">-->
+    <!--                <a id="ios_cnzz" href="https://itunes.apple.com/us/app/howdyLand/id1272542441"-->
+    <!--                   onclick="_czc.push(['_trackEvent', 'ios', '下载', 'ios客户端下载','1','ios_cnzz'])">-->
+    <!--                    <div class="iosContainer">-->
+    <!--                        <img class="iosIocn" src="../../../img/img_pc/iosIcon.png">-->
+    <!--                        <span class="iosDownload">IOS下载</span>-->
+    <!--                    </div>-->
+    <!--                </a>-->
+    <!--                <!--                <a id="android_cnzz"-->-->
+    <!--                <!--                   href="https://www.pgyer.com/apiv1/app/install?aId=b1326308129430681487b43739b6616a&_api_key=c3624d043c84fa7fcd5351a2ecfa79b6"-->
+    -->
+    <!--                <!--                   onclick="_czc.push(['_trackEvent', 'android', '下载', '安卓客户端下载','1','android_cnzz'])">-->
+    -->
+    <!--                <a id="android_cnzz"-->
+    <!--                   href="http://android.myapp.com/myapp/detail.htm?apkName=com.shownfun.howdyland"-->
+    <!--                   onclick="_czc.push(['_trackEvent', 'android', '下载', '安卓客户端下载','1','android_cnzz'])">-->
+    <!--                    <div class="androidContainer">-->
+    <!--                        <img class="androidIocn" src="../../../img/img_pc/androidIcon.png">-->
+    <!--                        <span class="androidDowload">Android下载</span>-->
+    <!--                    </div>-->
+    <!--                </a>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fullPage.js/2.9.4/jquery.fullpage.min.js"></script>
+<script src="https://cdn.bootcss.com/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+<script src="../../js/jquery.md5.js"></script>
+<!--<script src="https://cdn.bootcss.com/less.js/3.0.0-pre.4/less.min.js"></script>-->
+<script>
+    $(document).ready(function () {
+        $("html").removeClass("htmlhidden");
+        $('#fullpage').fullpage({
+//            scrollOverflow: true,
+            controlArrows: false,
+            resize: false,
+            navigation: true,
+            verticalCentered: false,
+            anchors: ['home', 'meet', 'city', 'game', 'party', 'connect', 'footer'],
+            touchSensitivity: 5,
+            afterLoad: function (anchorLink, index) {
+                if (index == 3) {
+//                    alert('自动轮播');
+                    setInterval(function () {
+                        $.fn.fullpage.moveSlideRight();
+                    }, 4000)
+                }
+                if (index == 4) {
+                    setInterval(function () {
+                        $.fn.fullpage.moveSlideRight();
+                    }, 4000)
+                }
+            }
+        });
+        checkRoom();
+        checkCity();
+    });
+    //    $(".downloadBtn").click(function () {
+    //        $(".downloadContainer").show();
+    //    });
+    //    $(".downloadContent .closeBtn").click(function () {
+    //        $(".downloadContainer").hide();
+    //    });
+
+
+    var num = 1, citynum = 1;
+
+    function checkRoom() {
+        var timer1 = window.setInterval(function () {
+            num < 6 ? num++ : num = 1;
+            $(".slideRoom").fadeOut();
+            $(".slide" + num).fadeIn();
+            if (num == 5) {
+                window.clearInterval(timer1);
+                num = 0;
+                checkRoom();
+            }
+        }, 2500);
+    }
+
+    function checkCity() {
+        var timer2 = window.setInterval(function () {
+            citynum < 6 ? citynum++ : citynum = 1;
+            $(".slidecity").fadeOut();
+            $(".city" + citynum).fadeIn();
+            if (citynum == 5) {
+                window.clearInterval(timer2);
+                citynum = 0;
+                checkCity();
+            }
+        }, 2500)
+    }
+</script>
+
+
+</body>
+</html>

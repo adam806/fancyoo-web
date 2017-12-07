@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name=”renderer” content=”webkit”>
+    <meta http-equiv=”X-UA-Compatible” content=”IE=Edge,chrome=1″>
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_pc/logo-icon.png">
+    <title>Fancyoo</title>
+
+    <script>
+        //声明_czc对象:
+        var _czc = _czc || [];
+        //绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+        _czc.push(["_setAccount", 1268160576]);
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            position: relative;
+            background: url(../../../img/img_pc/citypb_bj.jpg);
+            background-size: 100% 100%;
+            height: 1001px;
+        }
+
+        .bjimg {
+            width: 100%;
+            min-width: 1600px;
+            display: block;
+        }
+
+        .topbar {
+            width: 100%;
+            height: 99px;
+            background: url(../../../img/img_pc/topbar.png);
+            background-size: contain;
+            position: absolute;
+            top: 0;
+            clear: both;
+            min-width: 1600px;
+        }
+
+        .downloadcontainer {
+            position: absolute;
+            right: 278px;
+            top: 1px;
+        }
+
+        .downloadcontainer li {
+            float: left;
+            list-style: none;
+        }
+
+        .qrboard {
+            background: url(../../../img/img_pc/qrBorder.png);
+            position: absolute;
+            top: 6px;
+            width: 98px;
+            height: 84px;
+        }
+
+        .qrcode {
+            width: 78px;
+            margin-left: 4px;
+            margin-top: 3px;
+            position: absolute;
+        }
+
+        .downloadbtn {
+            position: absolute;
+            top: 21px;;
+            left: 129px;
+            cursor: pointer;
+        }
+
+        .downloadContainer {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.5);
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: none;
+        }
+
+        .downloadContent {
+            width: 554px;
+            height: 293px;
+            background: #fff;
+            border-radius: 9px;
+            position: absolute;
+            left: 50%;
+            margin-left: -277px;
+            top: 296px;
+        }
+
+        .downloadContent .closeBtn {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            cursor: pointer;
+        }
+
+        .qrCodeContainer {
+            position: absolute;
+            left: 72px;
+        }
+
+        .qrCodeContainer .qrBorder {
+            width: 158px;
+            height: 158px;
+            position: absolute;
+            top: 61px;
+        }
+
+        .qrCodeContainer .qrCode {
+            position: absolute;
+            top: 73px;
+            left: 12px;
+            width: 134px;
+            height: 134px;
+        }
+
+        .qrCodeContainer p {
+            color: #936e27;
+            font-size: 16px;
+            position: absolute;
+            left: 16px;
+            width: 128px;
+            top: 231px;
+        }
+
+        .iosDownload {
+            margin-left: 12px;
+        }
+
+        .androidDowload {
+            margin-left: 22px;
+        }
+
+        .downloadBtns {
+            position: absolute;
+            left: 276px;
+            top: 90px;
+        }
+
+        .downloadBtns .iosIocn {
+            vertical-align: middle;
+            position: absolute;
+            left: 50px;
+            top: 6px;
+        }
+
+        .downloadBtns .androidIocn {
+            vertical-align: middle;
+            position: absolute;
+            left: 35px;
+            top: 6px;
+        }
+
+        .downloadBtns .iosContainer {
+            width: 200px;
+            height: 44px;
+            line-height: 44px;
+            background-image: url(../../../img/img_pc/iosBtn1.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            color: #fff;
+            border-radius: 3px;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .downloadBtns .iosContainer:hover {
+            background-image: url(../../../img/img_pc/iosBtn2.png);
+            /*background-size: contain;*/
+            /*background-repeat: no-repeat;*/
+        }
+
+        .downloadBtns .androidContainer {
+            width: 200px;
+            height: 44px;
+            line-height: 44px;
+            background-image: url(../../../img/img_pc/androidBtn1.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            color: #fff;
+            border-radius: 3px;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .downloadBtns .androidContainer:hover {
+            background-image: url(../../../img/img_pc/androidBtn2.png);
+            /*background-size: contain;*/
+            /*background-repeat: no-repeat;*/
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .topbarContainer {
+            position: relative;
+            width: 1200px;
+            height: 99px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            position: absolute;
+            top: 18px;
+        }
+
+        .pcMeet {
+            position: absolute;
+            width: 1000px;
+            left: 50%;
+            margin-left: -500px;
+            top: 163px;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="main">
+    <img class="pcMeet" src="../../../img/img_pc/pcmeet.png">
+    <div class="topbar">
+        <div class="topbarContainer">
+            <img class="logo" src="../../../img/img_pc/logo.png">
+            <ul class="downloadcontainer">
+                <li class="qrboard">
+                    <img class="qrcode" src="../../../img/img_pc/downloadQr.png">
+                </li>
+                <li>
+                    <img class="downloadbtn" src="../../../img/img_pc/pb_button.png">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="downloadContainer">
+        <div class="downloadContent">
+            <img class="closeBtn" src="../../../img/img_pc/closeBtn.png">
+            <div class="qrCodeContainer">
+                <img class="qrBorder" src="../../../img/img_pc/qrdotted.png">
+                <img class="qrCode" src="../../../img/img_pc/downloadQr.png">
+                <P>扫一扫，立即下载</P>
+            </div>
+            <div class="downloadBtns">
+                <a id="ios_cnzz" href="https://itunes.apple.com/cn/app/fancyoo-%E8%81%8A%E5%A4%A9%E4%BA%A4%E5%8F%8B%E7%9A%84%E6%B8%B8%E6%88%8F%E5%8C%96%E7%A4%BE%E4%BA%A4%E7%A4%BE%E5%8C%BA/id1311428217?mt=8"
+                   onclick="_czc.push(['_trackEvent', 'ios', '下载', 'ios客户端下载','1','ios_cnzz'])">
+                    <div class="iosContainer">
+                        <img class="iosIocn" src="../../../img/img_pc/iosDownloadIcon.png">
+                        <span class="iosDownload">IOS下载</span>
+                    </div>
+                </a>
+                <a id="android_cnzz"
+                   href="http://a.app.qq.com/o/simple.jsp?pkgname=com.hifreelight.fancy"
+                   onclick="_czc.push(['_trackEvent', 'android', '下载', '安卓客户端下载','1','android_cnzz'])">
+                    <div class="androidContainer">
+                        <img class="androidIocn" src="../../../img/img_pc/androidDownloadIcon.png">
+                        <span class="androidDowload">Android下载</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="cnzz" style="display: none">
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1268160576'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1268160576' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<!--<script src="js/jquery.md5.js"></script>-->
+<script>
+    $(function () {
+        adapt();
+    });
+    $(window).resize(function () {
+        adapt();
+    })
+
+
+    $(".downloadbtn").click(function () {
+        $(".downloadContainer").show();
+    });
+    $(".downloadContent .closeBtn").click(function () {
+        $(".downloadContainer").hide();
+    })
+
+    function adapt() {
+        var width = document.documentElement.clientWidth, height = document.documentElement.clientHeight;
+        document.documentElement.style.fontSize = width / 7.5 + 'px';
+    }
+</script>
+
+
+</body>
+</html>

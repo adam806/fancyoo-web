@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit"> <!--国产浏览器高速模式-->
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_pc/logo-icon.png">
+    <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/register.css">
+    <script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script> <!--用于解决iphone中点击两下页面会放大-->
+    <title>Fancyoo</title>
+</head>
+<body>
+<?php
+include(__DIR__ . '/../component/header.phtml');
+?>
+<div class="main">
+    <div class="content">
+        <div class="register_title">用户注册</div>
+        <div class="register_container">
+            <div class="input_div">
+                <div class="input-group">
+                    <span class="input-group-addon input-title-diy">手机号码</span>
+                    <input type="text" class="form-control userNmu_input border-right" placeholder="请填写手机号">
+                    <span class="input-group-addon input-group-addon-diy phoneNumImg">
+                        <img class="judge_img judge_img_phone" src="../../../img/img_pc/wrong.png">
+                    </span>
+                    <button type="button" class="sendCodeBtn btn-default">获取验证码</button>
+                </div>
+
+            </div>
+            <div class="input_div">
+                <div class="input-group">
+                    <span class="input-group-addon input-title-diy">验证码</span>
+                    <input type="text" class="form-control code_input border-right" placeholder="请填写验证码">
+                    <span class="input-group-addon input-group-addon-diy codeNumImg">
+                        <img class="judge_img judge_img_phone" src="../../../img/img_pc/wrong.png">
+                    </span>
+                    <!--                    <button type="button" class="confirmBtn btn-default">确定</button>-->
+                </div>
+
+            </div>
+            <div class="input_div">
+                <div class="input-group">
+                    <span class="input-group-addon input-title-diy">登录密码</span>
+                    <input type="password" class="form-control password_input border-right" placeholder="请填写密码">
+                    <span class="input-group-addon input-group-addon-diy">
+                        <img class="judge_img" src="../../../img/img_pc/wrong.png">
+                    </span>
+                </div>
+            </div>
+            <div class="input_div">
+                <div class="input-group">
+                    <span class="input-group-addon input-title-diy">确认密码</span>
+                    <input type="password" class="form-control verifyPassword_input border-right" placeholder="请确认密码">
+                    <span class="input-group-addon input-group-addon-diy">
+                        <img class="judge_img" src="../../../img/img_pc/wrong.png">
+                    </span>
+                </div>
+            </div>
+            <div class="input_div">
+                <div class="input-group">
+                    <span class="input-group-addon input-title-diy">用户昵称</span>
+                    <input type="text" class="form-control userName_input border-right" placeholder="请填写昵称">
+                    <span class="input-group-addon input-group-addon-diy">
+                        <img class="judge_img" src="../../../img/img_pc/wrong.png">
+                    </span>
+                </div>
+            </div>
+            <p class="verify">网络游戏实名注册和防沉迷验证</p>
+            <div class="input_div">
+                <div class="input-group">
+                    <span class="input-group-addon input-title-diy">真实姓名</span>
+                    <input type="text" class="form-control trueName_input border-right" placeholder="请填写真实姓名">
+                    <span class="input-group-addon input-group-addon-diy">
+                        <img class="judge_img" src="../../../img/img_pc/wrong.png">
+                    </span>
+                </div>
+            </div>
+            <div class="input_div">
+                <div class="input-group">
+                    <span class="input-group-addon input-title-diy">身份证号</span>
+                    <input type="text" class="form-control IDnum_input border-right" placeholder="请填写身份证号码">
+                    <span class="input-group-addon input-group-addon-diy">
+                        <img class="judge_img" src="../../../img/img_pc/wrong.png">
+                    </span>
+                </div>
+            </div>
+            <div class="align_container"></div>
+            <span class="agree"><input type="checkbox">我已看过并同意<a href="/agreement" target="_blank">《Fancyoo用户协议》</a></span>
+        </div>
+        <div class="register_div">
+            <button type="button" class="btn btn-default register_button">立即注册</button>
+        </div>
+
+    </div>
+</div>
+
+<?php
+include(__DIR__ . '/../component/footer.phtml');
+?>
+</body>
+
+<div class="register_remind_mask">
+    <div class="alert alert-warning alert-dismissible register_remind" role="alert">
+        <p class="register_remind_p">...</p>
+        <button type="button" class="btn btn-primary closeBtn">确定</button>
+    </div>
+</div>
+
+
+<script src="../../js/jquery.md5.js"></script>
+<script>
+    $(function () {
+        $(".navbar-float-logout,.navbar-float-personal").hide();
+    });
+
+    var isNull = true;
+    var isPhone = false;
+    var isTruePassword = false;
+    var isID = false;
+
+    var phoneNum;
+    var isCode;
+    //var verifyCode;
+    var passWord;
+    var verifyPassword;
+    var trueName;
+    var IDnum;
+    var checked;
+    var username;
+    var codeChecked = false;
+
+    //点击关闭弹出框
+    $(".closeBtn").click(function () {
+        $(".register_remind_mask").hide()
+    });
+
+    /**点击发送验证码**/
+    var sessionid;
+    $(".sendCodeBtn").click(function () {
+        phoneNum = $(".userNmu_input").val();
+        console.log(phoneNum);
+        $.get("http://api3.hizizai.cn:7080/api/v2/code", {
+                'phonenumber': phoneNum, 'action': 'register'
+            },
+            function (backCode) {
+                console.log(backCode);
+                sessionid = backCode.sessionid;
+                console.log(sessionid);
+                if (/用户已经存在/.test(backCode.message)) {
+                    alert("用户已经存在");
+                    $(".userNmu_input").next().find(".judge_img").show().attr("src", "img/wrong.png");
+                }
+            })
+    });
+
+
+    function verifyCode(code) {
+        $.post("http://api3.hizizai.cn:7080/api/v2/code", {
+            'sessionid': sessionid,
+            'code': code
+        }, function (returnCode) {
+            console.log(returnCode);
+            if (returnCode.code != 0) {
+                alert('验证码错误');
+                codeChecked = false;
+            } else if (returnCode.code == 0) {
+                codeChecked = true;
+            }
+        })
+    }
+
+
+    //点击注册按钮
+    $(".register_button").click(function () {
+        checkPassword();
+        checkNull();
+        checkPhone();
+        checkID();
+        console.log(isNull);
+        console.log(isPhone);
+        console.log(isTruePassword);
+        console.log(isID);
+        if (isNull == false && isPhone == true && isTruePassword == true && isID == true && codeChecked == true) {
+            console.log("请求已发出");
+            $.post('http://api3.hizizai.cn:7080/api/v2/register', {
+                'username': phoneNum,
+                'nickname': username,
+                'password': $.md5($.md5(passWord)),
+                'sessionid': sessionid,
+                'channelid': '1',
+                'signature': '1',
+                'avatar': '1',
+                'gender': '1'
+            }, function (info) {
+                //注册失败
+                if (info.code == 100020) {
+                    $(".register_remind_mask").show();
+                    $(".register_remind_p").text("注册失败，用户已存在");
+//                    alert("注册失败，用户已存在");
+                }
+
+                console.log(info);
+                var rechargeId = info.user.id; //个人中心页面用
+                var rechargeToken = info.token; //个人中心页面用
+                $(".login").text(username);
+                $(".register").hide();
+
+                console.log(rechargeId);
+                console.log(rechargeToken);
+
+//                $.cookie('usernameCookie', username);
+//                $.cookie('rechargeIdCookie', rechargeId);
+//                $.cookie('rechargeTokenCookie', rechargeToken);
+
+                $(".register_remind_mask").show();
+                $(".register_remind_p").text("注册成功，请返回首页并登录");
+
+//                alert("注册成功，请返回首页并登录");
+                window.location.href = "pc.php"; //注册成功后返回至主页
+
+
+            }, 'json');
+        } else {
+            alert('请检查验证码是否正确');
+        }
+    });
+
+    //检查是否为空
+    function checkNull() {
+        phoneNum = $(".userNmu_input").val();
+        //verifyCode = $(".verifyCode_input").val();
+        passWord = $(".password_input").val();
+        verifyPassword = $(".verifyPassword_input").val();
+        username = $(".userName_input").val();
+        trueName = $(".trueName_input").val();
+        IDnum = $(".IDnum_input").val();
+        checked = $(".agree input").is(':checked');
+        if ((phoneNum == '' || phoneNum == null) || (passWord == '' || passWord == null) || (verifyPassword == '' || verifyPassword == null) || (username == '' || username == null) || (trueName == '' || trueName == null) || (IDnum == '' || IDnum == null) || checked == false) {
+            $(".register_remind_mask").show();
+            $(".register_remind_p").text("请确认信息是否填写完整");
+//            alert("请确认信息是否填写完整");
+        } else if (!isNaN(trueName)) {
+            $(".register_remind_mask").show();
+            $(".register_remind_p").text("真实姓名不可为数字");
+//            alert("真实姓名不可为数字")
+        } else if (trueName.length < 2) {
+            $(".register_remind_mask").show();
+            $(".register_remind_p").text("真实姓名请大于两位");
+//            alert("真实姓名请大于两位");
+        } else {
+            isNull = false;
+        }
+    }
+
+    //检查手机号
+    function checkPhone() {
+        var mobileNo = $(".userNmu_input").val();
+        var pattern = /(^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$)|(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/;
+        if (pattern.test(mobileNo) && !isNaN(mobileNo)) {
+            isPhone = true;
+        } else {
+            isPhone = false;
+//            alert("请输入正确的手机号");
+        }
+    }
+
+    //检查验证码
+    function checkCode() {
+        var codeNum = $(".code_input").val();
+        verifyCode(codeNum);
+        if (codeNum != '' && codeNum != null && codeChecked) {
+            isCode = true
+        } else {
+            isCode = false;
+        }
+    }
+
+
+    //判断确认密码和密码是否相同
+    function checkPassword() {
+        var passWord = $(".password_input").val();
+        var verifyPassword = $(".verifyPassword_input").val();
+        if ((passWord != verifyPassword || passWord == null || verifyPassword == null || passWord == '' || verifyPassword == '')) {
+//            alert("密码和确认密码不相同");
+            isTruePassword = false;
+        } else {
+            isTruePassword = true;
+        }
+    }
+
+    //验证身份证
+    function checkID() {
+        IDnum = $(".IDnum_input").val();
+        var aCity = {
+            11: "北京",
+            12: "天津",
+            13: "河北",
+            14: "山西",
+            15: "内蒙古",
+            21: "辽宁",
+            22: "吉林",
+            23: "黑龙江",
+            31: "上海",
+            32: "江苏",
+            33: "浙江",
+            34: "安徽",
+            35: "福建",
+            36: "江西",
+            37: "山东",
+            41: "河南",
+            42: "湖北",
+            43: "湖南",
+            44: "广东",
+            45: "广西",
+            46: "海南",
+            50: "重庆",
+            51: "四川",
+            52: "贵州",
+            53: "云南",
+            54: "西藏",
+            61: "陕西",
+            62: "甘肃",
+            63: "青海",
+            64: "宁夏",
+            65: "新疆",
+            71: "台湾",
+            81: "香港",
+            82: "澳门",
+            91: "国外"
+        };
+        var iSum = 0;
+        IDnum = IDnum.replace(/x$/i, "a");
+        var sBirthday = IDnum.substr(6, 4) + "-" + Number(IDnum.substr(10, 2)) + "-" + Number(IDnum.substr(12, 2));
+        var d = new Date(sBirthday.replace(/-/g, "/"));
+        for (var i = 17; i >= 0; i--) {
+            iSum += (Math.pow(2, i) % 11) * parseInt(IDnum.charAt(17 - i), 11);
+        }
+        if (IDnum.length < 19 && IDnum.length != 15) { //匹配18位身份证
+            if (!/^\d{17}(\d|a)$/i.test(IDnum.toString())) {
+                console.log("你输入的身份证长度或者格式错误");
+                isID = false;
+            } else if (aCity[parseInt(IDnum.substr(0, 2))] == null) {
+                console.log("你的身份证地区非法");
+                isID = false;
+            } else if (sBirthday != (d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate())) {
+                console.log("身份证上的出生日期非法");
+                isID = false;
+            } else if (iSum % 11 != 1) {
+                console.log("你输入的身份证号非法");
+                isID = false;
+            } else if (/^\d{17}(\d|a)$/i.test(IDnum) && aCity[parseInt(IDnum.substr(0, 2))] != null && sBirthday == (d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()) && iSum % 11 == 1) {
+                isID = true;
+            }
+        } else if (IDnum.length == 15) { //匹配15位身份证
+            var year15 = IDnum.substr(6, 2);
+            var month15 = IDnum.substr(8, 2);
+            var day15 = IDnum.substr(10, 2);
+            var date15 = new Date(year15, parseFloat(month15) - 1, parseFloat(day15));
+            console.log("年" + date15.getYear());
+            console.log("月" + date15.getMonth());
+            if (aCity[parseInt(IDnum.substr(0, 2))] == null || ((IDnum.substr(0, 2) == (IDnum.substr(2, 2)) && ((IDnum.substr(2, 2)) == (IDnum.substr(4, 2)))))) {
+                console.log("你的身份证地区非法");
+                isID = false;
+            } else if (date15.getYear() != parseInt(year15) || (date15.getMonth() + 1) != parseFloat(month15)) {
+                console.log("你的生日非法");
+                isID = false;
+            } else {
+                isID = true;
+            }
+        }
+    }
+
+    //手机号获得失去焦点事件
+    $(".userNmu_input").blur(function () {
+        checkPhone();
+        var checkPhoneIcon = $(".userNmu_input").next().find(".judge_img");
+        console.log(checkPhoneIcon);
+        isPhone == true ? checkPhoneIcon.show().attr("src", "img/right.png") : checkPhoneIcon.show().attr("src", "img/wrong.png");
+    });
+
+    //验证码获得失去焦点事件
+    $(".code_input").blur(function () {
+        checkCode();
+        var checkCodeIcon = $(".code_input").next().find(".judge_img");
+        isCode == true ? checkCodeIcon.show().attr("src", "img/right.png") : checkCodeIcon.show().attr("src", "img/wrong.png");
+    });
+
+    //输入密码获得焦点事件
+    $(".password_input").blur(function () {
+        checkPassword();
+        var checkPasswordVal = $(this).val();
+        var checkPasswordIcon = $(this).next().find(".judge_img");
+        (checkPasswordVal != null && checkPasswordVal != '') ? checkPasswordIcon.show().attr("src", "img/right.png") : checkPasswordIcon.show().attr("src", "img/wrong.png");
+        var checkVerifyIcon = $(".verifyPassword_input").next().find(".judge_img");
+        isTruePassword == true ? checkVerifyIcon.show().attr("src", "img/right.png") : checkVerifyIcon.show().attr("src", "img/wrong.png");
+    });
+
+    //再次确认密码获得焦点事件
+    $(".verifyPassword_input").blur(function () {
+        checkPassword();
+        var checkVerifyIcon = $(".verifyPassword_input").next().find(".judge_img");
+        isTruePassword == true ? checkVerifyIcon.show().attr("src", "img/right.png") : checkVerifyIcon.show().attr("src", "img/wrong.png");
+    });
+
+    //昵称获得焦点事件
+    $(".userName_input").blur(function () {
+        var checkUserNameinputIcon = $(".userName_input").next().find(".judge_img");
+        var userName_inputValue = $(".userName_input").val();
+        if (userName_inputValue == null || userName_inputValue == '' || userName_inputValue.length < 2 || userName_inputValue.length > 12) {
+            checkUserNameinputIcon.show().attr("src", "img/wrong.png");
+        } else if (userName_inputValue != null && userName_inputValue != '') {
+            checkUserNameinputIcon.show().attr("src", "img/right.png");
+        }
+    });
+
+    //真实姓名获得焦点事件
+    $(".trueName_input").blur(function () {
+        trueName = $(".trueName_input").val();
+        var checkTrueNameIcon = $(".trueName_input").next().find(".judge_img");
+        var nameLength = trueName.length < 2 || trueName.length > 5;
+        var nameNan = isNaN(trueName);
+        if (nameLength || trueName == null || trueName == '' || nameNan == false || !/^[\u4e00-\u9fa5]+$/i.test(trueName)) {
+            checkTrueNameIcon.show().attr("src", "img/wrong.png");
+        } else {
+            checkTrueNameIcon.show().attr("src", "img/right.png");
+        }
+    });
+
+    //身份证获得焦点事件
+    $(".IDnum_input").blur(function () {
+
+    }).blur(function () {
+        checkID();
+        var checkIdIcon = $(".IDnum_input").next().find(".judge_img");
+        isID == true ? checkIdIcon.show().attr("src", "img/right.png") : checkIdIcon.show().attr("src", "img/wrong.png");
+    })
+
+
+</script>
+
+</html>

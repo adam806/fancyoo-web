@@ -1,0 +1,637 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.banner {
+    width: 100%;
+}
+
+.main {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.banner2 {
+    background: #f6f6f6;
+    width: 100%;
+    padding-top: 60px;
+    margin-bottom: 53px;
+}
+
+@media screen and (min-width: 1000px) {
+    .content {
+        width: 1000px;
+    }
+}
+
+.banner2 .content {
+    position: relative;
+    clear: both;
+    overflow: hidden;
+}
+
+.banner2 .content .title {
+    position: relative;
+    text-align: center;
+    color: #5a5959;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.banner2 .content .line1 {
+    margin-top: 54px;
+    margin-bottom: 41px;
+    clear: both;
+    overflow: hidden;
+}
+
+.banner2 .content .line1 li {
+    list-style: none;
+    text-align: center;
+}
+
+.banner2 .content .studyContent {
+    float: left;
+    margin-left: 18px;
+}
+
+.banner2 .content .dopamineContent {
+    float: left;
+    margin-left: 326px;
+}
+
+.banner2 .content .contentTitle {
+    margin-top: 14px;
+    margin-bottom: 9px;
+    color: #5a5959;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.banner2 .content .contentDetail {
+    color: #a7a7a7;
+}
+
+.banner2 .content .contentDetail p {
+    font-size: 13px;
+}
+
+.banner2 .content .beautyContent {
+    float: right;
+    margin-right: 13px;
+}
+
+.banner2 .content .line2 {
+    margin-bottom: 41px;
+    clear: both;
+    overflow: hidden;
+}
+
+.banner2 .content .line2 li {
+    list-style: none;
+    text-align: center;
+}
+
+.banner2 .content .teachContent {
+    float: left;
+}
+
+.banner2 .content .healthContent {
+    float: left;
+    margin-left: 270px;
+}
+
+.banner2 .content .loveContent {
+    float: right;
+}
+
+.content {
+    /*width: 1005px;*/
+    margin: 0 auto;
+    position: relative;
+}
+
+.introduceContainer .title {
+    text-align: center;
+}
+
+.content .companyIntroduce {
+    position: relative;
+    width: 100%;
+    height: 980px;
+    color: #5a5959;
+    opacity: 0.7;
+}
+
+/*.content p {*/
+/*font-size: 12px;*/
+/*color: #5a5959;*/
+/*opacity: 0.7;*/
+/*line-height: 20px;*/
+/*}*/
+
+.text-part {
+    text-indent: 2em;
+}
+
+.content .introduceContainer {
+    padding: 80px 0;
+    /*text-align: center;*/
+    margin-bottom: 50px;
+}
+
+.content .introduceContainer p {
+    /*font-size: 17px;*/
+    line-height: inherit;
+    color: #5a5959;
+    opacity: 0.7;
+}
+
+.content .title {
+    color: #5a5959;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.content .introduceDetail {
+    position: absolute;
+}
+
+.content .introduceDetail .left {
+    position: absolute;
+    width: 436px;
+    left: 38px;
+}
+
+/*.content .introduceDetail .topContent {*/
+/*position: relative;*/
+/*left: 5px;*/
+/*top: -40px;*/
+/*}*/
+
+/*.content .introduceDetail .topContent .title {*/
+/*font-size: 32px;*/
+/*margin-bottom: 3px;*/
+/*font-weight: 500;*/
+/*color: #7e7e7e;*/
+/*}*/
+
+/*.content .introduceDetail .topContent P {*/
+/*font-size: 16px;*/
+/*}*/
+
+/*.content .introduceDetail .bottomContent {*/
+/*margin-top: 37px;*/
+/*margin-left: 6px;*/
+/*}*/
+
+.content .introduceRight {
+    left: 498px;
+    top: 192px;
+}
+
+.content .introduceRight .lineTail {
+    position: absolute;
+    left: -22px;
+    top: -74px;
+}
+
+/*.content .introduceRight .right .topContent {*/
+/*left: 47px;*/
+/*top: -23px;*/
+/*}*/
+
+.content .introduceRight .lineBottom {
+    display: inline-block;
+    width: 450px;
+    height: 4px;
+    background-image: url(../img/img_pc/dotted-bottom.png);
+    background-repeat-x: repeat;
+    position: absolute;
+    left: 5.5px;
+    top: 88px;
+}
+
+.content .introduceRight .lineCorner {
+    display: inline-block;
+    width: 15px;
+    height: 16px;
+    background-image: url(../img/img_pc/corner-right.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    left: -13.5px;
+    top: 79px;
+}
+
+.content .introduceRight .lineRight {
+    display: inline-block;
+    width: 4px;
+    height: 125px;
+    background-image: url(../img/img_pc/dotted-right.png);
+    position: absolute;
+    top: -48px;
+    left: -14px;
+}
+
+/*.content .introduceRight .bottomContent {*/
+/*margin-top: 65px;*/
+/*margin-left: 48px;*/
+/*}*/
+
+.content .introduceLeft2 {
+    position: absolute;
+    top: 533px;
+}
+
+/*.content .introduceLeft2 .topContent {*/
+/*top: -15px;*/
+/*}*/
+
+.content .introduceLeft2 .bottomContent {
+    margin-top: 70px;
+    margin-left: 10px;
+}
+
+.content .introduceLeft2 .lineTail {
+    position: absolute;
+    right: -23px;
+    top: -220px;
+}
+
+.content .introduceLeft2 .lineBottom {
+    display: inline-block;
+    width: 443px;
+    height: 4px;
+    background-image: url(../img/img_pc/dotted-bottom.png);
+    background-repeat-x: repeat;
+    position: absolute;
+    left: -9px;
+    top: 95px;
+}
+
+.content .introduceLeft2 .lineCorner {
+    display: inline-block;
+    width: 15px;
+    height: 20px;
+    background-image: url(../img/img_pc/corner-left.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    right: -15px;
+    top: 79.4px;
+}
+
+.content .introduceLeft2 .lineRight {
+    display: inline-block;
+    width: 4px;
+    height: 273px;
+    background-image: url(../img/img_pc/dotted-right.png);
+    position: absolute;
+    top: -194px;
+    right: -14px;
+}
+
+.content .introduceLeft2 .lineTailLast {
+    position: absolute;
+    right: -23px;
+    top: 125px;
+}
+
+.content .introduceLeft2 .lineRightLast {
+    display: inline-block;
+    width: 4px;
+    height: 205px;
+    background-image: url(../img/img_pc/dotted-right.png);
+    position: absolute;
+    top: 150px;
+    right: -14px;
+}
+
+.content .creatorContainer {
+    position: relative;
+    width: 100%;
+    height: 1000px;
+}
+
+.content .creatorContainer .title {
+    color: #5a5959;
+    font-size: 28px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 38px;
+}
+
+.content .creatorContainer .timeLine {
+    position: relative;
+}
+
+.content .creatorContainer .timeLine .time {
+    font-size: 32px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #7e7e7e;
+}
+
+.content .creatorContainer .timeLine li {
+    list-style: none;
+    font-size: 15px;
+    color: #5a5959;
+    line-height: 26px;
+}
+
+.content .creatorContainer .timeLine .titleLi {
+    position: relative;
+    padding-left: 44px;
+    padding-top: 21px;
+    height: 58px;
+}
+
+.content .creatorContainer .timeLeft .tail {
+    position: absolute;
+    left: 484px;
+    top: -61px;
+}
+
+.content .creatorContainer .timeLeft .lineBottom {
+    display: inline-block;
+    width: 443px;
+    height: 4px;
+    background-image: url(../img/img_pc/dotted-bottom.png);
+    background-repeat-x: repeat;
+    position: absolute;
+    left: 35px;
+    top: 64px;
+}
+
+.content .creatorContainer .timeLeft .lineCorner {
+    display: inline-block;
+    width: 15px;
+    height: 20px;
+    background-image: url(../img/img_pc/corner-left.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 508px;
+    top: 48.4px;
+}
+
+.content .creatorContainer .timeLeft .lineRight {
+    display: inline-block;
+    width: 4px;
+    height: 83px;
+    background-image: url(../img/img_pc/dotted-right.png);
+    position: absolute;
+    top: -36px;
+    right: 509px;
+}
+
+.content .creatorContainer .timeLeft .contentLi {
+    padding-left: 44px;
+}
+
+.content .creatorContainer .timeLine1 {
+    top: 70px;
+}
+
+.content .creatorContainer .timeLine1 .titleLi {
+    position: relative;
+    padding-left: 44px;
+    height: 54px;
+}
+
+.content .creatorContainer .timeLine1 .titleLi .ceratorName {
+    font-size: 32px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #7e7e7e;
+}
+
+.content .creatorContainer .timeLine1 .titleLi .job {
+    font-size: 17px;
+    color: #5a5959;
+    line-height: 26px;
+}
+
+.content .creatorContainer .timeLine1 .contentLi {
+    padding-left: 47px;
+}
+
+.content .creatorContainer .timeLine2 {
+    top: 113px;
+}
+
+.content .creatorContainer .timeRight {
+    padding-left: 522px;
+}
+
+.content .creatorContainer .timeRight .contentLi {
+    padding-left: 33px;
+}
+
+.content .creatorContainer .timeRight .tail {
+    position: absolute;
+    left: -39px;
+    top: -55px;
+}
+
+.content .creatorContainer .timeRight .lineBottom {
+    display: inline-block;
+    width: 450px;
+    height: 4px;
+    background-image: url(../img/img_pc/dotted-bottom.png);
+    background-repeat-x: repeat;
+    position: absolute;
+    left: -11px;
+    top: 64px;
+}
+
+.content .creatorContainer .timeRight .lineCorner {
+    display: inline-block;
+    width: 15px;
+    height: 20px;
+    background-image: url(../img/img_pc/corner-right.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 498px;
+    top: 55.4px;
+}
+
+.content .creatorContainer .timeRight .lineRight {
+    display: inline-block;
+    width: 4px;
+    height: 83px;
+    background-image: url(../img/img_pc/dotted-right.png);
+    position: absolute;
+    top: -30px;
+    right: 509.8px;
+}
+
+.content .creatorContainer .timeLine3 {
+    top: 150px;
+}
+
+.content .creatorContainer .timeLine4 {
+    top: 177px;
+}
+
+.content .creatorContainer .timeLine5 {
+    top: 186px;
+}
+
+.content .creatorContainer .creatorLastLine {
+    position: relative;
+    top: 218px;
+    left: 7px;
+}
+
+.content .creatorContainer .creatorLastLine .tail {
+    position: absolute;
+    left: 478px;
+    top: -55px;
+}
+
+.content .creatorContainer .creatorLastLine .lineRight {
+    display: inline-block;
+    width: 4px;
+    height: 83px;
+    background-image: url(../img/img_pc/dotted-right.png);
+    position: absolute;
+    top: -30px;
+    right: 514.8px;
+}
+
+.titleRight {
+    padding-left: 31px !important;
+}
+
+.row {
+    position: relative;
+}
+
+.topContent {
+    font-size: 16px;
+}
+
+@media screen and (min-width: 1000px) {
+    .offectRow-2016 {
+        top: -180px;
+    }
+
+    .offectRow-2017 {
+        top: -235px
+    }
+
+    .rightLineContainer {
+        position: relative;
+        top: 7px;
+        left: 18px;
+    }
+
+    .rightLineContainer .lineBottom {
+        display: inline-block;
+        width: 475px;
+        height: 4px;
+        background-image: url(../img/img_pc/dotted-bottom.png);
+        background-repeat-x: repeat;
+        position: absolute;
+        left: -42px;
+        top: -6px
+    }
+
+    .rightLineContainer .lineCorner {
+        display: inline-block;
+        width: 15px;
+        height: 20px;
+        background-image: url(../img/img_pc/corner-left.png);
+        background-repeat: no-repeat;
+        position: absolute;
+        right: 20px;
+        top: -22.6px;
+    }
+
+    .rightLineContainer .lineRight {
+        display: inline-block;
+        width: 4px;
+        height: 125px;
+        background-image: url(../img/img_pc/dotted-right.png);
+        position: absolute;
+        top: -150px;
+        right: 21px;
+    }
+
+    .rightLineContainer .lineRight-2017 {
+        display: inline-block;
+        width: 4px;
+        height: 273px;
+        background-image: url(../img/img_pc/dotted-right.png);
+        position: absolute;
+        top: -296px;
+        right: 21px;
+    }
+
+    .offectRow-2017 {
+
+    }
+
+    .bottomContent {
+        position: relative;
+        top: 20px;
+        width: 430px;
+    }
+
+    .leftLineContainer {
+        position: relative;
+        top: -85px;
+        left: -19px;
+    }
+
+    .leftLineContainer .lineTail-2016 {
+        position: absolute;
+        left: -22px;
+        top: -74px;
+    }
+
+    .leftLineContainer .lineBottom {
+        display: inline-block;
+        width: 450px;
+        height: 4px;
+        background-image: url(../img/img_pc/dotted-bottom.png);
+        background-repeat-x: repeat;
+        position: absolute;
+        left: 5.5px;
+        top: 88px;
+    }
+
+    .leftLineContainer .lineCorner {
+        display: inline-block;
+        width: 15px;
+        height: 16px;
+        background-image: url(../img/img_pc/corner-right.png);
+        background-repeat: no-repeat;
+        position: absolute;
+        left: -13.5px;
+        top: 79px;
+    }
+
+    .leftLineContainer .lineRight {
+        display: inline-block;
+        width: 4px;
+        height: 125px;
+        background-image: url(../img/img_pc/dotted-right.png);
+        position: absolute;
+        top: -48px;
+        left: -14px;
+    }
+
+    .lineTail-2017 {
+        position: absolute;
+        right: 11px;
+        top: -321px;
+    }
+
+    .companyIntroduce .title {
+        font-size: 32px;
+        margin-bottom: 3px;
+        font-weight: 500;
+        color: #7e7e7e;
+    }
+}

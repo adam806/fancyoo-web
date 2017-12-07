@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="https://cdn.bootcss.com/fullPage.js/2.9.4/jquery.fullpage.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_m/logo-icon.png">
+    <title>Fancyoo</title>
+
+    <script>
+        //声明_czc对象:
+        var _czc = _czc || [];
+        //绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+        _czc.push(["_setAccount", 1268160576]);
+    </script>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main {
+            position: relative;
+            background: url(../../../img/img_m/city_pbbj.jpg);
+            background-size: 100% 100%;
+            width: 7.5rem;
+            height: 13.34rem;
+        }
+
+        .city {
+            width: 7.5rem;
+            display: block;
+            position: absolute;
+            top: 0.5rem;
+        }
+
+        .fancyooIcon {
+            position: absolute;
+            top: 11.35rem;
+            width: 3rem;
+            left: 0.5rem;
+        }
+
+        .downloadbtn {
+            position: absolute;
+            top: 11.4rem;
+            width: 2.92rem;
+            height: 0.98rem;
+            left: 4rem;
+        }
+
+        .wechatGuide {
+            width: 7.5rem;
+            height: 13.34rem;
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: none;
+        }
+
+        .guideImg {
+            position: absolute;
+            left: 50%;
+            margin-left: -2.5rem;
+            width: 5rem;
+            top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <img class="city" src="../../../img/img_m/pb_city.png">
+    <div class="downloadContainer">
+
+    </div>
+    <a class="downloadlink">
+        <img class="fancyooIcon" src="../../../img/img_m/topLogo.png">
+        <img class="downloadbtn" src="../../../img/img_m/pb_button.png">
+    </a>
+
+    <div class="wechatGuide">
+        <div class="wechatMask">
+            <img class="guideImg" src="../../../img/img_m/wechatGuide.png">
+        </div>
+    </div>
+
+    <div class="cnzz" style="display: none">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cspan id='cnzz_stat_icon_1268160576'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1268160576' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+
+    <div class="cnzz" style="display: none">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cspan id='cnzz_stat_icon_1268160576'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1268160576' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        adapt();
+        platForm();
+        is_weChat();
+    });
+
+    function adapt() {
+        var width = document.documentElement.clientWidth, height = document.documentElement.clientHeight + 'px';
+        document.documentElement.style.fontSize = width / 7.5 + 'px';
+//        $(".main").height(height);
+    }
+
+    function platForm() {
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        if (isiOS) {
+//            $(".downloadbtn").click(function () {
+            $(".downloadlink").attr("href", "https://itunes.apple.com/cn/app/fancyoo-%E8%81%8A%E5%A4%A9%E4%BA%A4%E5%8F%8B%E7%9A%84%E6%B8%B8%E6%88%8F%E5%8C%96%E7%A4%BE%E4%BA%A4%E7%A4%BE%E5%8C%BA/id1311428217?mt=8");
+            $(".downloadlink").click(function () {
+                _czc.push(['_trackEvent', 'ios', '下载', 'ios客户端下载', '1', 'ios_cnzz']);
+            })
+//            })
+        } else if (isAndroid) {
+//            $(".downloadlink").attr("href", "https://www.pgyer.com/apiv1/app/install?aId=b1326308129430681487b43739b6616a&_api_key=c3624d043c84fa7fcd5351a2ecfa79b6");
+            $(".downloadlink").attr("href", "http://a.app.qq.com/o/simple.jsp?pkgname=com.hifreelight.fancy");
+            $(".downloadlink").click(function () {
+                _czc.push(['_trackEvent', 'android', '下载', '安卓客户端下载', '1', 'android_cnzz']);
+            });
+        }
+    }
+
+
+    function weGuide() {
+        var weCover = $(".wechatGuide");
+        $(".downloadbtn").click(function () {
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+            if (isAndroid) {
+                weCover.css("display", "inline-block");
+            }
+            weCover.click(function () {
+                $(this).css("display", "none");
+            })
+        });
+    }
+
+    function is_weChat() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            weGuide();
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

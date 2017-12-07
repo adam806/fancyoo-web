@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_share/logo-icon.png">
+    <link rel="stylesheet" href="../css/encounter_share_wx.css">
+    <title>邂逅</title>
+</head>
+<body>
+
+<div class="main">
+    <!--    <p>--><? //= json_encode(user) ?><!--</p>-->
+    <div class="chatContainer"></div>
+
+    <div class="cardContainer">
+        <div class="storyCard">
+            <div class="cardTitleContainer">
+                <img class="cardTitleBg" src="../../../img/img_share/cardTitleBg.png">
+                <p class="cardTitle"> 邂逅</p>
+            </div>
+            <div class="cardContent">
+                <div class="describeContainer"></div>
+            </div>
+            <div class="choseAnswer">下一步</div>
+        </div>
+        <div class="downloadContainer">
+            <div class="downloadContent">
+                <img class="closeDownloadBtn" src="../../../img/img_share/closenBtn.png">
+                <p class="downloadReminder">敬请期待xx与你完成邂逅</p>
+                <div class="downloadFancyoo">
+                    <a class="downloadFancyooLink">去Fancyoo找他</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bgContainer">
+        <P class="remind"></P>
+        <img class="bgImg" src="">
+        <img class="role2" src="">
+        <img class="role1" src="">
+    </div>
+
+    <div class="bottomBar">
+        <div class="infoContainer">
+            <img class="userHead" src="../../../img/img_share/noHead.png">
+            <span class="userName"></span>
+        </div>
+        <div class="btnContainer">
+            <!--            <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1b995d5a13c1d4c4&redirect_uri=http%3a%2f%2ftest.howdyland.com%2fwx%2fredirect&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirec">-->
+            <!--            <a class="startEncounter" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1b995d5a13c1d4c4&redirect_uri=http%3a%2f%2ftest.howdyland.com%2fwx%2fredirect%3fnum%3d666666&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirec">-->
+            <a class="startEncounter">
+                <div class="encounterBtn">正在邂逅</div>
+            </a>
+            <!--            <img class="bubble1" src="../../../img/img_share/bubble1.png">-->
+        </div>
+    </div>
+
+    <div class="wechatGuide">
+        <div class="wechatMask">
+            <img class="guideImg" src="../../../img/img_m/wechatGuide.png">
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+    $(function () {
+        adapt();
+        platForm();
+        is_weChat();
+
+        getUserInfo();//获取用户信息
+//        getStroy();//出现故事卡
+//        getQuestionAndAnswers();//获取问题和答案
+
+    });
+
+    $(".closeDownloadBtn").click(function () { //点击关闭下载按钮
+        $(".cardContainer").hide();
+    });
+
+    var height;
+
+    function adapt() {
+        var width = document.documentElement.clientWidth;
+        height = document.documentElement.clientHeight;
+        document.documentElement.style.fontSize = width / 7.5 + 'px';
+        $(".main,.cardContainer").height(height);
+    }
+
+    //    function updateTitle(text) { //动态title
+    //        $("title").html(text);
+    //    }
+
+
+    var userid = '<?=$toTargetid["targetId"]?>';
+    var photoUrl = '<?=$toTargetid["photoUrl"]?>';
+    //    var openid = '<?//=$user["openid"]?>//';
+    var openid = 'oRYjxw7H-REovEsiQi6v7hXhaZcc';
+    var sceneId = parseInt('<?=$toTargetid["sceneId"]?>');
+    var parten_head;
+    var nickname_1 = '<?=$user["nickname"]?>';
+    var nickname_2;
+    var gender = '<?=$user["sex"]?>';
+
+    function getUserInfo() { //获取app中用户的信息
+        var userInfoUrl = "/api/users/" + userid;
+        $.get(userInfoUrl, function (userInfo) {
+            if (/http/.test(userInfo.avatar)) {
+                parten_head = userInfo.avatar;
+            } else {
+                parten_head = '../../../img/img_share/noHead.png'
+            }
+            nickname_2 = userInfo.nickname;
+            $(".userName").text(nickname_2);
+            $(".userHead").attr('src', parten_head);
+
+            $(".role2").attr('src', 'http://zizaiv2.oss-cn-beijing.aliyuncs.com/shareimage/' + photoUrl).css({
+                'width': 2.45 + 'rem',
+                'top': '0.2rem',
+                'left':'0.5rem'
+            });
+
+            if (nickname_1 == undefined || nickname_2 == undefined) {
+                $("title").html('邂逅');
+            } else if (nickname_1 != undefined && nickname_2 != undefined) {
+                var pageTitle = nickname_1 + "和" + nickname_2 + "的邂逅";
+                $("title").html(pageTitle);
+            }
+
+
+            if (gender == 0) { //微信中未设置性别，默认性别女
+                $(".role1").attr('src', '../../../img/img_share/default_girl.png');
+            } else if (gender == 1) { //微信中性别男
+                $(".role1").attr('src', '../../../img/img_share/default_boy.png');
+            } else if (gender == 2) { //微信中性别女
+                $(".role1").attr('src', '../../../img/img_share/default_girl.png');
+            }
+
+            getStroy();//出现故事卡
+        });
+
+    }
+
+    var myWholeQuestion, myAnswerData, partenWholeQuestion, partnerWholeAnswers, storyId, questionIds, sceneUrl,
+        topDesc;
+    var url = "/api/encounters",
+        encounterid = "5a0bfc459cdd890017ac2e72";
+    var hasError=false;
+    function getStroy() {//获取场景描述
+        $(".cardContainer").show().height(height);
+        $.get(url, {to: userid, openid: openid, sceneId: sceneId}, function (data) {
+            if (data.error) {
+//                $(".describeContainer").text(data.error.message);
+//                $(".choseAnswer").text("确定");
+//                $(".choseAnswer").click(function () {
+//                    $(".cardContainer").hide();
+//                });
+                hasError=true;
+                $(".storyCard").hide();
+                $(".downloadContainer").show();
+                $(".downloadReminder").text(data.error.message);
+                $(".downloadFancyooLink").text("确定");
+                $(".downloadFancyooLink").click(function () {
+                    $(".cardContainer").hide();
+                });
+
+
+            } else {
+                console.log(url);
+                console.log(data);
+                myWholeQuestion = data.myQuestionData;//拿到发起方的全部问题
+                partenWholeQuestion = data.partnerQuestionData;//拿到对方的全部问题
+                storyId = data.storyId;
+                questionIds = data.questionIds;
+                partnerWholeAnswers = data.partnerAnswers;//拿到对方的全部答案
+//                sceneUrl = "http://howdyland.oss-cn-beijing.aliyuncs.com/images/encounter/" + data.scene.context + ".png";
+                sceneUrl = data.scene.context;
+                var sceneText = decodeURIComponent(data.story.text);
+                var sceneText_1 = sceneText.replace(/\$n1/g, nickname_1);
+                var sceneText_2 = sceneText_1.replace(/\$n2/g, nickname_2);
+                topDesc = sceneText_2;
+                if (data.scene.context) {
+                    $(".bgImg").attr('src', sceneUrl);
+                } else {
+                    $(".bgImg").attr('src', 'http://howdyland.oss-cn-beijing.aliyuncs.com/images/encounter/meet_scene_1.png');
+
+                }
+                console.log(sceneText_2);
+
+                $(".describeContainer").text(sceneText_2);
+                getQuestionAndAnswers();//获取问题和答案
+            }
+
+        })
+    }
+
+    var cardCon = true, right = false;
+
+    var answerResult = [], my_chosen, clickOpen = true, myclickChosen;
+
+    function getQuestionAndAnswers() { //获取问题和答案
+        var myQuestionNum = 0;
+        $(".choseAnswer").click(function () { //点击下一步后故事卡消失，对方栏插入一道题
+            $(".cardContent").empty();
+            $(".choseAnswer").hide();
+            var inserTopDesc = '<div class="describeTopContainer">' + topDesc + '</div>';
+            $(".chatContainer").append(inserTopDesc);
+
+            console.log(myQuestionNum);
+            getMyEncounter(myQuestionNum);
+        });
+        var mpartenQuestionNum = 0;
+        var count = 1;
+
+        $(".storyCard").on("click", ".eachAnswerContent", function () { //选择一个选项
+            var chosenRestlut = ($(this).text()).split(":")[0];
+
+            if (chosenRestlut == 'A') {
+                myclickChosen = 0;
+            } else if (chosenRestlut == 'B') {
+                myclickChosen = 1;
+            } else if (chosenRestlut == 'C') {
+                myclickChosen = 2;
+            } else if (chosenRestlut == 'D') {
+                myclickChosen = 3;
+            }
+
+            if (questionIcon == '') { //问题中没有图片的情况
+                //下列三行是往聊天框中插入问题
+                //题目没有图片的情况下，需要加上判断是否有图片
+                question_titel = myQuestionData;
+                my_chosen = $(this).text();
+                insertWordR(myQuestionNum);
+                for (var m = 0; m < myAnswerData.length; m++) {
+                    var insertAnswerItem = '<p>' + decodeURIComponent(myAnswerData[m]) + '</p>';
+                    $(".rightquestion" + myQuestionNum).append(insertAnswerItem);
+                    $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+                }
+
+                clickOpen = false;
+            } else {
+                //题目中有图片的情况下,暂时注释
+                querstion_img = questionIcon;//图片从数据中拿到的具体地址，暂时注释
+                question_titel = myQuestionData;
+                user_chosen = $(this).text();
+                insertPicWordR(myQuestionNum);//暂时注释
+                for (var m2 = 0; m2 < myAnswerData.length; m2++) {
+                    var insertAnswerItem = '<p>' + decodeURIComponent(myAnswerData[m2]) + '</p>';
+                    $(".rightquestionImg" + myQuestionNum).append(insertAnswerItem);
+                    $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+                }
+                clickOpen = false;
+            }
+
+            //把图片插入背景的答案中
+            if (myAnswerDataIcons.length != 0) {
+                console.log("看这里：" + myAnswerDataIcons);
+                var answerIcon = '<img class="answerIconContainer" src="' + myAnswerDataIcons[myclickChosen] + '">';
+                $(".rightAnswerItem" + myQuestionNum).append(answerIcon);
+                $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+            }
+
+
+//                $(".chosen" + myQuestionNum).append(chosenRestlut); //把答案插进后面的聊天框中
+            answerResult.push(chosenRestlut);
+            console.log(answerResult);
+            console.log(myQuestionNum);
+            $(".cardContainer").hide();
+            getPartenEncounter(mpartenQuestionNum);//获取对方的问题
+
+
+//            $(".bgContainer").click(function () { //点击出现故事卡
+//                if (clickOpen) {
+//                    if (count == 3) {
+//                        $(".remind").css('opacity', '0');
+//                    }
+//                    count++;
+//
+//                    $(".cardContainer").show();
+//                    $(".cardContent").empty();
+//                    cardCon = true, right = false;
+//                    getMyEncounter(myQuestionNum);
+//                }
+//            });
+
+            var cardTimer = window.setTimeout(function () {//二秒钟后故事卡自动出现
+                $(".cardContainer").show();
+                $(".cardContent").empty();
+                cardCon = true, right = false;
+                getMyEncounter(myQuestionNum);
+                window.clearTimeout(cardTimer);
+            }, 5000);
+
+
+            mpartenQuestionNum++;
+            myQuestionNum++;
+
+        });
+
+    }
+
+    var toUserid = '<?=$toTargetid["targetId"]?>', wxOpenid = '<?=$user["openid"]?>', unionid = '<?=$user["unionid"]?>';
+
+    function senResult() { //答完题发送结果
+        $.post("/api/encounters", {
+            to: toUserid,
+            sceneId: sceneId,
+            storyId: storyId,
+            questionIds: questionIds,
+            answers: answerResult,
+//            openid: '001',
+            openid: wxOpenid,
+//            unionid: 'oE5YcxLjNEqksYl8e58xk00tg13A'
+            unionid: unionid
+        }, function (data) {
+            console.log(data);
+            if (data.message == 'OK') {
+                console.log('答案发送成功');
+            }
+        }, 'json')
+    }
+
+    var questionNum = 1;
+
+    //    function getQuestions() {
+    //        getEncounter(questionNum);
+    //        questionNum = questionNum + 2;
+    //        if (questionNum == 7) { //三道题后点击继续的提示消失
+    //            var timer = window.setTimeout(function () {
+    //                $(".remind").fadeOut();
+    //                window.clearTimeout(timer);
+    //            }, 1000);
+    //        }
+    //    }
+
+
+    //变量定义
+    var url_head, question_titel, chosen_0 = 1, chosen_1, chosen_2,
+        chosen_3,
+        chosen_4, user_chosen, querstion_img;
+    var myQuestionData;
+    var wechatHead = '<?=$user["headimgurl"]?>';
+    if (/http/.test(wechatHead)) {
+        url_head = wechatHead;
+    } else {
+        url_head = "../../../img/img_share/noHead.png";
+    }
+    var questionTitle;
+
+    var questionIcon, myAnswerDataIcons, finishAnswer = false;
+
+    function getMyEncounter(myQuestionNum) { //获取我的问题
+        if (myQuestionNum <= ((myWholeQuestion.length) - 1)) { //答题进行中
+            //题目没有图片的情况下
+            myQuestionData = decodeURIComponent(myWholeQuestion[myQuestionNum].question);//我的当前的问题
+            questionTitle = myQuestionData;
+            questionIcon = decodeURIComponent(myWholeQuestion[myQuestionNum].questionIcon);//我的问题的图片地址
+            if (questionIcon == '') {//我的题目中没有图片
+                var questionTitleContent = '<p class="insertQuestionITitle">' + questionTitle + '</P>';
+                console.log(myQuestionData);
+                storyCard(myQuestionData);
+                $(".topQuestion").append(questionTitleContent);
+            } else if (/http/.test(questionIcon)) {//我的题目中有图片
+                storyCard(myQuestionData);
+                var questionTitleContent = '<p class="insertQuestionITitle">' + questionTitle + '</P>';
+                var insertTitleImg = '<img class="insertTitleImg"' + ' src="' + questionIcon + '">';
+                $(".topQuestion").append(insertTitleImg);
+                $(".topQuestion").append(questionTitleContent);
+            }
+
+
+//            question_titel = myQuestionData;
+//            insertWordL(myQuestionNum);
+//            $(".chosen" + myQuestionNum).append(questionItem); //把答案插进后面的聊天框中
+
+            myAnswerData = myWholeQuestion[myQuestionNum].answers;
+            myAnswerDataIcons = myWholeQuestion[myQuestionNum].answerIcon;
+            for (var i = 0; i < myAnswerData.length; i++) {
+
+                if (myAnswerDataIcons.length == 0) {//答案中没有图片的情况下
+                    var questionItem = '<div class="eachAnswerContent eachAnswer ' + 'item' + i + '">' + '<P class="chosenTitle">' + decodeURIComponent(myAnswerData[i]) + '</p>' + '</div>';
+                    $(".bottomAnswer").append(questionItem);//把答案插进前景故事卡中
+                } else {//答案有图片的情况下
+                    var questionImgContainer = '<div class="questionImgContainer eachAnswerContent">' +
+                        '<div class="questionImgTtitle">' + '<p class="chosenTitle">' + decodeURIComponent(myAnswerData[i]) + '</p>' + '</div>' +
+                        '<img class="insertQuestionImg" src="' + myAnswerDataIcons[i] + '">' +
+                        '</div>';
+                    $(".bottomAnswer").append(questionImgContainer);//把答案插进前景故事卡中
+                }
+
+            }
+
+        } else { //答完
+            $(".cardContainer").show();
+            $(".storyCard").hide();
+            $(".downloadContainer").show();
+            var endText = '敬请期待' + nickname_2 + '与你完成邂逅';
+            $(".downloadReminder").text(endText);
+            $(".encounterBtn").text('去Fancyoo找TA').css("background", '#e26584');
+            $(".remind").fadeIn().text(endText);
+            finishAnswer = true;
+
+            senResult();//发送答案
+        }
+    }
+
+    var partenQuestionData, parten_Querstion_img;
+
+    function getPartenEncounter(mpartenQuestionNum) { //获取对方的问题
+        console.log(partenWholeQuestion[mpartenQuestionNum].question);
+        console.log(decodeURIComponent(partenWholeQuestion[mpartenQuestionNum].question));
+        partenQuestionData = decodeURIComponent(partenWholeQuestion[mpartenQuestionNum].question);
+
+        var partenAnswers = partenWholeQuestion[mpartenQuestionNum].answers;
+        var partenQuestionIcon = partenWholeQuestion[mpartenQuestionNum].questionIcon; //对方问题中的图片
+//        for (var m = 0; m < partenAnswers.length; m++) {
+        console.log(partnerWholeAnswers);
+        console.log(partnerWholeAnswers[mpartenQuestionNum]);
+        user_chosen = decodeURIComponent(partnerWholeAnswers[mpartenQuestionNum]);
+
+        var timer = window.setTimeout(function () {
+            insertWordL(mpartenQuestionNum, mpartenQuestionNum);
+            if (partenQuestionIcon != '') {
+                var mpartenQuestionIcon = '<img class="mpartenQuestionIcon" src="' + partenQuestionIcon + '">';
+                $(".leftquestion" + mpartenQuestionNum).append(mpartenQuestionIcon);
+            }
+            for (var n = 0; n < partenAnswers.length; n++) {
+                var mpartenAnswerItem = '<p>' + decodeURIComponent(partenAnswers[n]) + '</p>';
+                $(".leftquestion" + mpartenQuestionNum).append(mpartenAnswerItem);
+                $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+            }
+        }, 2000);
+
+        var answerTimer1 = window.setTimeout(function () {
+            var partenAnswerInsert = '<div class="headContainer leftHead">' +
+                '<img class="leftItem itemHead" ' + 'src=' + parten_head + '>' +
+                '</div>' +
+                '<div class="answerItem leftAnswerItem">' +
+                '<p class="answerTitle">' + user_chosen + '</p>' +
+                '</div>';
+            $(".answerContainer" + mpartenQuestionNum).append(partenAnswerInsert);
+            window.clearTimeout(answerTimer1);
+            window.clearTimeout(timer);
+            $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+            clickOpen = true;
+        }, 3000);
+    }
+
+    function storyCard() { //卡片显示
+        var typePWL = '<div class="insertQuestionContainer">' +
+            '<div class="topQuestion">' + '</div>' +
+            '<div class="bottomAnswer">' +
+            '</div>' +
+            '</div>';
+
+        $(".cardContent").append(typePWL);
+
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+
+    function platForm() {
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        if (isiOS) {
+            $(".downloadFancyoo").click(function () {
+                if(!hasError){
+                    $(".downloadFancyooLink").attr("href", "https://itunes.apple.com/cn/app/fancyoo-%E8%81%8A%E5%A4%A9%E4%BA%A4%E5%8F%8B%E7%9A%84%E6%B8%B8%E6%88%8F%E5%8C%96%E7%A4%BE%E4%BA%A4%E7%A4%BE%E5%8C%BA/id1311428217?mt=8");
+                }
+            });
+            $(".startEncounter").click(function () {
+                if (finishAnswer) {
+                    $(".startEncounter").attr("href", "https://itunes.apple.com/cn/app/fancyoo-%E8%81%8A%E5%A4%A9%E4%BA%A4%E5%8F%8B%E7%9A%84%E6%B8%B8%E6%88%8F%E5%8C%96%E7%A4%BE%E4%BA%A4%E7%A4%BE%E5%8C%BA/id1311428217?mt=8                                                                                                                                                                                                                                                                                                                                                                                    ");
+                }
+            })
+        } else if (isAndroid) {
+//            $(".downloadFancyooLink").attr("href", "https://www.pgyer.com/apiv1/app/install?aId=b1326308129430681487b43739b6616a&_api_key=c3624d043c84fa7fcd5351a2ecfa79b6");
+            $(".downloadFancyoo").click(function (){
+                if(!hasError){
+                    $(".downloadFancyooLink").attr("href", "http://url.cn/5H7yHnI");
+                }
+            });
+            $(".startEncounter").click(function () {
+                if (finishAnswer) {
+                    $(".startEncounter").attr("href", "http://url.cn/5H7yHnI");
+                }
+            })
+        }
+    }
+
+    function weGuide() {
+        var weCover = $(".wechatGuide");
+        $(".downloadFancyoo,.startEncounter").click(function () {
+            if (finishAnswer) {
+                var u = navigator.userAgent;
+                var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+                var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+                if (isAndroid) {
+                    weCover.css("display", "inline-block");
+                }
+                weCover.click(function () {
+                    $(this).css("display", "none");
+                })
+            }
+
+        });
+    }
+
+    function is_weChat() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            weGuide();
+        } else {
+            return false;
+        }
+    }
+
+    function insertWordL(num, answerNum) { //纯文字类型,左
+
+        var typeWordL = '<div class="item3ontainer">' +
+            '<div class="questionContainer word">' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" ' + 'src=' + parten_head + '>' +
+            '</div>' +
+            '<div class="questionItem leftquestion leftquestion' + num + '">' +
+            '<p class="questionTitle">' + partenQuestionData + '</p>' +
+            '</div>' +
+            '</div>' +
+            '<div class="answerContainer answerContainer' + answerNum + '">' +
+            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typeWordL);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+
+    }
+
+    function insertWordR(num) { //纯文本类型，右
+        var typeWordR = '<div class="item3ontainer">' +
+            '<div class="questionContainer word">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="leftItem itemHead" ' + 'src=' + url_head + '>' +
+            '</div>' +
+            '<div class="questionItem rightquestion rightquestion' + num + '">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '</div>' +
+            '</div>' +
+            '<div class="answerContainer">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="leftItem itemHead" ' + 'src=' + url_head + '>' +
+            '</div>' +
+            '<div class="answerItem rightAnswerItem rightAnswerItem' + num + '">' +
+            '<p class="answerTitle">' + my_chosen + '</p>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typeWordR);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+
+    function insertPicL() { //题目图片+答案图片，左
+        var typePicL = '<div class="item3ontainer">' +
+            '<div class="questionContainer">' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" src=' + parten_head + '>' +
+            '</div>' +
+            '<div class="questionItem leftquestion">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '<img class="questionImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            '<div class="answerContainer">' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" src=' + parten_head + '>' +
+            '</div>' +
+            '<div class="answerItem leftAnswerItem">' +
+            '<p class="imgAnswerTitle">' + user_chosen + '</p>' +
+            '<img class="answerImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(".cardContent").append(typePicL);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+
+    }
+
+
+    function insertPicR() { //题目图片+答案图片，右
+        var typePicL = '<div class="item3ontainer">' +
+            '<div class="questionContainer">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="leftItem itemHead" src=' + url_head + '>' +
+            '</div>' +
+            '<div class="questionItem rightquestion">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '<img class="questionImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            '<div class="answerContainer">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="leftItem itemHead" src=' + url_head + '>' +
+            '</div>' +
+            '<div class="answerItem rightAnswerItem">' +
+            '<p class="imgAnswerTitle">' + user_chosen + '</p>' +
+            '<img class="answerImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typePicL);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+
+    function insertWordPicL() { //题目纯文字+答案有图片，左
+        var typeWPL = '<div class="item3ontainer">' +
+            '<div class="questionContainer word">' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" src=' + parten_head + '>' +
+            '</div>' +
+            '<div class="questionItem leftquestion">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '</div>' +
+            '</div>' +
+            '<div>' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" src=' + parten_head + '>' +
+            '</div>' +
+            '<div class="answerItem leftAnswerItem">' +
+            '<p class="imgAnswerTitle">' + user_chosen + '</p>' +
+            '<img class="answerImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(".cardContent").append(typeWPL);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+
+    function insertWordPicR() { //题目纯文字+答案有图片，右
+        var typeWPR = '<div class="item3ontainer">' +
+            '<div class="questionContainer word">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="leftItem itemHead" src=' + url_head + '>' +
+            '</div>' +
+            '<div class="questionItem rightquestion">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '</div>' +
+            '</div>' +
+            '<div>' +
+            '<div class="headContainer rightHead">' +
+            '<img class="leftItem itemHead" src=' + url_head + '>' +
+            '</div>' +
+            '<div class="answerItem rightAnswerItem">' +
+            '<p class="imgAnswerTitle">' + user_chosen + '</p>' +
+            '<img class="answerImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typeWPR);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+    function insertPicWordL(num) {  //题目图片+答案纯文字 左
+        var typePWL = '<div class="item3ontainer">' +
+            '<div class="questionContainer">' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" src=' + parten_head + '>' +
+            '</div>' +
+            '<div class="questionItem leftquestion chosen' + num + '">' +
+            '<p class="questionTitle">' + partenQuestionData + '</p>' +
+            '<img class="questionImg" src=' + parten_Querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            ' <div class="answerContainer">' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" src=' + parten_head + '>' +
+            '</div>' +
+            '<div class="answerItem leftAnswerItem">' +
+            ' <p class="answerTitle">' + my_chosen + '</p>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+
+        $(".cardContent").append(typePWL);
+
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+
+    function insertPicWordR(num) {  //题目图片+答案纯文字 右
+        var typePWR = '<div class="item3ontainer">' +
+            '<div class="questionContainer">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="leftItem itemHead" src=' + url_head + '>' +
+            '</div>' +
+            '<div class="questionItem rightquestion rightquestionImg' + num + '">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '<img class="questionImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            ' <div class="answerContainer">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="leftItem itemHead" src=' + url_head + '>' +
+            '</div>' +
+            '<div class="answerItem rightAnswerItem rightAnswerItem' + num + '">' +
+            ' <p class="answerTitle">' + user_chosen + '</p>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typePWR);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+
+</script>
+</body>
+</html>

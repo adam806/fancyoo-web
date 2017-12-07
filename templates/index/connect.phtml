@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name=”renderer” content=”webkit”>
+    <link rel="stylesheet" href="../../css/connect.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_pc/logo-icon.png">
+    <title>Fancyoo</title>
+</head>
+<body>
+<?php
+include(__DIR__ . '/../component/header.phtml');
+?>
+<div class="main">
+    <div class="content">
+        <div class="mapContainer">
+            <img class="map" src="../../../img/img_pc/map.jpg">
+            <div class="location">
+                <h2>北京无界光合科技有限公司</h2>
+                <br>
+                <P>地址：北京市海淀区中关村东路66号</P>
+                <P>世纪科贸大厦</P>
+                <br>
+                <P>邮编：100190</P>
+                <br>
+                <P>商务合作：bd@hifreelight.com</P>
+            </div>
+        </div>
+
+        <div class="qrCodes">
+            <div class="webo">
+                <p class="qrtitle">官方微博</p>
+                <p class="secondTitle">Fancyoo官微</p>
+                <img class="weiboQr" src="../../../img/img_pc/webo.jpg">
+            </div>
+            <div class="wexin">
+                <p class="qrtitle">官方微信</p>
+                <p class="secondTitle">Fancyoo乐园</p>
+                <p class="waiting" style="margin-top: 30px;">敬请期待！</p>
+<!--                <img class="weixinQr" src="../../../img/img_pc/weChat.jpg">-->
+            </div>
+            <div class="tieba">
+                <p class="qrtitle">官方贴吧</p>
+                <p class="secondTitle">Fancyoo乐园</p>
+                <p class="waiting" style="margin-top: 30px;">敬请期待！</p>
+                <!--                <img class="tiebaQr" src="../../../img/img_pc/tieba.jpg">-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+include(__DIR__ . '/../component/footer.phtml');
+?>
+<script src="//cdn.bootcss.com/less.js/3.0.0-pre.4/less.min.js"></script>
+<script>
+    $(function () {
+        $(".connect").css("border-top", "4px solid #a98d54");
+        $(".connect .topWord").css("color", "#a3836d");
+//        $(".connect").find(".arrowContainer").css("top", "20px");
+    })
+</script>
+</body>
+</html>

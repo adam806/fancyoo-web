@@ -1,0 +1,190 @@
+.Jumbotron{
+    width:100%;
+}
+.content{
+    width:1024px;
+    margin:0 auto;
+}
+
+.content_chosen{
+    font-weight: bold;
+}
+.title_bar{
+    font-size: 22px;
+    margin-top: 30px;
+    border-bottom: 2px solid #dadada;
+    padding: 7px;
+    width:981px;
+}
+.process{
+    display: none;
+    font-size:16px;
+
+}
+.process h1{
+    font-size:25px;
+    font-weight: bold;
+    margin-top: -18px;
+}
+.bar_system,.bar_process,.bar_question{
+    cursor: pointer;
+}
+.margin{
+    margin:0 30px;
+}
+.system_describe{
+    width: 982px;
+    margin-top: 50px;
+    border: 1px solid #dadada;
+    padding: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+
+}
+.system {
+    font-size:16px;
+}
+.system h1{
+    font-size:25px;
+    font-weight: bold;
+    margin-top: -18px;
+}
+.system_describe h1{
+    border-bottom: 1px solid #dadada;
+    font-weight: 500;
+    width: 922px;
+    line-height: 60px;
+}
+.system_describe_p_div{
+    margin-top:14px;
+}
+.system_p{
+    display: inline-block;
+    width: 757px;
+    /*margin-left: 66px;*/
+    text-indent: 2rem;
+    vertical-align: middle;
+}
+.system_introduce{
+    width: 982px;
+    margin-top: 50px;
+    border: 1px solid #dadada;
+    padding: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.system_introduce h1{
+    border-bottom: 1px solid #dadada;
+    font-weight: 500;
+    width: 922px;
+    line-height: 60px;
+}
+.system_introduce p{
+    margin-top:14px;
+    text-indent: 2rem;
+}
+.system_attention{
+    width: 982px;
+    margin: 50px 0;
+    border: 1px solid #dadada;
+    padding: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.system_attention h1{
+    border-bottom: 1px solid #dadada;
+    font-weight: 500;
+    width: 922px;
+    line-height: 60px;
+}
+.system_attention div{
+    margin-top:14px;
+    text-indent: 2rem;
+}
+.apply_process{
+    width: 982px;
+    margin-top: 50px;
+    border: 1px solid #dadada;
+    padding: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.apply_process h1{
+    border-bottom: 1px solid #dadada;
+    font-weight: 500;
+    width: 922px;
+    line-height: 60px;
+}
+.system_logo{
+    margin:10px;
+}
+.download_process{
+    width: 982px;
+    margin-top: 50px;
+    border: 1px solid #dadada;
+    padding: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.download_process h1{
+    border-bottom: 1px solid #dadada;
+    font-weight: 500;
+    width: 922px;
+    line-height: 60px;
+}
+.process_p{
+    margin-top:10px;
+}
+.process_attention{
+    width: 982px;
+    margin: 50px 0;
+    border: 1px solid #dadada;
+    padding: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.process_attention h1{
+    border-bottom: 1px solid #dadada;
+    font-weight: 500;
+    width: 922px;
+    line-height: 60px;
+}
+.process_attention h3{
+    line-height: 50px;
+}
+.process_attention p{
+    line-height: 25px;
+}
+.question{
+    width: 982px;
+    margin-top: 50px;
+    border: 1px solid #dadada;
+    padding: 20px;
+    margin-bottom:50px;
+    display: none;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.question h1{
+    border-bottom: 1px solid #dadada;
+    font-weight: 500;
+    font-size:25px;
+    width: 922px;
+    line-height: 60px;
+}
+.question h3{
+    margin:20px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+@media screen and (min-width: 768px){
+    .container{
+        width:970px;
+    }
+}
+@media screen and (max-width:1100px){
+    .Jumbotron{
+        width:1023px;
+    }
+}
+@media screen and (max-width: 845px){
+    .navbar-collapse{
+        width:970px;
+    }
+}
+.chosen{
+    color:rgb(169,141,84) !important;
+}

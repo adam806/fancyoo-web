@@ -1,0 +1,551 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "HanHei SC", "PingHei", "PingFang SC", "microsoft yahei", "sans-serif";
+}
+
+.main {
+    width: 7.5rem;
+    /*height: 13.34rem;*/
+    position: relative;
+    background-size: 10%;
+    background-image: url(../img/img_share/bgIcon.png);
+    overflow: hidden;
+}
+
+.chatContainer {
+    width: 7.22rem;
+    height: 6rem;
+    margin: 0 auto;
+    /*border: 1px solid #000;*/
+    position: relative;
+    overflow-y: scroll;
+    top: 0.2rem;
+}
+
+.cardContainer {
+    width: 7.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+}
+
+.storyCard {
+    width: 6.79rem;
+    min-height: 8.6rem;
+    /*border: 1px solid #000;*/
+    background: url(../img/img_share/storyCardBg.png);
+    background-repeat: repeat;
+    position: absolute;
+    left: 50%;
+    top: 1.2rem;
+    margin-left: -3.395rem;
+    padding-bottom: 0.1rem;
+}
+
+.cardTitleContainer {
+    width: 7.03rem;
+    height: 0.9rem;
+    position: relative;
+}
+
+.cardTitleBg {
+    width: 7.05rem;
+    position: absolute;
+    left: -0.27rem;
+    top: -0.49rem;
+}
+
+.cardTitle {
+    font-size: 0.35rem;
+    color: #fff;
+    text-align: center;
+    width: 6.79rem;
+    position: absolute;
+    top: 0.2rem;
+}
+
+.cardContent {
+    font-size: 0.32rem;
+    overflow-y: scroll;
+    padding-bottom: 0.15rem;
+}
+
+.describeContainer {
+    font-size: 0.32rem;
+    overflow-y: scroll;
+    width: 5.7rem;
+    height: 3.43rem;
+    border: 0.04rem solid #f8e9c8;
+    padding: 0.33rem 0.34rem;
+    margin: 0.1rem auto;
+    border-radius: 0.2rem;
+    background: #fff;
+}
+
+.choseAnswer {
+    width: 3.02rem;
+    line-height: 0.9rem;
+    color: #fff;
+    font-size: 0.31rem;
+    text-align: center;
+    background: url(../img/img_share/nextBtn.png);
+    background-size: cover;
+    position: absolute;
+    left: 50%;
+    margin-left: -1.51rem;
+    bottom: 0.5rem;
+}
+
+.insertQuestionContainer {
+    width: 6.79rem;
+    height: 7.5rem;
+    padding-bottom: 0.2rem;
+}
+
+.topQuestion {
+    width: 6.18rem;
+    min-height: 1.89rem;
+    border: 0.04rem solid #f8e9c8;
+    padding: 0.1rem 0.1rem;
+    position: relative;
+    left: 50%;
+    margin-left: -3.19rem;
+    top: 0.2rem;
+    border-radius: 0.2rem;
+    clear: both;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-size: 0.25rem;;
+    padding-bottom: 0.2rem;
+}
+
+.questionImgTtitle {
+    font-size: 0.25rem;
+}
+
+.insertTitleImg {
+    width: 2.3rem;
+    margin-top: 0.1rem;
+}
+
+.bottomAnswer {
+    width: 6.38rem;
+    min-height: 4.9rem;
+    position: relative;
+    top: 0.3rem;
+    left: 50%;
+    margin-left: -3.19rem;
+    overflow-y: scroll;
+    border: 0.04rem solid #f8e9c8;
+    border-radius: 0.2rem;
+    padding-bottom: 0.15rem;
+}
+
+.eachAnswer {
+    font-size: 0.25rem;
+    width: 5.86rem;
+    /*line-height: 0.96rem;*/
+    /*height: 0.25rem;*/
+    padding: 0.37rem 0.1rem;
+    background: url(../img/img_share/chosenItemBg.png);
+    text-align: center;
+    color: #e788aa;
+    /*background-size: cover;*/
+    background-size: 100% 100%;
+    margin: 0 auto;
+    margin-top: 0.15rem;
+}
+
+.questionImgContainer {
+    width: 3rem;
+    height: 2rem;
+    margin-top: 0.145rem;
+    margin-left: 0.18rem;
+    display: inline-block;
+}
+
+.insertQuestionImg {
+    width: 2.5rem;
+}
+
+.itemContainer {
+    position: relative;
+    /*min-height: 2.1rem;*/
+    margin: 0.2rem 0;
+}
+
+.leftHead {
+    float: left;
+}
+
+.rightHead {
+    float: right;
+    right: 0;
+}
+
+.rightitemContainer {
+    position: relative;
+    min-height: 2.1rem;
+    margin: 0.2rem 0;
+}
+
+.questionContainer {
+    position: relative;
+    /*min-height: 2.1rem;*/
+    margin: 0.2rem 0;
+    clear: both;
+    overflow: hidden;
+}
+
+.answerContainer {
+    position: relative;
+    min-height: 0.86rem;
+    clear: both;
+    overflow: hidden;
+}
+
+.answerItem {
+    /*position: absolute;*/
+    /*left: 1rem;*/
+    font-size: 0.3rem;
+    border: 0.01rem solid #cbcbcb;
+    padding: 0.22rem 0.29rem;
+    -webkit-border-radius: 0.1rem;
+    -moz-border-radius: 0.1rem;
+    border-radius: 0.1rem;
+}
+
+.leftAnswerItem {
+    float: left;
+    margin-left: 0.3rem;
+    max-width: 3.48rem;
+    background: #fff;
+}
+
+.rightAnswerItem {
+    float: right;
+    margin-right: 0.3rem;
+    max-width: 3.48rem;
+    background: #fcc655;
+}
+
+.itemHead {
+    width: 0.8rem;
+    height: 0.8rem;
+    display: block;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.questionItem {
+    width: 4.48rem;
+    -webkit-border-radius: 0.1rem;
+    -moz-border-radius: 0.1rem;
+    border-radius: 0.1rem;
+    border: 0.01rem solid #cbcbcb;
+    padding: 0.22rem 0.29rem;
+    font-size: 0.3rem;
+}
+
+.leftquestion {
+    float: left;
+    margin-left: 0.3rem;
+    background: #fff;
+}
+
+.rightquestion {
+    float: right;
+    margin-right: 0.3rem;
+    background: #fcc655;
+}
+
+.arrowContainer {
+    position: relative;
+    left: 0.62rem;
+    top: 0.1rem;
+}
+
+.rightArrowOut {
+    border-color: transparent #cbcbcb transparent transparent;
+    border-style: solid;
+    border-width: 10px 10px 10px 10px;
+    width: 0;
+    position: absolute;
+}
+
+.rightArrowIn {
+    border-color: transparent #fff transparent transparent;
+    border-style: solid;
+    border-width: 0.2rem 0.2rem 0.2rem 0.2rem;
+    width: 0;
+    position: absolute;
+    left: 0.01rem;
+}
+
+.leftarrow {
+    width: 0.5rem;
+    position: absolute;
+    left: -0.3rem;
+}
+
+.rightquestionContainer {
+    position: absolute;
+    right: 1rem;
+    width: 3.48rem;
+    -webkit-border-radius: 0.1rem;
+    -moz-border-radius: 0.1rem;
+    border-radius: 0.1rem;
+    border: 0.01rem solid #cbcbcb;
+    padding: 0.22rem 0.29rem;
+    font-size: 0.3rem;
+}
+
+.questionImg {
+    width: 3rem;
+    display: block;
+}
+
+.questionTitle {
+    margin-bottom: 0.1rem;
+}
+
+.questionImg {
+    margin-bottom: 0.1rem;
+}
+
+.answerImg {
+    width: 3rem;
+    display: block;
+}
+
+.imgAnswerTitle {
+    margin-bottom: 0.1rem;
+}
+
+.bgContainer {
+    width: 7.5rem;
+    height: 4rem;
+    position: absolute;
+    bottom: 1.28rem;
+}
+
+.bgImg {
+    width: 7.5rem;
+    height: 4rem;
+}
+
+.role1 {
+    position: absolute;
+    width: 0.9rem;
+    right: 1.5rem;
+    top: 0.7rem;
+}
+
+.role2 {
+    position: absolute;
+    width: 0.9rem;
+    left: 1.5rem;
+    top: 0.7rem;
+    transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+}
+
+.remind {
+    font-size: 0.32rem;
+    width: 5rem;
+    color: #fff;
+    line-height: 0.5rem;
+    margin: 0 auto;
+    text-align: center;
+    background-size: cover;
+    position: absolute;
+    left: 50%;
+    margin-left: -2.5rem;
+    border-radius: 0.05rem;
+    top: -0.1rem;
+    background: #cecece;
+}
+
+.downloadContainer {
+    width: 6.23rem;
+    height: 4.5rem;
+    background: #fcc656;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    border-radius: 0.2rem;
+    position: absolute;
+    left: 50%;
+    margin-left: -3.115rem;
+    top: 2.5rem;
+    display: none;
+}
+
+.downloadContent {
+    width: 6.1rem;
+    height: 4.5rem;
+    background: #fff;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    border-radius: 0.2rem;
+    position: absolute;
+    left: 50%;
+    margin-left: -3.05rem;
+}
+
+.closeDownloadBtn {
+    position: absolute;
+    width: 0.62rem;
+    right: 0.13rem;
+    top: 0.18rem;
+}
+
+.downloadReminder {
+    text-align: center;
+    font-size: 0.32rem;
+    margin-top: 1.5rem;
+}
+
+.downloadFancyoo {
+    width: 3.02rem;
+    line-height: 0.9rem;
+    color: #fff;
+    font-size: 0.31rem;
+    text-align: center;
+    background: url(../img/img_share/nextBtn.png);
+    background-size: cover;
+    position: absolute;
+    left: 50%;
+    margin-left: -1.51rem;
+    bottom: 0.5rem;
+}
+
+.wechatGuide {
+    width: 7.5rem;
+    height: 13.34rem;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: none;
+}
+
+.guideImg {
+    position: absolute;
+    left: 50%;
+    margin-left: -2.5rem;
+    width: 5rem;
+    top: 4rem;
+}
+
+.insertQuestionTitle {
+    float: left;
+}
+
+.insertTitleImg {
+    float: right;
+}
+
+.downloadFancyooLink {
+    text-decoration: none;
+    color: #fff;
+}
+
+.bottomBar {
+    position: fixed;
+    bottom: 0;
+    width: 7.5rem;
+    height: 1.28rem;
+    background: #fff;
+}
+
+.infoContainer {
+    position: relative;
+    left: 0.66rem;
+    height: 1.28rem;
+}
+
+.userHead {
+    width: 1.04rem;
+    height: 1.04rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    /*vertical-align: middle;*/
+    position: absolute;
+    display: block;
+    top: 50%;
+    margin-top: -0.52rem;
+}
+
+.userName {
+    font-size: 0.3rem;
+    line-height: 0.3rem;
+    color: #494949;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.15rem;
+    margin-left: 1.18rem;
+    display: inline-block;
+}
+
+.btnContainer {
+    position: absolute;
+    right: 0.29rem;
+    height: 0.7rem;
+    top: 50%;
+    margin-top: -0.35rem;
+}
+
+.encounterBtn {
+    /*width: 2.54rem;*/
+    padding: 0.05rem 0.25rem;
+    line-height: 0.7rem;
+    background: #c0bfbf;
+    font-size: 0.35rem;
+    color: #fff;
+    -webkit-border-radius: 0.15rem;
+    -moz-border-radius: 0.15rem;
+    border-radius: 0.15rem;
+    text-align: center;
+}
+
+.bubble1 {
+    position: absolute;
+    width: 3rem;
+    top: -1.75rem;
+    right: 1.2rem;
+}
+
+.startEncounter {
+    text-decoration: none;
+}
+
+.describeTopContainer {
+    width: 5.4rem;
+    padding: 0.3rem;
+    margin: 0.2rem auto;
+    background: #fff;
+    border-radius: 0.2rem;
+    font-size: 0.3rem;
+}
+
+.answerIconContainer {
+    width: 3.3rem;
+    height: 2.2rem;
+    display: block;
+}
+
+.mpartenQuestionIcon {
+    width: 3.3rem;
+    height: 2.2rem;
+    display: block;
+}

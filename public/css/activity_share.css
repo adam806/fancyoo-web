@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    width: 7.5rem;
+    background: url(../img/img_share/wx_activityBg.jpg);
+    background-size: 100% 100%;
+    position: relative;
+}
+
+.fancyooIcon {
+    width: 2.12rem;
+    height: 0.81rem;
+    position: absolute;
+    right: 0.26rem;
+    top: 0.31rem;
+}
+
+.userContainer {
+    width: 7.5rem;
+    height: 5.27rem;
+}
+
+.userPhoto {
+    width: 2.54rem;
+    height: 4.67rem;
+    position: absolute;
+    left: 0.25rem;
+    top: 0.53rem;
+}
+
+.userHeadContainer {
+    width: 1.07rem;
+    height: 1.07rem;
+    padding: 0.055rem;
+    background: #fcae19;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    left: 0.52rem;
+    top: -0.24rem;
+}
+
+.userInfo {
+    width: 5.31rem;
+    height: 3.28rem;
+    position: absolute;
+    right: 0;
+    top: 1.08rem;
+    background: url(../img/img_share/userInfoBg.png);
+    background-size: 100% 100%;
+}
+
+.userHead {
+    width: 1.07rem;
+    height: 1.07rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.userInfoContainer {
+    font-size: 0.3rem;
+    color: #585958;
+    text-align: center;
+    position: absolute;
+    left: 1.65rem;
+    top: 0.85rem;
+}
+
+.userName {
+    width: 2.5rem;
+    height: 0.4rem;
+}
+
+.invert {
+    margin: 0.1rem 0;
+}
+
+.activityNameContainer {
+    padding: 0.11rem 0.35rem;
+    background: #fcae19;
+    -webkit-border-radius: 0.16rem;
+    -moz-border-radius: 0.16rem;
+    border-radius: 0.16rem;
+    color: #fff;
+    display: inline-block;
+}
+
+.activityContainer {
+    width: 7.5rem;
+    height: 3.78rem;
+}
+
+.borderContainer {
+    width: 6.73rem;
+    height: 3.64rem;
+    padding: 0.07rem;
+    margin: 0 auto;
+    background: #3d9f88;
+    -webkit-border-radius: 0.22rem;
+    -moz-border-radius: 0.22rem;
+    border-radius: 0.22rem;
+}
+
+.activityBanner {
+    width: 6.73rem;
+    height: 3.64rem;
+    display: block;
+    -webkit-border-radius: 0.22rem;
+    -moz-border-radius: 0.22rem;
+    border-radius: 0.22rem;
+}
+
+.downloadContainer {
+    width: 7.5rem;
+    height: 2.07rem;
+    position: absolute;
+    bottom: 0.25rem;
+    text-align: center;
+}
+
+.qrContainer {
+    width: 1.53rem;
+    height: 1.53rem;
+    padding: 0.08rem;
+    margin: 0 auto;
+    -webkit-border-radius: 0.14rem;
+    -moz-border-radius: 0.14rem;
+    border-radius: 0.14rem;
+    background: #59bfa7;
+}
+
+.qrCode {
+    width: 1.53rem;
+    height: 1.53rem;
+    display: block;
+    -webkit-border-radius: 0.14rem;
+    -moz-border-radius: 0.14rem;
+    border-radius: 0.14rem;
+}
+
+.downloadP {
+    font-size: 0.23rem;
+    color: #b4b195;
+    margin-top: 0.15rem;
+}

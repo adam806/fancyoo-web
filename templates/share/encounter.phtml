@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_share/logo-icon.png">
+    <link rel="stylesheet" href="../css/encounter_share.css">
+    <title>邂逅</title>
+</head>
+<body>
+
+<div class="main">
+    <div class="chatContainer"></div>
+    <div class="bgContainer">
+        <P class="remind">点击一下继续阅读</P>
+        <img class="bgImg" src="http://howdyland.oss-cn-beijing.aliyuncs.com/images/encounter/meet_scene_1.png">
+        <img class="role2" src="../../../img/img_share/p5_role1.png">
+        <img class="role1" src="../../../img/img_share/p5_role2.png">
+    </div>
+
+    <div class="bottomBar">
+        <div class="infoContainer">
+            <img class="userHead" src="../../../img/img_share/noHead.png">
+            <span class="userName"></span>
+        </div>
+        <div class="btnContainer">
+            <!--            <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1b995d5a13c1d4c4&redirect_uri=http%3a%2f%2ftest.howdyland.com%2fwx%2fredirect&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirec">-->
+            <!--            <a class="startEncounter" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1b995d5a13c1d4c4&redirect_uri=http%3a%2f%2ftest.howdyland.com%2fwx%2fredirect%3fnum%3d666666&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirec">-->
+            <a class="startEncounter">
+                <div class="encounterBtn">与TA邂逅</div>
+            </a>
+            <img class="bubble1" src="../../../img/img_share/bubble1.png">
+        </div>
+    </div>
+</div>
+<div class="resultContainer">
+    <div class="resultContent">
+        <img class="endImg" src="../../../img/img_share/endBg.png">
+        <div class="endSceneContent">
+            <img class="endSceneImg"
+                 src="http://zizaiv2.oss-cn-beijing.aliyuncs.com/shareimage/endImg/scene_6_1_ending2.png">
+        </div>
+        <div class="resultContentText"></div>
+    </div>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+    $(function () {
+        adapt();
+        analyzeUrl();//从url中取出信息
+        getScenceAndUser();//获取头像和场景
+//        getUserInfo();
+
+    });
+
+
+    function adapt() {
+        var width = document.documentElement.clientWidth, height = document.documentElement.clientHeight;
+        document.documentElement.style.fontSize = width / 7.5 + 'px';
+        $(".main,.resultContainer").height(height);
+    }
+
+    var fromUserId, targetUserId, encounterid, scene_id, photo_1, photo_2;
+
+    function analyzeUrl() { //解析URL
+        var analyzeUrl = (window.location.search).split("?")[1];
+        console.log(analyzeUrl);
+        encounterid = (analyzeUrl.split("&")[0]).split("=")[1];
+        console.log(analyzeUrl.split("&"));
+        scene_id = ((analyzeUrl.split("&")[1]).split("="))[1];
+        fromUserId = ((analyzeUrl.split("&")[2]).split("="))[1];
+        photo_1 = ((analyzeUrl.split("&")[3]).split("="))[1];
+        photo_2 = ((analyzeUrl.split("&")[4]).split("="))[1];
+        $(".role1").attr('src', 'http://zizaiv2.oss-cn-beijing.aliyuncs.com/shareimage/' + photo_1).width(2.5 + "rem").css({'top': '0.4rem','right':'0.5rem'});
+        $(".role2").attr('src', 'http://zizaiv2.oss-cn-beijing.aliyuncs.com/shareimage/' + photo_2).width(2.5 + "rem").css({'top':'0.4rem','left':'0.5rem'});
+    }
+
+    var usrAvatar_1, unique_id_1, nickname_1, unique_id_2, nickname_2, resultDescribeTop, resultDescribeBottom;
+    var userInfoSuccess = false, openClick = false;
+
+    function getUserInfo(fromUserId, targetUserId) { //获取用户信息
+        var usrInfoUrl_1 = '/api/users/' + fromUserId;
+        var usrInfoUrl_2 = '/api/users/' + targetUserId;
+
+        $.get(usrInfoUrl_1, function (data1) {
+            console.log(data1);
+            unique_id_1 = data1.unique_id;
+            nickname_1 = data1.nickname;
+
+            if (/http/.test(data1.avatar)) {
+                url_head_right = data1.avatar;
+            } else {
+                url_head_right = '../../../img/img_share/noHead.png';
+            }
+
+            $(".userName").text(nickname_1);
+            $(".userHead").attr('src', url_head_right);
+
+            getUser2();//获取用户2的信息
+
+        }, 'json');
+
+        function getUser2() { //获取用户2的信息
+            $.get(usrInfoUrl_2, function (data2) {
+                console.log(data2);
+                unique_id_2 = data2.unique_id;
+                nickname_2 = data2.nickname;
+
+                if (/http/.test(data2.avatar)) {
+                    url_head_left = data2.avatar;
+                } else {
+                    url_head_left = '../../../img/img_share/noHead.png';
+                }
+
+                if (nickname_1 == undefined || nickname_2 == undefined || nickname_1 == '' || nickname_2 == '') {
+                    $("title").html('邂逅');
+                } else if (nickname_1 != undefined && nickname_2 != undefined) {
+                    var pageTitle = nickname_1 + "和" + nickname_2 + "的邂逅";
+                    $("title").html(pageTitle);
+                }
+
+                resultDescribe_1 = resultDescribeTop.replace(/\$n1/g, nickname_1);
+                resultDescribe_2 = resultDescribe_1.replace(/\$n2/g, nickname_2);
+                var inserTopDesc = '<div class="describeTopContainer">' + resultDescribe_2 + '</div>';
+                $(".chatContainer").append(inserTopDesc);
+                openClick = true;
+
+
+            }, 'json');
+        }
+
+        userInfoSuccess = true;
+    }
+
+    $(".startEncounter").click(function () { //第三方用户点击参与邂逅
+        var currentUrl='http://'+window.location.host;
+        var url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1b995d5a13c1d4c4&redirect_uri=" + encodeURIComponent(currentUrl+'/wechat/redirect?toUserId=' + fromUserId + '&sceneId=' + scene_id + '&photo=' + photo_1) + "&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirec";
+        $(".startEncounter").attr("href", url);
+    });
+
+    var questionNum = 1, left = true, right = false;
+    $(".main").click(function () {
+        if (openClick) {
+            openClick = false;
+            getEncounter(questionNum);
+//        questionNum = questionNum + 2;
+            if (questionNum == 7) { //三道题后点击继续的提示消失
+                var timer = window.setTimeout(function () {
+                    $(".remind").css('opacity', '0');
+                    window.clearTimeout(timer);
+                }, 1000);
+            }
+        }
+
+    });
+    var showResult = true;
+
+    $(".resultContainer").click(function () { //点击关闭场景描述层
+        $(this).hide();
+    });
+    $(".chatContainer").on('click', ".endDescContainer", function () { //点击打开场景描述层
+        $(".resultContainer").show();
+    })
+
+
+    //变量定义
+    var encounterUrl = "http://api.stage.howdyland.com:7080/api/v2/encounter-web/questions/history";
+    var url_head_left = '../../../img/img_share/noHead.png';
+    var url_head_right = '../../../img/img_share/noHead.png', question_titel, chosen_0 = 1, chosen_1, endImg,
+        chosen_2, chosen_3,
+        chosen_4, user_chosen, querstion_img, answerIcon;
+
+    var sceneUrl, resultDescribe, resultDescribe_1, resultDescribe_2;
+
+    function getScenceAndUser() { //获取场景和用户信息
+        $.post(encounterUrl, {id: encounterid}, function (data) {
+            if (fromUserId == data.history[0].sourceUserId) {
+                fromUserId = data.history[0].sourceUserId;
+                targetUserId = data.history[0].targetUserId;
+            } else {
+                fromUserId = data.history[0].targetUserId;
+                targetUserId = data.history[0].sourceUserId;
+            }
+//            fromUserId = data.history[0].sourceUserId;
+//            targetUserId = data.history[0].targetUserId;
+
+
+            endImg = JSON.parse(data.history[data.history.length - 1].data).icon;
+//            $(".endSceneImg").attr('src', 'http://zizaiv2.oss-cn-beijing.aliyuncs.com/shareimage/endImg/' + endImg + '.png');
+            $(".endSceneImg").attr('src', endImg);
+            resultDescribeTop = decodeURIComponent(JSON.parse((data.history[0]).data).text);
+            resultDescribeBottom = decodeURIComponent(JSON.parse((data.history[parseInt(data.history.length) - 1]).data).content);
+            getUserInfo(fromUserId, targetUserId);
+
+//            sceneUrl = "http://howdyland.oss-cn-beijing.aliyuncs.com/images/encounter/" + data.scene.context + ".png";
+            sceneUrl = data.scene.context;
+            $(".bgImg").attr('src', sceneUrl);
+        })
+    }
+
+    function getEncounter() { //获取邂逅
+        $.post(encounterUrl, {id: encounterid}, function (data) {
+            console.log(data.history);
+//            fromUserId = data.history[0].sourceUserId;
+//            targetUserId = data.history[0].targetUserId;
+//            getUserInfo(fromUserId, targetUserId);
+//
+//            var sceneUrl = "http://howdyland.oss-cn-beijing.aliyuncs.com/images/encounter/" + data.scene.context + ".png";
+//            $(".bgImg").attr('src', sceneUrl);
+
+            //获取问题以及相关选项和答案
+
+            function getQueation() {
+                if (questionNum == ((data.history.length) - 1) && showResult) { //答完题
+                    $(".resultContainer").show();
+                    $(".bgImg").attr('src', sceneUrl);
+
+                    resultDescribeBottom
+                    var resultDescribeBottom_1 = resultDescribeBottom.replace(/\$n1/g, nickname_1);
+                    var resultDescribeBottom_2 = resultDescribeBottom_1.replace(/\$n2/g, nickname_2);
+                    $(".resultContentText").text(resultDescribeBottom_2);
+                    showResult = false;
+
+                    insertEndDesc();
+                    $(".endDescImg").attr('src', endImg);
+                    $(".endDescRight").text(resultDescribeBottom_2);
+                    return;
+                }
+                console.log(questionNum);
+                var question = decodeURIComponent(JSON.parse(data.history[questionNum].data).question);
+                var answer = decodeURIComponent(JSON.parse(data.history[questionNum + 1].data).text);
+
+                console.log(answer);
+                user_chosen = answer;
+                question_titel = question;
+
+                if (left && !right) { //调用右侧，分享发起方
+
+                    if (JSON.parse(data.history[questionNum].data).questionIcon != '') { //题目有图片的情况
+                        console.log(JSON.parse(data.history[questionNum].data).questionIcon);
+                        querstion_img = JSON.parse(data.history[questionNum].data).questionIcon;
+//                        insertPicWordL(questionNum);
+                        insertPicWordR(questionNum);
+
+                        var answerTimer1 = window.setTimeout(function () {
+                            var insertAnswer1 = '<div class="answerContainer">' +
+                                '<div class="headContainer rightHead">' +
+                                '<img class="rightItem itemHead" src="' + url_head_right + '">' +
+                                '</div>' +
+                                '<div class="answerItem rightAnswerItem answerItem' + questionNum + '">' +
+                                '<p class="answerTitle">' + user_chosen + '</p>' +
+                                '</div>' +
+                                '</div>';
+                            $(".chatContainer").append(insertAnswer1);
+                            $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+
+                            if (JSON.parse(data.history[questionNum - 1].data).icon != undefined) { //用户选择的答案中有图片
+                                answerIcon = decodeURIComponent(JSON.parse(data.history[questionNum - 1].data).icon);
+                                var answerIconContainer = '<img class="answerIconContainer" src="' + answerIcon + '">';
+                                $(".answerItem" + questionNum).append(answerIconContainer);
+                                $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+                            }
+                            openClick = true;
+                            window.clearTimeout(answerTimer1)
+                        }, 1500);
+
+//                        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+                    } else {
+//                        insertWordL(questionNum);
+                        insertWordR(questionNum);
+//                        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+
+
+                        var answerTimer2 = window.setTimeout(function () {
+                            var insertAnswer2 = '<div class="answerContainer">' +
+                                '<div class="headContainer rightHead">' +
+                                '<img class="rightItem itemHead" ' + 'src=' + url_head_right + '>' +
+                                '</div>' +
+                                '<div class="answerItem rightAnswerItem answerItem' + questionNum + '">' +
+                                '<p class="answerTitle">' + user_chosen + '</p>' +
+                                '</div>' +
+                                '</div>';
+                            $(".chatContainer").append(insertAnswer2);
+                            $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+
+
+                            if (JSON.parse(data.history[questionNum - 1].data).icon != undefined) { //用户选择的答案中有图片
+                                answerIcon = decodeURIComponent(JSON.parse(data.history[questionNum - 1].data).icon);
+                                var answerIconContainer = '<img class="answerIconContainer" src="' + answerIcon + '">';
+                                $(".answerItem" + questionNum).append(answerIconContainer);
+                                $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+                            }
+                            openClick = true;
+                            window.clearTimeout(answerTimer2);
+                        }, 1500);
+
+
+                    }
+
+                    left = false, right = true;
+                } else if (!left && right) { //调用左侧
+                    if (JSON.parse(data.history[questionNum].data).questionIcon != '') { //题目有图片的情况
+                        console.log(JSON.parse(data.history[questionNum].data).questionIcon);
+                        querstion_img = JSON.parse(data.history[questionNum].data).questionIcon;
+//                        insertPicWordR(questionNum);
+                        insertPicWordL(questionNum);
+//                        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+                        var answerTimer3 = window.setTimeout(function () {
+                            var insertAnswer3 = ' <div class="answerContainer">' +
+                                '<div class="headContainer leftHead">' +
+                                '<img class="leftItem itemHead" src=' + url_head_left + '>' +
+                                '</div>' +
+                                '<div class="answerItem leftAnswerItem answerItem' + questionNum + '">' +
+                                ' <p class="answerTitle">' + user_chosen + '</p>' +
+                                '</div>' +
+                                '</div>';
+
+                            $(".chatContainer").append(insertAnswer3);
+                            $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+
+                            if (JSON.parse(data.history[questionNum - 1].data).icon != undefined) { //用户选择的答案中有图片
+                                answerIcon = decodeURIComponent(JSON.parse(data.history[questionNum - 1].data).icon);
+                                var answerIconContainer = '<img class="answerIconContainer" src="' + answerIcon + '">';
+                                $(".answerItem" + questionNum).append(answerIconContainer);
+                                $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+                            }
+                            openClick = true;
+                            window.clearTimeout(answerTimer3);
+                        }, 1500);
+
+                    } else {
+//                        insertWordR(questionNum);
+                        insertWordL(questionNum);
+//                        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+
+
+                        var answerTimer4 = window.setTimeout(function () {
+                            var insertAnswer4 = '<div class="answerContainer">' +
+                                '<div class="headContainer leftHead">' +
+                                '<img class="leftItem itemHead"' + 'src="' + url_head_left + '">' +
+                                '</div>' +
+                                '<div class="answerItem leftAnswerItem answerItem' + questionNum + '">' +
+                                '<p class="answerTitle">' + user_chosen + '</p>' +
+                                '</div>' +
+                                '</div>';
+                            $(".chatContainer").append(insertAnswer4);
+                            $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+
+                            if (JSON.parse(data.history[questionNum - 1].data).icon != undefined) { //用户选择的答案中有图片
+                                answerIcon = decodeURIComponent(JSON.parse(data.history[questionNum - 1].data).icon);
+                                var answerIconContainer = '<img class="answerIconContainer" src="' + answerIcon + '">';
+                                $(".answerItem" + questionNum).append(answerIconContainer);
+                                $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+                            }
+                            openClick = true;
+                            window.clearTimeout(answerTimer4);
+                        }, 1500);
+
+                    }
+
+                    left = true, right = false;
+                }
+
+
+                var answers = JSON.parse(data.history[questionNum].data).answers;
+                if (answers instanceof Array) {
+                    for (var m = 0; m < answers.length; m++) {
+                        var each_answer = decodeURIComponent((JSON.parse(data.history[questionNum].data).answers)[m]);
+                        var questionItem = '<p class="' + 'item' + m + '">' + each_answer + '</p>';
+                        $(".chosen" + questionNum).append(questionItem);
+
+                        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+                    }
+                }
+                questionNum = questionNum + 2;
+            }
+
+            if (userInfoSuccess) {
+                getQueation();
+            }
+
+
+        }, 'json');
+    }
+
+
+    function insertEndDesc() { //结束场景描述加文字
+        var endDesc = '<div class="endDescContainer">' +
+            '<div class="descImg">' +
+            '<img class="descBg" src="../../../img/img_share/descBg.png">' +
+            '<img class="endDescImg" src="http://zizaiv2.oss-cn-beijing.aliyuncs.com/shareimage/endImg/scene_6_1_ending2.png">' +
+            '</div>' +
+            '<div class="endDescRight"></div>' +
+            '</div>';
+
+        $(".chatContainer").append(endDesc);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+    function insertWordL(num) { //纯文字类型,左
+
+        var typeWordL = '<div class="item3ontainer">' +
+            '<div class="questionContainer word">' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" ' + 'src=' + url_head_left + '>' +
+            '</div>' +
+            '<div class="questionItem leftquestion chosen' + num + '">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '</div>' +
+            '</div>' +
+            //            '<div class="answerContainer">' +
+            //            '<div class="headContainer leftHead">' +
+            //            '<img class="leftItem itemHead" ' + 'src=' + url_head_left + '>' +
+            //            '</div>' +
+            //            '<div class="answerItem leftAnswerItem answerItem' + num + '">' +
+            //            '<p class="answerTitle">' + user_chosen + '</p>' +
+            //            '</div>' +
+            //            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typeWordL);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+        console.log($(".chatContainer")[0].scrollHeight);
+
+    }
+
+    //    insertWordL();
+
+    function insertWordR(num) { //纯文本类型，右
+        var typeWordR = '<div class="item3ontainer">' +
+            '<div class="questionContainer word">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="rightItem itemHead" ' + 'src=' + url_head_right + '>' +
+            '</div>' +
+            '<div class="questionItem rightquestion chosen' + num + '">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '</div>' +
+            '</div>' +
+            //            '<div class="answerContainer">' +
+            //            '<div class="headContainer rightHead">' +
+            //            '<img class="rightItem itemHead" ' + 'src=' + url_head_right + '>' +
+            //            '</div>' +
+            //            '<div class="answerItem rightAnswerItem answerItem' + num + '">' +
+            //            '<p class="answerTitle">' + user_chosen + '</p>' +
+            //            '</div>' +
+            //            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typeWordR);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+
+    function insertPicL(num) { //题目图片+答案图片，左
+        var typePicL = '<div class="item3ontainer">' +
+            '<div class="questionContainer">' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" src=' + url_head_left + '>' +
+            '</div>' +
+            '<div class="questionItem leftquestion">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '<img class="questionImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            '<div class="answerContainer">' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" src=' + url_head_left + '>' +
+            '</div>' +
+            '<div class="answerItem leftAnswerItem answerItem' + num + '">' +
+            '<p class="imgAnswerTitle">' + user_chosen + '</p>' +
+            '<img class="answerImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typePicL);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+
+    }
+
+
+    function insertPicR(num) { //题目图片+答案图片，右
+        var typePicL = '<div class="item3ontainer">' +
+            '<div class="questionContainer">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="rightItem itemHead" src=' + url_head_right + '>' +
+            '</div>' +
+            '<div class="questionItem rightquestion">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '<img class="questionImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            '<div class="answerContainer">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="rightItem itemHead" src=' + url_head_right + '>' +
+            '</div>' +
+            '<div class="answerItem rightAnswerItem answerItem' + num + '">' +
+            '<p class="imgAnswerTitle">' + user_chosen + '</p>' +
+            '<img class="answerImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typePicL);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+    function insertWordPicL(num) { //题目纯文字+答案有图片，左
+        var typeWPL = '<div class="item3ontainer">' +
+            '<div class="questionContainer word">' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" src=' + url_head_left + '>' +
+            '</div>' +
+            '<div class="questionItem leftquestion">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '</div>' +
+            '</div>' +
+            '<div>' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" src=' + url_head_left + '>' +
+            '</div>' +
+            '<div class="answerItem leftAnswerItem answerItem' + num + '">' +
+            '<p class="imgAnswerTitle">' + user_chosen + '</p>' +
+            '<img class="answerImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typeWPL);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+    function insertWordPicR(num) { //题目纯文字+答案有图片，右
+        var typeWPR = '<div class="item3ontainer">' +
+            '<div class="questionContainer word">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="rightItem itemHead" src=' + url_head_right + '>' +
+            '</div>' +
+            '<div class="questionItem rightquestion">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '</div>' +
+            '</div>' +
+            '<div>' +
+            '<div class="headContainer rightHead">' +
+            '<img class="rightItem itemHead" src=' + url_head_right + '>' +
+            '</div>' +
+            '<div class="answerItem rightAnswerItem answerItem' + num + '">' +
+            '<p class="imgAnswerTitle">' + user_chosen + '</p>' +
+            '<img class="answerImg" src=' + answerIcon + '>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typeWPR);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+    function insertPicWordL(num) {  //题目图片+答案纯文字 左
+        var typePWL = '<div class="item3ontainer">' +
+            '<div class="questionContainer">' +
+            '<div class="headContainer leftHead">' +
+            '<img class="leftItem itemHead" src=' + url_head_left + '>' +
+            '</div>' +
+            '<div class="questionItem leftquestion chosen' + num + '">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '<img class="questionImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            //            ' <div class="answerContainer">' +
+            //            '<div class="headContainer leftHead">' +
+            //            '<img class="leftItem itemHead" src=' + url_head_left + '>' +
+            //            '</div>' +
+            //            '<div class="answerItem leftAnswerItem answerItem' + num + '">' +
+            //            ' <p class="answerTitle">' + user_chosen + '</p>' +
+            //            '</div>' +
+            //            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typePWL);
+
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+    function insertPicWordR(num) {  //题目图片+答案纯文字 右
+        var typePWR = '<div class="item3ontainer">' +
+            '<div class="questionContainer">' +
+            '<div class="headContainer rightHead">' +
+            '<img class="rightItem itemHead" src=' + url_head_right + '>' +
+            '</div>' +
+            '<div class="questionItem rightquestion chosen' + num + '">' +
+            '<p class="questionTitle">' + question_titel + '</p>' +
+            '<img class="questionImg" src=' + querstion_img + '>' +
+            '</div>' +
+            '</div>' +
+            //            ' <div class="answerContainer">' +
+            //            '<div class="headContainer rightHead">' +
+            //            '<img class="rightItem itemHead" src=' + url_head_right + '>' +
+            //            '</div>' +
+            //            '<div class="answerItem rightAnswerItem answerItem' + num + '">' +
+            //            ' <p class="answerTitle">' + user_chosen + '</p>' +
+            //            '</div>' +
+            //            '</div>' +
+            '</div>';
+
+        $(".chatContainer").append(typePWR);
+        $(".chatContainer").scrollTop($(".chatContainer")[0].scrollHeight);
+    }
+
+</script>
+</body>
+</html>

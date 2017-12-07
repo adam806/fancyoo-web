@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name=”renderer” content=”webkit”>
+    <meta http-equiv=”X-UA-Compatible” content=”IE=Edge,chrome=1″>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo-icon.png">
+    <title>Fancyoo-同城抓宠交朋友</title>
+
+    <script>
+        //声明_czc对象:
+        var _czc = _czc || [];
+        //绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+        _czc.push(["_setAccount", 1266399105]);
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            position: relative;
+            background: url(img/citypb_bj.jpg);
+            background-size: 100% 100%;
+            height: 1001px;
+        }
+
+        .bjimg {
+            width: 100%;
+            min-width: 1600px;
+            display: block;
+        }
+
+        .topbar {
+            width: 100%;
+            height: 99px;
+            background: url(img/topbar.png);
+            background-size: contain;
+            position: absolute;
+            top: 0;
+            clear: both;
+            min-width: 1600px;
+        }
+
+        .downloadcontainer {
+            position: absolute;
+            right: 278px;
+            top: 1px;
+            display: none;
+        }
+
+        .downloadcontainer li {
+            /*float: left;*/
+            list-style: none;
+        }
+
+        .qrboard {
+            background: url(img/qrBorder.png);
+            position: absolute;
+            top: 6px;
+            width: 98px;
+            height: 84px;
+        }
+
+        .qrcode {
+            width: 78px;
+            margin-left: 4px;
+            margin-top: 3px;
+        }
+
+        .downloadbtn {
+            position: absolute;
+            top: 21px;;
+            left: 129px;
+            cursor: pointer;
+        }
+
+        .downloadContainer {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.5);
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: none;
+        }
+
+        .downloadContent {
+            width: 554px;
+            height: 293px;
+            background: #fff;
+            border-radius: 9px;
+            position: absolute;
+            left: 50%;
+            margin-left: -277px;
+            top: 296px;
+        }
+
+        .downloadContent .closeBtn {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            cursor: pointer;
+        }
+
+        .qrCodeContainer {
+            position: absolute;
+            left: 72px;
+        }
+
+        .qrCodeContainer .qrBorder {
+            width: 158px;
+            height: 158px;
+            position: absolute;
+            top: 61px;
+        }
+
+        .qrCodeContainer .qrCode {
+            position: absolute;
+            top: 73px;
+            left: 12px;
+            width: 134px;
+            height: 134px;
+        }
+
+        .qrCodeContainer p {
+            color: #936e27;
+            font-size: 16px;
+            position: absolute;
+            left: 16px;
+            width: 128px;
+            top: 231px;
+        }
+
+        .iosDownload {
+            margin-left: 12px;
+        }
+
+        .androidDowload {
+            margin-left: 22px;
+        }
+
+        .downloadBtns {
+            position: absolute;
+            left: 276px;
+            top: 90px;
+        }
+
+        .downloadBtns .iosIocn {
+            vertical-align: middle;
+            position: absolute;
+            left: 50px;
+            top: 6px;
+        }
+
+        .downloadBtns .androidIocn {
+            vertical-align: middle;
+            position: absolute;
+            left: 35px;
+            top: 6px;
+        }
+
+        .downloadBtns .iosContainer {
+            width: 200px;
+            height: 44px;
+            line-height: 44px;
+            background-image: url(img/iosBtn1.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            color: #fff;
+            border-radius: 3px;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .downloadBtns .iosContainer:hover {
+            background-image: url(img/iosBtn2.png);
+        }
+
+        .downloadBtns .androidContainer {
+            width: 200px;
+            height: 44px;
+            line-height: 44px;
+            background-image: url(img/androidBtn1.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            color: #fff;
+            border-radius: 3px;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .downloadBtns .androidContainer:hover {
+            background-image: url(img/androidBtn2.png);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .topbarContainer {
+            position: relative;
+            width: 1200px;
+            height: 99px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            position: absolute;
+            top: 7px;
+            width: 306px;
+            height: 84px;
+        }
+
+        .bjcity {
+            position: absolute;
+            width: 784px;
+            left: 50%;
+            margin-left: -392px;
+            top: 163px;
+        }
+
+        .cnzzContainer {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="main">
+    <img class="bjcity" src="img/pccity_pb.png">
+    <div class="topbar">
+        <div class="topbarContainer">
+            <!--<img class="logo" src="img/bar_logo.png">-->
+            <img class="logo" src="">
+            <ul class="downloadcontainer">
+                <li class="qrboard">
+                    <img class="qrcode" src="img/downloadQr.png">
+                </li>
+                <li>
+                    <img class="downloadbtn" src="img/pb_button.png">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="downloadContainer">
+        <div class="downloadContent">
+            <img class="closeBtn" src="img/closeBtn.png">
+            <div class="qrCodeContainer">
+                <img class="qrBorder" src="img/qrdotted.png">
+                <img class="qrCode" src="img/downloadQr.png">
+                <P>扫一扫，立即下载</P>
+            </div>
+            <div class="downloadBtns">
+                <a id="ios_cnzz" href="https://itunes.apple.com/us/app/howdyLand/id1272542441"
+                   onclick="_czc.push(['_trackEvent', 'ios', '下载', 'ios客户端下载','1','ios_cnzz'])">
+                    <div class="iosContainer">
+                        <img class="iosIocn" src="img/iosIcon.png">
+                        <span class="iosDownload">IOS下载</span>
+                    </div>
+                </a>
+                <a id="android_cnzz"
+                   href="http://android.myapp.com/myapp/detail.htm?apkName=com.shownfun.howdyland"
+                   onclick="_czc.push(['_trackEvent', 'android', '下载', '安卓客户端下载','1','android_cnzz'])">
+                    <div class="androidContainer">
+                        <img class="androidIocn" src="img/androidIcon.png">
+                        <span class="androidDowload">Android下载</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="cnzzContainer">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1268160576'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1268160576%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+
+</div>
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jquery.md5.js"></script>
+<script>
+    window.onload = function () {
+        var url = window.location.search;
+        if (url.indexOf("?") != -1) { //有渠道号的情况下进行向各个渠道号跳转
+            var addStr = url.split("?")[1];
+            var gender = addStr.split("&")[0];
+            var channel = addStr.split("&")[1];
+            var btn = addStr.split("&")[2];
+            if (btn == 'true') { //有下载按钮
+                $(".downloadcontainer").show();
+                checkChannel(channel);
+            } else if (btn == 'false') { //无下载按钮
+                $(".downloadcontainer").hide();
+                checkChannel(channel);
+            }
+        } else { //没有渠道号
+            $(".downloadcontainer").show();
+        }
+    };
+
+    function checkChannel(channel) { //根据渠道号显示不同页面
+        if (channel == '1') {
+            $(".logo").attr("src", "img/youfan_location.png")
+        } else if (channel == '2') {
+            $(".logo").attr("src", "img/youfan_girl.png")
+        } else if (channel == '3') {
+            $(".logo").attr("src", "img/youfan_b_g.png")
+        } else if (channel == '4') {
+            $(".logo").attr("src", "img/youtang.png")
+        } else if (channel == '5') {
+            $(".logo").attr("src", "img/youyu.png")
+        } else if (channel == '6') {
+            $(".logo").attr("src", "img/youfish.png")
+        } else if (channel == '7') {
+            $(".logo").attr("src", "img/fancyoo.png")
+        } else if (channel == '8') {
+            $(".logo").attr("src", "img/yoomix.png")
+        } else if (channel == '9') {
+            $(".logo").attr("src", "img/yoosup.png")
+        } else if (channel == '10') {
+            $(".logo").attr("src", "img/howdyland.png").width('auto')
+
+        }
+
+    }
+
+
+    $(".downloadbtn").click(function () {
+        $(".downloadContainer").show();
+    });
+    $(".downloadContent .closeBtn").click(function () {
+        $(".downloadContainer").hide();
+    })
+</script>
+
+
+</body>
+</html>

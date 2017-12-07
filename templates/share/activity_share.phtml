@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_share/logo-icon.png">
+    <link rel="stylesheet" href="../../css/activity_share.css">
+    <title>邂逅活动</title>
+</head>
+<body>
+<div class="main">
+    <img class="fancyooIcon" src="../../img/img_share/fancyooIcon.png">
+    <div class="userContainer">
+        <img class="userPhoto" src="../../img/img_share/userPhoto.png">
+        <div class="userInfo">
+            <div class="userHeadContainer">
+                <img class="userHead" src="../../../img/img_share/noHead.png">
+            </div>
+            <div class="userInfoContainer">
+                <p class="userName"></p>
+                <p class="invert">邀请你</p>
+                <p class="activityNameContainer">演绎<span class="activityName"></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="activityContainer">
+        <div class="borderContainer">
+            <img class="activityBanner" src="">
+        </div>
+    </div>
+    <div class="downloadContainer">
+        <div class="qrContainer">
+            <img class="qrCode" srfc="">
+        </div>
+        <P class="downloadP">长按二维码下载app</P>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        adapt();
+        analyzeUrl();
+        getUserInfo(userid);
+        getActivity(activityId);
+    });
+
+    function adapt() {
+        var width = document.documentElement.clientWidth, height = document.documentElement.clientHeight;
+        document.documentElement.style.fontSize = width / 7.5 + 'px';
+        $(".main").height(height);
+    }
+
+    var userid, activityId;
+
+    function analyzeUrl() { //从url中提取用户名和密码
+        var url = window.location.search.split("?")[1];
+        userid = url.split("&")[0].split("=")[1];
+        activityId = url.split("&")[1].split("=")[1];
+    }
+
+
+    function getUserInfo(userid) { //获取用户信息
+        var userUrl = '/api/users/' + userid;
+        $.ajax({
+            headers: {
+                Authorization: 'Bearer ' + '<?=$token?>'
+            },
+            url: userUrl,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $(".userName").text(data.nickname);
+                if (/http/.test(data.avatar)) {
+                    $(".userHead").attr('src', data.avatar)
+                } else {
+                    $(".userHead").attr('src', '../../../img/img_share/noHead.png');
+                }
+
+            }
+        })
+    }
+
+    function getActivity(activityId) { //获取活动信息
+        var refreshUrl = '/api/activities/' + activityId;
+        $.ajax({
+            headers: {
+                Authorization: 'Bearer ' + '<?=$token?>'
+            },
+            url: refreshUrl,
+            type: 'GET',
+            data: {user_id: userid},
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                $(".activityName").text(data.name);
+                if (data.share_image && data.share_image != '') {
+                    $(".activityBanner").attr("src", data.share_image);
+                } else {
+                    $(".activityBanner").attr("src", 'xxx');
+                }
+            }
+        });
+
+    }
+
+</script>
+</body>
+</html>

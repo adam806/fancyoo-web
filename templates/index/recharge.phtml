@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit"> <!--国产浏览器高速模式-->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_pc/logo-icon.png">
+    <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../css/recharge.css" type="text/css">
+    <script src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script> <!--用于解决iphone中点击两下页面会放大-->
+    <title>充值中心</title>
+    <style>
+        .navbar-border-padding {
+            margin-bottom: 10px !important;
+            border-bottom: 1px solid #ededed !important;
+            padding-bottom: 10px !important;
+        }
+    </style>
+</head>
+<body>
+<?php
+include(__DIR__ . '/../component/header.phtml');
+?>
+<div class="content">
+    <div class="recharge_Alipay">
+        <div class="recharge_title">
+            <img class="recharge_image" src="../../../img/img_pc/bean.png">
+            <p>微信充值</p>
+        </div>
+        <div class="recharge_container">
+            <div class="recharge_count_num">
+                <span class="recharge-num">充值账号：</span>
+                <input class="input_count_num" placeholder="请填写用户ID">
+            </div>
+            <div class="confirm-recharge_count_num">
+                <span class="confirm-recharge-num">确认账号：</span>
+                <input class="confirm_input_count_num" placeholder="请填写用户ID">
+            </div>
+            <div class="recharge_money">
+                <span>充值金额:</span>
+                <span class="money_background money_1"><span class="chosen_money chosen_money_1">6</span>元</span>
+                <span class="money_background money_10"><span class="chosen_money chosen_money_10">30</span>元</span>
+                <span class="money_background money_30"><span class="chosen_money chosen_money_30">68</span>元</span>
+                <span></span>
+                <P>对应自在豆数量：<span class="current_money_num">0</span>个</P>
+                <P class="recharge_money_attention">自在豆是自在游戏平台发行的虚拟货币，自在豆可以在游戏中兑换爱心水晶，兑换比例1元=1个自在豆</P>
+                <button class="recharge_button">立即充值</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php
+include(__DIR__ . '/../component/footer.phtml');
+?>
+
+<div class="scanCode_mask">
+    <div class="alert alert-info alipay_div" role="alert">
+        <h3 class="scanCode">扫码支付</h3>
+        <span class="close_scanCode">关闭</span>
+        <P class="remain_time">剩余时间：<span class="time"><span class="time_num">90</span>s</span></P>
+        <img class="QRcodeimg" src="">
+    </div>
+</div>
+
+<div class="scanCode_remind_mask">
+    <div class="alert alert-warning alert-dismissible scanCode_remind" role="alert">
+        <p class="scanCode_remind_p">充值成功</p>
+        <button type="button" class="btn btn-primary closeBtn">确定</button>
+    </div>
+</div>
+
+</body>
+<script>
+    $(function () {
+        var userCookie;
+
+        $(".recharge").addClass("chosen");
+        var chosen_money_num, chosen_money;
+        $(".chosen_money").click(function () {
+            chosen_money_num = $(this).text();//选中的钱数，需要传给服务器
+            chosen_money = $(".money_background");
+            $(".recharge_button").removeClass("charge_chosen");
+            if (chosen_money.hasClass("change_background_color")) {
+                chosen_money.removeClass("change_background_color");
+                $(this).parent(".money_background").addClass("change_background_color");//选取得是chosen_money的包含money_background类的父元素
+            } else {
+                $(this).parent(".money_background").addClass("change_background_color");//选取得是chosen_money的包含money_background类的父元素
+            }
+            console.log(chosen_money_num);
+            $(".current_money_num").text(parseInt(chosen_money_num));
+        });
+
+        var checkSubmitBtn = setInterval(function () {
+            var count_num = $(".input_count_num").val();
+            var confirm_count_num = $(".confirm_input_count_num").val();
+            var chosen_money = $(".money_background").hasClass("change_background_color");
+            var input = (count_num == null || count_num == "") || (confirm_count_num == null || confirm_count_num == "");
+            if (!input && chosen_money) {
+//                $(".recharge_button_submit").addClass("charge_chosen");
+                $(".recharge_button").addClass("charge_chosen");
+            }
+        }, 500);
+
+
+        //点击立即充值
+        var scanCode_remind_mask = $(".scanCode_remind_mask");
+        var scanCode_remind_p = $(".scanCode_remind_p");
+        $(".recharge_button").click(function () {
+            alert('充值功能正在建设中！');
+//            var count_num = $(".input_count_num").val();
+//            var confirm_count_num = $(".confirm_input_count_num").val();
+//            if (count_num == "") {
+////                alert("请输入充值账号");
+//                scanCode_remind_mask.show();
+//                scanCode_remind_p.text("请输入充值账号");
+//            } else if (count_num != confirm_count_num) {
+////                alert("请确认账号输入正确");
+//                scanCode_remind_mask.show();
+//                scanCode_remind_p.text("请确认账号输入正确");
+//                if($(".recharge_button").hasClass("charge_chosen")){
+//                    $(".recharge_button").removeClass("charge_chosen")
+//                }
+//            }
+//            if ($(".recharge_button").hasClass("charge_chosen")) {
+//                console.log("点击充值按钮了");
+//                sendmoney();
+//                $(".recharge_button").removeClass("charge_chosen")
+//            }
+        });
+
+        //发送充值请求
+        var check, scanCode_mask = $(".scanCode_mask");
+
+        function sendmoney() {
+//            var confirmCrystal = $(".current_money_num").text();//钱对应的水晶数
+            var confirmCrystal = parseInt($(".change_background_color").text());//钱数
+            var userId = $(".input_count_num").val();//用户名
+
+            console.log(confirmCrystal);//传给服务器的钱数
+            console.log(userId);//传给服务器的用户名
+
+            $.post("../Wxpay2/example51543/native.php", {'money': confirmCrystal, 'user': userId}, function (recharge) { //第一次发送
+                //倒计时函数
+                if (recharge.code != 1) { //用户存在的前提才调用倒计时
+                    remainTime();
+                    console.log(recharge);
+                    var orderid = recharge.orderid;
+                    var qrurl = recharge.code_url;
+                    $(".QRcodeimg").attr("src", qrurl);
+                    if (recharge.code == 0) { //成功
+                        check = setInterval(function () { //定时器，2秒发送一次请求判断是否充值成功
+                            $.post("../isPayOk.php", {'id': orderid}, function (tt) { //第二次发送
+                                console.log(tt);
+                                var qrcode = tt.code;
+                                if (qrcode == 1) {
+//                                    alert("充值成功");
+                                    scanCode_remind_mask.show();
+                                    scanCode_remind_p.text("充值成功");
+                                    scanCode_mask.hide();
+                                    window.clearInterval(check);
+                                }
+                                console.log("qrcode:" + qrcode);
+                                console.log("我在查询");
+                            }, 'json');
+                        }, 2000)
+                    } else {
+                        alert(recharge.error)
+                    }
+                } else if (recharge.code == 1) {
+                    scanCode_remind_mask.show();
+                    scanCode_remind_p.text("用户ID不存在，请确认ID再试");
+                }
+
+            }, 'json');
+        }
+
+        //关闭bootstrap的警告框
+        $(".closeBtn").click(function () {
+            scanCode_remind_mask.hide();
+        });
+
+
+        //倒计时函数
+        var time_num = $(".time_num");
+
+        function remainTime() {
+            scanCode_mask.show();
+            var n = 90;
+            var scanCodeInterval = setInterval(function () {
+                n--;
+                time_num.text(n);
+                if (n == 0) {
+                    window.clearInterval(scanCodeInterval);
+                    scanCode_remind_mask.show();
+                    scanCode_remind_p.text("支付超时，刷新页面重试");
+                    scanCode_mask.hide();
+                    return;
+                }
+                $(".close").click(function () {
+                    window.clearInterval(scanCodeInterval);
+                    time_num.text("00");
+                })
+            }, 1000);
+            $(".close_scanCode").click(function () {
+                window.clearInterval(scanCodeInterval);
+                window.clearInterval(check);
+                $(".QRcodeimg").attr("src", "");
+                time_num.text("90");
+                scanCode_mask.hide();
+            })
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>test</title>
+    <style>
+        .video {
+            width: 5rem;
+            height: 5rem;
+        }
+    </style>
+</head>
+<body>
+<video class="video" src="../../../img/img_share/video.mp4" controls="controls" src="" playsinline
+       x5-video-player-type="h5"
+       x5-video-player-fullscreen="false">
+    您的浏览器不支持video标签
+</video>
+<br>
+
+http://192.168.3.83/activities/2?user_id=22582211
+
+
+<a href="fancyoo://meet">点我打开分享</a>
+<a href="fancyoo://match">点我匹配对手</a>
+
+<P style="font-size: 0.2rem;">E PanelManager.Open('Base/WebViewPanel', { Title: 'test', URL:
+    'http://192.168.3.83/activities/1'});</P>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="../../../js/iphone-inline-video.browser.js"></script><!--用以解决ios中视频自动全屏播放的问题-->
+<script>
+    $(function () {
+        adapt();
+        //使X5内核浏览器的video不会浮置最上层
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+
+        iosVideo()
+
+    });
+
+    function adapt() {
+        var width = document.documentElement.clientWidth, height = document.documentElement.clientHeight;
+        document.documentElement.style.fontSize = width / 7.5 + 'px';
+    }
+
+    //使ios中视频播放时不会自动全屏
+    function iosVideo() {
+        var video = $("video").get(0);
+        makeVideoPlayableInline(video);
+    }
+</script>
+
+</body>
+</html>

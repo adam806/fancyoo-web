@@ -1,0 +1,739 @@
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        font-family: "HanHei SC", "PingHei", "PingFang SC", "microsoft yahei", "sans-serif";
+    }
+
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .topBarContainer {
+        width: 100%;
+        height: 122px;
+        border-bottom: 2px solid #e1d8c4;
+        background: url(../../../img/img_pc/headerBg.png);
+        background-repeat: repeat-x;
+        color: #fff;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+    }
+
+    .topBarContainer .headerContent {
+        /*min-width: 1200px;*/
+        height: 122px;
+        left: 50%;
+        margin-left: -600px;
+        position: relative;
+    }
+
+    .topBarContainer .headerContent .topLogo {
+        position: absolute;
+        left: 94px;
+        top: 25px;
+    }
+
+    .topBarContainer .headerContent .topUlContainer {
+        position: absolute;
+        /*right: 58px;*/
+        left: 442px;
+    }
+
+    .topBarContainer .headerContent .topUl {
+        clear: both;
+        /*overflow: hidden;*/
+    }
+
+    .topBarContainer .headerContent .topLi {
+        list-style: none;
+        float: left;
+        width: 144px;
+        height: 122px;
+        color: #6a6868;
+        position: relative;
+        font-size: 17px;
+        cursor: pointer;
+    }
+
+    .login {
+        list-style: none;
+        float: left;
+        /*width: 144px;*/
+        /*height: 122px;*/
+        color: #6a6868;
+        position: relative;
+        font-size: 17px;
+        cursor: pointer;
+        background-repeat: repeat-x;
+        padding: 0 39px;
+        padding-top: 30px;
+        padding-bottom: 37px;
+    }
+
+    .topBarContainer .headerContent .topLi .topBorder {
+        position: absolute;
+        right: -1px;
+        top: 24px;
+    }
+
+    .topBarContainer .headerContent .topLiBorder {
+        /*border-right: 1px solid #bfc0c1;*/
+    }
+
+    .bbsLink, .homeLink, .joinLinke {
+        text-decoration: none;
+        color: #6a6868;
+        z-index: 999;
+        position: absolute;
+        top: 50%;
+        margin-top: -30px;
+        width: 144px;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        /*border-right: 1px solid #bfc0c1;*/
+    }
+
+    .arrowContainer {
+        position: absolute;
+        top: 50%;
+        width: 144px;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        z-index: 1000;
+        margin-top: -30px;
+    }
+
+    .loginarrowContainer {
+        position: relative;
+        /*top: 24px;*/
+        line-height: 60px;
+        text-align: center;
+        z-index: 1000;
+    }
+
+    .bbsLink:hover {
+        text-decoration: none;
+        color: #6a6868;
+    }
+
+    .homeLink:hover {
+        text-decoration: none;
+        color: #6a6868;
+    }
+
+    .joinLinke:hover {
+        text-decoration: none;
+        color: #6a6868;
+    }
+
+    .topBarContainer .headerContent .chosenBg {
+        position: absolute;
+        display: none;
+    }
+
+    .downContainer {
+        position: absolute;
+        width: 143px;
+        text-align: center;
+        line-height: 27px;
+        border: 1px solid #cc9966;
+        top: 98px;
+        left: 50%;
+        margin-left: -71.5px;
+        background: rgba(255, 255, 255, 0.75);
+        /*padding: 5px 0;*/
+        z-index: 1000;
+        border-radius: 4px;
+        display: none;
+    }
+
+    .downContainer .cultureLink {
+        display: block;
+        color: #6a6868;
+        line-height: 39px;
+        text-decoration: none;
+    }
+
+    .downContainer .connectLink {
+        display: block;
+        color: #6a6868;
+        text-decoration: none;
+        border-top: 1px solid rgba(192, 193, 194, 0.65);
+        width: 104px;
+        margin: 0 auto;
+        line-height: 39px;
+    }
+
+    .downContainer .cultureLink:hover {
+        color: #936b50;
+    }
+
+    .downContainer .connectLink:hover {
+        color: #936b50;
+    }
+
+    .arrowUp {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #cc9966;
+        position: absolute;
+        top: -11px;
+        left: 50%;
+        margin-left: -10px;
+    }
+
+    .topBarContainer .logInContainer {
+        float: left;
+        margin: 10px 10px;
+    }
+
+    .topBarContainer .logInContainer .displayInline {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .topBarContainer .logInContainer .registerBtn {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .topBarContainer .logInContainer .loginBtn {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .topBarContainer .logInContainer .rechargeBtn {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .loginMask {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        display: none;
+        top: 0;
+    }
+
+    .loginContent .logoContainer {
+        position: relative;
+        width: 144px;
+        left: 50%;
+        margin-left: -72px;
+        margin-top: -56px;
+        text-align: center;
+    }
+
+    .loginContent .logoContainer .loginlogo {
+        width: 110px;
+        height: 110px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+
+    .loginContent .logoContainer p {
+        font-size: 16px;
+        width: 150px;
+        padding-left: 4px;
+        padding-top: 15px;
+        color: #494949;
+    }
+
+    .loginMask .loginContent {
+        width: 460px;
+        height: 414px;
+        background: #fff;
+        position: absolute;
+        left: 50%;
+        margin-left: -230px;
+        margin-top: 252px;
+        border-radius: 10px;
+    }
+
+    .loginContent .closeLogin {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        cursor: pointer;
+    }
+
+    .loginContent .userNameInput, .loginContent .passwordInput {
+        width: 244px;
+        height: 43px;
+        padding-left: 43px;
+        border-radius: 4px;
+        border: 1px solid #e8e8e8;
+        margin-top: 18px;
+    }
+
+    .loginContent .inputField .userNameContainer, .loginContent .inputField .userPasswordContainer {
+        position: relative;
+    }
+
+    .loginContent .inputField .userNameContainer .userNameIcon {
+        position: absolute;
+        top: 29px;
+        left: 100px;
+    }
+
+    .loginContent .inputField .userPasswordContainer .passwordIcon {
+        position: absolute;
+        top: 29px;
+        left: 100px;
+    }
+
+    .userNameInput, .passwordInput {
+        outline: none;
+    }
+
+    .userNameInput::-webkit-input-placeholder {
+        color: #b0b0b0;
+    }
+
+    .passwordInput::-webkit-input-placeholder {
+        color: #b0b0b0;
+    }
+
+    .loginContent .inputField {
+        text-align: center;
+        margin-top: 37px;
+    }
+
+    .loginContent .confirmBtn {
+        width: 289px;
+        height: 42px;
+        color: #fff;
+        background-image: url(../../../img/img_pc/loginBtn.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        outline: none;
+        border: none;
+        border-radius: 3px;
+        font-size: 16px;
+        display: block;
+        position: relative;
+        left: 50%;
+        top: 42px;
+        margin-left: -144.5px;
+    }
+
+    .registerBlock {
+        position: relative;
+        text-align: center;
+        top: 61px;
+        font-size: 14px;
+    }
+
+    .registerBlock a {
+        color: #dbac66;
+        text-decoration: underline;
+    }
+
+    .getPassword {
+        position: relative;
+        left: 314px;
+        top: 12px;
+        font-size: 14px;
+        text-decoration: underline;
+        color: #daab63;
+        cursor: pointer;
+    }
+
+    .getPassword:hover {
+        color: #daab63;
+    }
+
+    .registerMask {
+        width: 100%;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+    }
+
+    .registerMask .registerContent {
+        width: 300px;
+        height: 200px;
+        background: #fff;
+        position: absolute;
+        left: 50%;
+        margin-left: -150px;
+        margin-top: 200px;
+    }
+
+    .rechargeMask {
+        width: 100%;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none;
+    }
+
+    .rechargeMask .rechargeContent {
+        width: 300px;
+        height: 200px;
+        background: #fff;
+        position: absolute;
+        left: 50%;
+        margin-left: -150px;
+        margin-top: 200px;
+    }
+
+    .rechargeMask .rechargeContent .closeRecharge {
+        cursor: pointer;
+    }
+
+    .rechargeMask .rechargeContent .rechargeAmountContent {
+        clear: both;
+        overflow: hidden;
+    }
+
+    .rechargeMask .rechargeContent .rechargeList {
+        list-style: none;
+        float: left;
+        margin: 5px;
+        cursor: pointer;
+    }
+
+    .rechargeMask .rechargeContent .rechargeChosen {
+        color: #ff6b00;
+    }
+
+    .rechargeMask .rechargeQrMask {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        /*display: none;*/
+    }
+
+    .rechargeMask .rechargeQrMask .countNum {
+        color: #ff3600;
+    }
+
+    .rechargeMask .rechargeQrMask .qrCode {
+        width: 200px;
+        height: 200px;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    /*.login {*/
+    /*background-repeat: repeat-x;*/
+    /*padding: 0 39px;*/
+    /*padding-top: 23px;*/
+    /*padding-bottom: 37px;*/
+    /*}*/
+
+    .login .topWord {
+        color: #6a6868;
+    }
+
+    .login .loginarrowContainer .arrowIcon {
+        display: none;
+    }
+</style>
+<div class="topBarContainer">
+    <div class="headerContent">
+        <img class="topLogo" src="../../../img/img_pc/logo.png">
+        <div class="topUlContainer">
+            <ul class="topUl">
+                <li class="topLi topLiBorder home">
+                    <!--                    <a class="homeLink" href="pc.php">-->
+                    <a class="homeLink">
+                        <span class="topWord">官网首页</span>
+                    </a>
+                    <img class="topBorder" src="../../../img/img_pc/topBorder.png">
+                    <img class="chosenBg" src="../../../img/img_pc/topChosenBg.png">
+                </li>
+                <li class="topLi topLiBorder join">
+                    <!--                    <a class="joinLinke" href="join.php">-->
+                    <a class="joinLinke">
+                        <span class="topWord">加入我们</span>
+                    </a>
+                    <img class="topBorder" src="../../../img/img_pc/topBorder.png">
+                    <img class="chosenBg" src="../../../img/img_pc/topChosenBg.png">
+                </li>
+                <li class="topLi topLiBorder connect">
+                    <div class="arrowContainer">
+                        <span class="topWord">关于我们</span>
+                        <img class="arrowIcon" src="../../../img/img_pc/arrowGray.png">
+                    </div>
+                    <div class="downContainer">
+                        <div class="arrowUp"></div>
+                        <!--                        <a class="cultureLink" href="culture.php">企业文化</a>-->
+                        <!--                        <a class="connectLink" href="connect.php">联系我们</a> -->
+                        <a class="cultureLink">企业文化</a>
+                        <a class="connectLink">联系我们</a>
+                    </div>
+                    <img class="topBorder" src="../../../img/img_pc/topBorder.png">
+                    <img class="chosenBg" src="../../../img/img_pc/topChosenBg.png">
+                </li>
+                <li class="topLi bbs">
+                    <a class="bbsLink" href="" onclick="alert('敬请期待')">
+                        <span class="topWord">玩家论坛</span>
+                    </a>
+                    <img class="topBorder" src="../../../img/img_pc/topBorder.png">
+                    <img class="chosenBg" src="../../../img/img_pc/topChosenBg.png">
+                </li>
+                <li class="login">
+                    <a class="loginarrowContainer">
+                        <span class="topWord">登录</span>
+                        <img class="arrowIcon" src="../../../img/img_pc/arrowGray.png">
+                    </a>
+
+                    <div class="downContainer">
+                        <div class="arrowUp"></div>
+                        <a class="logout">退出</a>
+                    </div>
+
+                    <!--                    <img class="chosenBg" src="img/topChosenBg.png">-->
+                    <div class="chosenBg loginChosenBg"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="loginMask">
+    <div class="loginContent">
+        <span class="closeLogin">
+            <img src="../../../img/img_pc/closeBtn.png">
+        </span>
+
+        <div class="logoContainer">
+            <img class="loginlogo" src="../../../img/img_pc/loginlogo.png">
+            <P>欢迎登录Fancyoo！</P>
+        </div>
+
+        <div class="inputField">
+            <div class="userNameContainer">
+                <img class="userNameIcon" src="../../../img/img_pc/userNameIcon.png">
+                <input class="userNameInput" placeholder="请输入手机号">
+            </div>
+            <div class="userPasswordContainer">
+                <img class="passwordIcon" src="../../../img/img_pc/userPasswordIcon.png">
+                <input class="passwordInput" placeholder="请输入密码" type="password">
+            </div>
+        </div>
+        <a class="getPassword" href="/getPassword">忘记密码？</a>
+        <button class="confirmBtn">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+        <P class="registerBlock">没有Fancyoo账号？<a href="/register" target="_blank">立即注册</a></P>
+
+    </div>
+</div>
+<div class="rechargeMask">
+    <div class="rechargeContent">
+        <p class="closeRecharge">关闭</p>
+        <p>微信充值</p>
+        <div class="rechargeNameContent">
+            <span>充值账号</span>
+            <input class="rechargeInput">
+        </div>
+        <div class="rechargeConfirmContent">
+            <span>确认账号</span>
+            <input class="rechargeConfirmInput">
+        </div>
+        <div class="rechargeAmountContent">
+            <span>充值金额</span>
+            <ul>
+                <li class="rechargeList rechargeChosen">6</li>
+                <li class="rechargeList">30</li>
+                <li class="rechargeList">60</li>
+            </ul>
+        </div>
+        <button class="rechargeNowBtn">立即充值</button>
+    </div>
+    <div class="rechargeQrMask">
+        <p class="countNum">60</p>
+        <img class="qrCode" src="">
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="../../js/jquery.md5.js"></script>
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script>
+    var userToken = $.cookie("userToken"), userUid = $.cookie("userUid"), uId = $.cookie("uId");
+
+    window.onload = function () {
+        var url = window.location.search;
+        if (url.indexOf("?") != -1) { //有渠道号的情况下进行向各个渠道号跳转
+            var channelNum = url.split("?")[1];
+
+            $(".homeLink").attr("href", "/?" + channelNum);
+            $(".joinLinke").attr("href", "/join?" + channelNum);
+            $(".cultureLink").attr("href", "/culture?" + channelNum);
+            $(".connectLink").attr("href", "/connect?" + channelNum);
+
+            $(".privacy").attr("href", "/privacy?" + channelNum);
+            $(".agreement").attr("href", "/agreement?" + channelNum);
+            $(".recharge").attr("href", "/recharge?" + channelNum);
+            $(".guardian").attr("href", "/guardian?" + channelNum);
+            $(".help").attr("href", "/help?" + channelNum);
+
+        } else { //没有渠道号
+            $(".homeLink").attr("href", "/");
+            $(".joinLinke").attr("href", "/join");
+            $(".cultureLink").attr("href", "/culture");
+            $(".connectLink").attr("href", "/connect");
+
+            $(".privacy").attr("href", "/privacy");
+            $(".agreement").attr("href", "/agreement");
+            $(".recharge").attr("href", "/recharge");
+            $(".guardian").attr("href", "/guardian");
+            $(".help").attr("href", "/help");
+        }
+    };
+
+    $(function () {
+        if (userToken != 'null' && userUid != 'null' && uId != 'null' && userToken && userUid && uId) {
+            getUser(userToken, userUid, uId);
+        }
+    })
+
+    $(".arrowContainer").mouseenter(function () {
+        $(this).find(".arrowIcon").attr('src', '../../../img/img_pc/arrowGolden.png');
+        $(this).next(".downContainer").show();
+    });
+    $(".connect").mouseleave(function () {
+        $(this).find(".arrowIcon").attr('src', '../../../img/img_pc/arrowGray.png');
+        $(this).find(".downContainer").hide();
+    })
+
+    $(".login").mouseenter(function () {
+        $(".login").css('background', 'url(../../../img/img_pc/topChosenBg.png)');
+        $(this).find(".arrowIcon").attr('src', '../../../img/img_pc/arrowGolden.png');
+        if (userToken != "null" && userToken) {
+            $(".login .loginarrowContainer").next(".downContainer").show();
+        }
+    })
+    //    $(".login").mouseenter(function () {
+    //
+    //    })
+    $(".login").mouseleave(function () {
+        $(".login").css('background', 'url()');
+        if (userToken != "null" && userToken) {
+            $(this).find(".arrowIcon").attr('src', '../../../img/img_pc/arrowGray.png');
+            $(".login .loginarrowContainer").next(".downContainer").hide();
+        }
+    })
+
+
+    $(".topLi").mouseenter(function () {
+        $(this).find(".topWord").css("color", "#a98d54");
+    }).mouseleave(function () {
+        $(this).find(".topWord").css("color", "#6a6868");
+    })
+
+    var showLogin = false;
+    $(".loginarrowContainer").click(function () {
+        if (userToken == 'null' || !userToken) {
+            $(".loginMask").show();
+            showLogin = true
+        }
+    })
+
+    $(".loginContent .confirmBtn").click(function () {
+        beforeLogin();
+    })
+
+    $("body").keydown(function () {
+        if (event.keyCode == 13 && showLogin) {
+            beforeLogin();
+        }
+    })
+
+    $(".closeLogin").click(function () {
+        $(".loginMask").hide();
+        showLogin = false
+    })
+    $(".logout").click(function () {
+        logout();
+    })
+
+    function beforeLogin() {
+        var userName = $(".userNameInput").val();
+        var inputPassword = $(".passwordInput").val();
+        var password = $.md5($.md5($(".passwordInput").val()));
+
+        if (userName == "") {
+            alert('请输入用户名');
+        } else if (inputPassword == "") {
+            alert('请输入密码');
+        } else if (userName != "" && inputPassword != "") {
+            logIn(userName, password);
+        }
+    }
+
+    function logIn(userName, password) {
+        var token, uniqueId, userId;
+        $.post('http://api.howdyland.com/api/v2/login', {
+            'username': userName,
+            'password': password
+        }, function (data) {
+            if (/用户名或密码错误/.test(data.message)) {
+                alert("用户名或密码错误");
+            } else if (/该用户不存在/.test(data.message)) {
+                alert('该用户不存在');
+            } else {
+                $(".login .topWord").text(data.user.nickname);
+                $(".loginMask").hide();
+                window.location.reload();
+            }
+
+            if (data.access_token) {
+                token = data.access_token;
+                uniqueId = data.user.id;
+                userId = data.user.user_id;
+                $.cookie('userToken', token);
+                $.cookie('userUid', uniqueId);
+                $.cookie('uId', userId);
+            }
+        }, 'json');
+    }
+
+    function getUser(token, uniqueId, uId) {
+        console.log(token, uniqueId, uId);
+        $.ajax({
+            url: 'http://api.howdyland.com/api/v2/users/my',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'x-consumer-username': uniqueId,
+                'x-consumer-custom-id': uId
+            },
+            type: 'GET',
+            dataType: 'JSON',
+            error: function () {
+                console.log('请求发送失败');
+            },
+            success: function (data) {
+                console.log(data);
+                $.post('insertUser.php', {userName: data.user.nickname}, function (data) {
+                    console.log(data);
+                }, 'json');
+                $(".login .topWord").text(data.user.nickname);
+                $(".login .loginarrowContainer .arrowIcon").show();
+            }
+        });
+    }
+
+    function logout() {
+        $.cookie('userToken', null);
+        $.cookie('userUid', null);
+        $.cookie('uId', null);
+        $(".login .topWord").text('登录');
+        $(".login .loginarrowContainer .arrowIcon").hide();
+        window.location.reload();
+    }
+
+</script>

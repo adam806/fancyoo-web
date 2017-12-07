@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="https://cdn.bootcss.com/fullPage.js/2.9.4/jquery.fullpage.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../../public/img/img_pc/logo-icon.png">
+    <title>一偶友-同城玩游戏交朋友</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main {
+            position: relative;
+            background: url(../../public/img/img_m/mp5bg.jpg);
+            background-size: 100% 100%;
+            width: 7.5rem;
+            height: 13.34rem;
+        }
+
+        .home {
+            width: 7.5rem;
+            display: block;
+            position: absolute;
+            top: 0.5rem;
+        }
+
+        /*.downloadbtn {*/
+        /*position: absolute;*/
+        /*top: 11.4rem;*/
+        /*width: 2.92rem;*/
+        /*height: 0.98rem;*/
+        /*left: 50%;*/
+        /*margin-left: -1.46rem;*/
+        /*}*/
+
+        .wechatGuide {
+            width: 7.5rem;
+            height: 13.34rem;
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: none;
+        }
+
+        .guideImg {
+            position: absolute;
+            left: 50%;
+            margin-left: -2.5rem;
+            width: 5rem;
+            top: 4rem;
+        }
+
+        .downloadContainer {
+            position: absolute;
+            top: 11.25rem;
+            width: 7.5rem;
+        }
+
+        .downloadtrue {
+            position: relative;
+        }
+
+        .btntrue {
+            width: 3.23rem;
+            position: absolute;
+            top: 0.43rem;
+            left: 0.42rem;
+        }
+
+        .btnright {
+
+            position: absolute;
+            top: 0.5rem;
+            width: 2.58rem;
+            right: 0.29rem;
+        }
+
+        .btnfalse {
+            width: 3.23rem;
+            position: absolute;
+            top: 0.43rem;
+            left: 50%;
+            margin-left: -1.615rem;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <img class="home" src="../../public/img/img_m/mhome.png">
+    <!--<a class="downloadlink">-->
+    <!--<img_pc class="downloadbtn" src="img_pc/pb_button.png">-->
+    <!--</a>-->
+
+    <div class="downloadContainer">
+        <div class="downloadtrue">
+            <img class="downloadicon btntrue" src="../../public/img/img_m/howdylandicon.png">
+            <a class="downloadlink">
+                <img class="downloadbtn btnright" src="../../public/img/img_pc/pb_button.png">
+            </a>
+        </div>
+        <div class="downloadfalse">
+            <img class="downloadicon btnfalse" src="../../public/img/img_m/howdylandicon.png">
+        </div>
+    </div>
+
+
+    <div class="wechatGuide">
+        <div class="wechatMask">
+            <img class="guideImg" src="../../public/img/img_m/wechatGuide.png">
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        adapt();
+        platForm();
+        is_weChat();
+    });
+
+
+    window.onload = function () {
+        var url = window.location.search;
+        if (url.indexOf("?") != -1) { //有渠道号的情况下进行向各个渠道号跳转
+            var addStr = url.split("?")[1];
+            var gender = addStr.split("&")[0];
+            var channel = addStr.split("&")[1];
+            var btn = addStr.split("&")[2];
+            if (btn == 'true') { //有下载按钮
+                $(".downloadtrue").show();
+                $(".downloadfalse").hide();
+                checkChannel(channel);
+            } else if (btn == 'false') { //无下载按钮
+                $(".downloadfalse").show();
+                $(".downloadtrue").hide();
+                checkChannel(channel);
+            }
+        } else { //没有渠道号
+            $(".downloadcontainer").show();
+        }
+    };
+
+    function checkChannel(channel) { //根据渠道号显示不同页面
+//        console.log(channel);
+        if (channel == '1') {
+            $(".downloadicon").attr("src", "img/youfan_location.png")
+        } else if (channel == '2') {
+            $(".downloadicon").attr("src", "img/youfan_girl.png")
+        } else if (channel == '3') {
+            $(".downloadicon").attr("src", "img/youfan_b_g.png")
+        } else if (channel == '4') {
+            $(".downloadicon").attr("src", "img/youtang.png")
+        } else if (channel == '5') {
+            $(".downloadicon").attr("src", "img/youyu.png")
+        } else if (channel == '6') {
+            $(".downloadicon").attr("src", "img/youfish.png")
+        } else if (channel == '7') {
+            $(".downloadicon").attr("src", "img/fancyoo.png")
+        } else if (channel == '8') {
+            $(".downloadicon").attr("src", "img/yoomix.png")
+        } else if (channel == '9') {
+            $(".downloadicon").attr("src", "img/yoosup.png")
+        } else if (channel == '10') {
+            $(".downloadicon").attr("src", "img/howdylandicon.png")
+        }
+    }
+
+
+    function adapt() {
+        var width = document.documentElement.clientWidth, height = document.documentElement.clientHeight + 'px';
+        document.documentElement.style.fontSize = width / 7.5 + 'px';
+//        $(".main").height(height);
+    }
+
+    function platForm() {
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        if (isiOS) {
+            $(".downloadbtn").click(function () {
+                $(".downloadlink").attr("href", "https://itunes.apple.com/us/app/好的乐园-聊天交友的游戏化社交社区:w/id1272542441");
+            })
+        } else if (isAndroid) {
+//            $(".downloadlink").attr("href", "https://www.pgyer.com/apiv1/app/install?aId=b1326308129430681487b43739b6616a&_api_key=c3624d043c84fa7fcd5351a2ecfa79b6");
+            $(".downloadlink").attr("href", "http://url.cn/5H7yHnI");
+        }
+    }
+
+
+    function weGuide() {
+        var weCover = $(".wechatGuide");
+        $(".downloadbtn").click(function () {
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+            if (isAndroid) {
+                weCover.css("display", "inline-block");
+            }
+            weCover.click(function () {
+                $(this).css("display", "none");
+            })
+        });
+    }
+
+    function is_weChat() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            weGuide();
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_share/logo-icon.png">
+    <link href="https://cdn.bootcss.com/flexslider/2.6.4/flexslider.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/encounter_ranking.css">
+    <title>邂逅排行榜</title>
+</head>
+<body>
+
+<div class="main">
+    <div class="bannerContainer">
+        <div class="bannerContent flexslider">
+            <ul class="slides">
+                <?php
+                for ($i = 0; $i < count(json_decode($activity->extra_configs)); $i++) {
+                    ?>
+                    <li>
+                        <img id="banner<?php echo json_decode($activity->extra_configs)[$i]->id; ?>" class="banner"
+                             src="<?php echo json_decode($activity->extra_configs)[$i]->banner; ?>">
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </div>
+        <div class="bannerDescConatiner">
+            <div class="descLineContainer">
+                <!--                <p class="descLine">每邀请成功一个新用户都会获得奖励</p>-->
+                <!--                <p class="descLine">邀请成功的定义为注册登陆游戏：</p>-->
+                <!--                <p class="descLine">第三行文字</p>-->
+                <!--此处从数据库直接拿htmal-->
+                <?= $activity->description ?>
+            </div>
+            <div class="detailLink">
+                <div class="detailBtn">详&nbsp;情</div>
+                <div class="detailBtnDown">详&nbsp;情</div>
+                <a href="/activities/share/treasure" style="font-size: 0.2rem;">跳转至兑换(test)</a>
+            </div>
+
+
+        </div>
+        <div class="borderDotted"></div>
+    </div>
+    <div class="rewardContainer">
+        <div class="containerTitle">超级大奖</div>
+        <div class="rankingTitleContainer">
+            <span class="rankingTitleCount">名次</span>
+            <span class="rankingTitleHead">头像</span>
+            <span class="rankingTitleName">昵称</span>
+            <span class="randkingTitleDebris">碎片数</span>
+            <span class="randkingTitleReward">奖励</span>
+        </div>
+        <div class="rankingListContrainer">
+
+            <?php
+            foreach ($activity->ranks as $rank) {
+                ?>
+                <div class="rankingItem">
+                    <div class="rankingNum"><?php echo $rank->rank; ?></div>
+                    <img class="headIcon" src="<?php echo $rank->user["avatar"]; ?>">
+                    <div class="userName"><?php echo $rank->user["nickname"]; ?></div>
+                    <div class="userDebris"><?php echo $rank->num; ?></div>
+                    <div class="rewardIconContainer">
+                        <img class="rewardIcon" src="<?php echo $rank->award->icon; ?>">
+                        <P class="rewardName"><?php echo $rank->award->name; ?></P>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+    </div>
+
+    <div class="bottomBar">
+        <div class="debrisContrainer">
+            <p>你的碎片数：<span class="debrisNum"><?= $activity->user_fragment_amount ?></span></p>
+        </div>
+        <div class="userRankingCount">
+            <p>你的排名：<span class="rankingCount"><?= $activity->ranks_count ?></span></p>
+        </div>
+    </div>
+</div>
+
+<div class="bannerDetailContainer">
+    <div class="bannerWindow">
+        <div class="windowTopBar">
+            <div class="windowCloseContainer">
+                <img class="closeBtnUp" src="../../../img/img_share/closeBtnUp.png">
+                <img class="closeBtnDown" src="../../../img/img_share/closeBtnDown.png">
+            </div>
+        </div>
+        <div class="windowContent">
+            <!--            <img class="windowBannerIcon" src="../../../img/img_share/windowIcon.jpg">-->
+            <img class="windowBannerIcon">
+            <div class="starLevel"></div>
+            <p class="encounterName">一起去旅行</p>
+            <a class="wechatLink" href="fancyoo://meet">找微信好友玩</a>
+        </div>
+        <div class="windowBottomBar">
+            <div class="getAppFriendContainer">
+                <!--                <a class="getAppFriendLink" href="fancyoo://match">-->
+                <!--                    <div class="getAppBtn getAppFriendUp">寻找有缘人</div>-->
+                <!--                    <div class="getAppBtn  getAppFriendDown">寻找有缘人</div>-->
+                <!--                </a>-->
+                <a class="getAppFriendLink getAppBtn getAppFriendUp" href="fancyoo://match">寻找有缘人</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="detailMaskContainer">
+    <div class="detailMaskWindow">
+        <div class="windowTopBar">
+            <div class="detailTitle">活动详情</div>
+            <div class="windowCloseContainer">
+                <img class="detailcloseBtnUp " src="../../../img/img_share/closeBtnUp.png">
+                <img class="detailcloseBtnDown" src="../../../img/img_share/closeBtnDown.png">
+            </div>
+        </div>
+        <div class="detailContent">
+            <P><?= $activity->rules ?></p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/flexslider/2.6.4/jquery.flexslider.min.js"></script>
+<script>
+    $(function () {
+        adapt();
+        initFleSlide();
+    });
+
+    function initFleSlide() { //轮播初始化
+        $(".flexslider").flexslider({
+            slideshowSpeed: 2000,//展示时间间隔ms
+            animationSpeed: 1000,//滚动时间ms
+            touch: true,//是否支持触屏滑动
+            slideshow: true,
+            directionNav: true,
+            controlNav: true,
+            animationLoop: true,
+            pauseOnAction: false,
+            pauseOnHover: false,
+            before: function (slider) {
+                slider.pause();
+                slider.play();
+            }
+        })
+    }
+
+    document.onreadystatechange = function () { //页面加载完成后在显示页面
+        if (document.readyState == "complete") {
+            $(".main").show();
+        } else {
+            $(".main").hide();
+        }
+    };
+
+    function adapt() {
+        var width = document.documentElement.clientWidth, height = document.documentElement.clientHeight;
+        document.documentElement.style.fontSize = width / 7.5 + 'px';
+        $(".bannerDetailContainer,.detailMaskContainer").height(height);
+
+    }
+
+    var userName = '用户的名字八个字', userHeadIcon = './../../img/img_share/rankHead.png', rankNum = 1, debrisNun = 1502100,
+        rewardName = '20元京东卡*1', rewardIcon = '../../../img/img_share/debrisIcon.png';
+
+
+    //详情按钮点击和松开状态切换
+    BtnEvent(".detailBtn", ".detailBtnDown", "", ".detailMaskContainer");
+
+    //活动banner关闭按钮点击和松开状态切换
+    BtnEvent(".closeBtnUp", ".closeBtnDown", ".bannerDetailContainer");
+
+    //活动详情关闭按钮点击松开状态切换
+    BtnEvent(".detailcloseBtnUp", ".detailcloseBtnDown", ".detailMaskContainer");
+
+    //寻找有缘人点击和松开状态切换
+    //    BtnEvent(".getAppFriendUp", ".getAppFriendDown");
+
+    function BtnEvent(ele1, ele2, ele3, ele4) { //按钮事件
+        $(ele1).on('touchstart', function () {
+            $(this).hide();
+            $(ele2).show();
+        }).on('touchend', function () {
+            $(ele2).hide();
+            $(ele1).show();
+            if (ele3 || ele3 != '') {
+                $(ele3).hide();
+            }
+            if (ele4 || ele4 != '') {
+                $(ele4).show();
+            }
+            return false; //阻止事件继续往下传递
+        });
+    }
+
+    //点击活动banner进入指定主题
+    $(".slides").on("click", ".banner", function () {
+        var chosenBannerId = ($(this).attr("id")).replace(/[^0-9]/ig, "");
+        console.log(chosenBannerId);
+        $(".bannerDetailContainer").show();
+        getScene(chosenBannerId);
+    });
+
+    function getScene(sceneId) {
+//        $.get('/api/encounters/sceneInfo',
+//            {sceneId: sceneId},
+//            function (data) {
+//                console.log(data);
+//                $(".windowBannerIcon").attr('src', data.Icon);
+//                $(".encounterName").text(decodeURIComponent(data.Scene));
+//                for (var m = 0; m < data.level; m++) {
+//                    var starItem = "<img class=\"starItem\" src=\"../../../img/img_share/starIcon.png\">";
+//                    $(".starLevel").append(starItem);
+//                }
+//            }, 'json');
+
+        $.ajax({
+            headers: {
+                Authorization: 'Bearer ' + '<?=$token?>'
+            },
+            type: 'GET',
+            dataType: 'json',
+            url: '/api/encounters/sceneInfo',
+            data: {
+                sceneId: sceneId
+            },
+            success: function (data) {
+                console.log(data);
+                $(".windowBannerIcon").attr('src', data.Icon);
+                $(".encounterName").text(decodeURIComponent(data.Scene));
+                for (var m = 0; m < data.level; m++) {
+                    var starItem = "<img class=\"starItem\" src=\"../../../img/img_share/starIcon.png\">";
+                    $(".starLevel").append(starItem);
+                }
+            }
+        })
+    }
+
+</script>
+
+</body>

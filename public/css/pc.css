@@ -1,0 +1,910 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.htmlhidden {
+    display: none;
+}
+
+.qrcode {
+    width: 190px;
+    height: 190px;
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    margin-left: -95px;
+}
+
+/*.section_diy {*/
+/*min-width: 1000px;*/
+/*min-height: 794px;*/
+/*}*/
+
+#fp-nav.right {
+    height: 348px;
+    overflow: hidden;
+}
+
+#fp-nav ul,
+.fp-slidesNav ul {
+    margin-top: -12px;
+}
+
+#fp-nav ul li,
+.fp-slidesNav ul li {
+    display: block;
+    width: 40px;
+    height: 53px;
+    margin: 0 22px;
+    position: relative;
+}
+
+#fp-nav ul li a.active span,
+#fp-nav ul li:hover a.active span,
+.fp-slidesNav ul li a.active span,
+.fp-slidesNav ul li:hover a.active span {
+    width: 31px;
+    height: 53px;
+    margin: -15px 0 0 -15.5px;
+    margin-top: 0;
+    border-radius: 100%;
+    top: 0;
+    background-image: url(../img/img_pc/navigation_2.png);
+}
+
+#fp-nav ul li:hover a span,
+.fp-slidesNav ul li:hover a span {
+    width: 31px;
+    height: 53px;
+    margin: -15px 0 0 -15px;
+    margin-top: 0;
+    top: 0;
+    background-image: url(../img/img_pc/navigation_2.png);
+}
+
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+    height: 53px;
+    width: 20px;
+    margin: 0 0 0 -10px;
+    top: 0;
+    background: none;
+    background-image: url(../img/img_pc/navigation_1.png);
+    -webkit-background-size: 100%;
+    background-size: 100%;
+}
+
+.firstPage {
+    background: url(../img/img_pc/p1bg.jpg);
+    background-size: cover;
+}
+
+.slogan {
+    letter-spacing: 13px;
+    font-size: 25px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    top: 482px;
+}
+
+.btnDesc {
+    font-size: 22px;
+    color: #7a9ad8;
+    position: absolute;
+    left: 84px;
+    top: 19px;
+}
+
+.fancyooLogo {
+    position: absolute;
+    width: 468px;
+    left: 50%;
+    margin-left: -234px;
+    top: 240px;
+}
+
+.downloadBtn {
+    position: absolute;
+    left: 50%;
+    margin-left: -142px;
+    top: 504px;
+    cursor: pointer;
+}
+
+.downloadBtnContainer {
+    position: relative;
+    top: 600px;
+    text-align: center;
+}
+
+.iosContainer {
+    background-color: #fff;
+    display: inline-block;
+    width: 238px;
+    height: 70px;
+    border-radius: 5px;
+    margin-right: 27px;
+    position: relative;
+}
+
+.iosIcon {
+    position: absolute;
+    left: 30px;
+    top: 13px;
+}
+
+.androidContainer {
+    display: inline-block;
+    background: #fff;
+    width: 238px;
+    height: 70px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.androidIcon {
+    position: absolute;
+    left: 30px;
+    top: 13px;
+}
+
+.qrcodeContainer {
+    position: absolute;
+    right: 202px;
+    bottom: 20px;
+    width: 201px;
+    height: 235px;
+    background: url(../img/img_pc/qrbg.png);
+}
+
+.qrContainer {
+    width: 164px;
+    height: 192px;
+    background: #7a9ad8;
+    position: absolute;
+    right: 273px;
+    bottom: 65px;
+    text-align: center;
+}
+
+.qrCode {
+    width: 148px;
+    margin-top: 9px;
+}
+
+.scanP {
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 3px;
+}
+
+.p1light {
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -473px;
+    width: 946px;
+    top: 54px;
+}
+
+.thirdPage {
+    background: url(../img/img_pc/p3bg.jpg);
+    background-size: 100% 100%;
+}
+
+.p3title {
+    width: 377px;
+}
+
+.thirdYard {
+    position: relative;
+}
+
+.thirdContent {
+    width: 1054px;
+    height: 812px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -527px;
+    margin-top: -387px;
+}
+
+.cityPhone {
+    position: absolute;
+    width: 1075px;
+    /*height: 147px;*/
+    left: 50%;
+    margin-left: -537.5px;
+    top: 432px;
+    text-align: center;
+}
+
+.cityPhoneImg {
+    width: 1075px;
+    display: block;
+}
+
+.cityContent {
+    position: relative;
+    width: 750px;
+    /*height: 562px;*/
+    left: 50%;
+    margin-left: -345px;
+}
+
+.city2, .city3, .city4, .city5 {
+    display: none;
+}
+
+.beijing {
+    position: absolute;
+    width: 694px;
+    bottom: -457px;
+    /*height: 562px;*/
+}
+
+.shanghai {
+    position: absolute;
+    width: 694px;
+    bottom: -457px;
+}
+
+.guangzhou {
+    position: absolute;
+    width: 694px;
+    bottom: -457px;
+}
+
+.nanjing {
+    position: absolute;
+    width: 694px;
+    bottom: -457px;
+}
+
+.suzhou {
+    position: absolute;
+    width: 694px;
+    bottom: -457px;
+}
+
+.bjperson {
+    position: absolute;
+    width: 788px;
+    top: 0;
+    left: 0;
+}
+
+.shperson {
+    position: absolute;
+    width: 788px;
+    top: 0;
+    left: 0;
+}
+
+.gzperson {
+    position: absolute;
+    width: 788px;
+    top: 0;
+    left: 0;
+}
+
+.njperson {
+    position: absolute;
+    width: 788px;
+    top: 0;
+    left: 0;
+}
+
+.szperson {
+    position: absolute;
+    width: 788px;
+    top: 0;
+    left: 0;
+}
+
+.fourthPage {
+    background-image: url(../img/img_pc/p4bg.jpg);
+    background-size: 100% 100%;
+}
+
+.fourthTitle {
+    text-align: center;
+}
+
+.fourthContent {
+    position: absolute;
+    top: 228px;
+    left: 50%;
+    margin-left: -390px;
+}
+
+.p4content {
+    width: 900px;
+}
+
+.p4Container {
+    width: 984px;
+    height: 765px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -492px;
+    margin-top: -382.5px;
+}
+
+.secondTitle {
+    text-align: center;
+}
+
+.p2title {
+    width: 377px;
+}
+
+.p2content {
+    width: 1077px;
+}
+
+.secondPage {
+    background-image: url(../img/img_pc/p2bg.jpg);
+    background-size: 100% 100%;
+}
+
+.secondContent {
+    position: absolute;
+    left: 54px;
+    top: 202px;
+}
+
+.p2Container {
+    width: 1219px;
+    height: 747px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -609.5px;
+    margin-top: -373.5px;
+}
+
+.fifthPage {
+    background: url(../img/img_pc/p5bg.jpg);
+    background-size: 100% 100%;
+}
+
+.p5Yard {
+    position: absolute;
+    left: 52px;
+    width: 1200px;
+}
+
+.p5People {
+    position: absolute;
+    z-index: 10;
+    left: 313px;
+    top: 426px;
+    width: 750px;
+}
+
+.fifthContent {
+    width: 1254px;
+    height: 702px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -627px;
+    margin-top: -351px;
+}
+
+.fifthTitle {
+    text-align: center;
+}
+
+.thirdTitle {
+    text-align: center;
+}
+
+.slideContainer {
+    width: 400px;
+    height: 304px;
+    position: absolute;
+    right: 235px;
+    top: 339px;
+}
+
+.slideRoom {
+    width: 100%;
+    height: 100%;
+}
+
+.slide1 {
+    background: url(../img/img_pc/p3room-1.png);
+    background-size: 100% 100%;
+    position: absolute;
+}
+
+.slide2 {
+    background: url(../img/img_pc/p3room-2.png);
+    background-size: 100% 100%;
+    position: absolute;
+    display: none;
+}
+
+.slide3 {
+    background: url(../img/img_pc/p3room-3.png);
+    background-size: 100% 100%;
+    position: absolute;
+    display: none;
+}
+
+.slide4 {
+    background: url(../img/img_pc/p3room-4.png);
+    background-size: 100% 100%;
+    position: absolute;
+    display: none;
+}
+
+.slide5 {
+    background: url(../img/img_pc/p3room-5.png);
+    background-size: 100% 100%;
+    position: absolute;
+    display: none;
+}
+
+.footerBarContainer {
+    position: relative;
+    width: 100%;
+    height: 205px;
+    background: #383733;
+}
+
+.footerBarContainer a {
+    text-decoration: none;
+    color: #776859;
+}
+
+.footerBarContainer .footerContent {
+    width: 1200px;
+    top: 50px;
+    position: absolute;
+    left: 50%;
+    margin-left: -600px;
+    text-align: center;
+    color: #6a6765;
+    font-size: 12px;
+}
+
+.footerBarContainer .footerContent p {
+    /*margin: 8px auto;*/
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.footerBarContainer .privacy,
+.footerBarContainer .agreement,
+.footerBarContainer .recharge,
+.footerBarContainer .guardian,
+.footerBarContainer .help {
+    width: 75px;
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.35);
+    border-right: 1px solid rgba(255, 255, 255, 0.35);
+    font-size: 12px;
+}
+
+.footerBarContainer .privacy:hover {
+    color: #cc9966;
+}
+
+.footerBarContainer .agreement:hover {
+    color: #cc9966;
+}
+
+.footerBarContainer .recharge:hover {
+    color: #cc9966;
+}
+
+.footerBarContainer .guardian:hover {
+    color: #cc9966;
+}
+
+.footerBarContainer .help:hover {
+    color: #cc9966;
+}
+
+.footerBarContainer .linkContainer {
+    /*margin-bottom:32px;*/
+}
+
+.footerCompanyName {
+    margin-top: 14px !important;
+}
+
+.footerNum {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.fp-auto-height .fp-slide,
+.fp-auto-height .fp-tableCell,
+.fp-auto-height.fp-section {
+    height: 205px !important;
+}
+
+.downloadContainer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: none;
+}
+
+.downloadContent {
+    width: 554px;
+    height: 293px;
+    background: #fff;
+    border-radius: 9px;
+    position: absolute;
+    left: 50%;
+    margin-left: -277px;
+    top: 296px;
+}
+
+.downloadContent .closeBtn {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    cursor: pointer;
+}
+
+.qrCodeContainer {
+    position: absolute;
+    left: 72px;
+}
+
+.qrCodeContainer .qrBorder {
+    width: 158px;
+    height: 158px;
+    position: absolute;
+    top: 61px;
+}
+
+.qrCodeContainer p {
+    color: #936e27;
+    font-size: 16px;
+    position: absolute;
+    left: 16px;
+    width: 128px;
+    top: 231px;
+}
+
+.iosDownload {
+    margin-left: 12px;
+}
+
+.androidDowload {
+    margin-left: 22px;
+}
+
+.downloadBtns {
+    position: absolute;
+    left: 276px;
+    top: 90px;
+}
+
+.downloadBtns .iosIocn {
+    vertical-align: middle;
+    position: absolute;
+    left: 50px;
+    top: 6px;
+}
+
+.downloadBtns .androidIocn {
+    vertical-align: middle;
+    position: absolute;
+    left: 35px;
+    top: 6px;
+}
+
+/*.downloadBtns .iosContainer {*/
+/*width: 200px;*/
+/*height: 44px;*/
+/*line-height: 44px;*/
+/*background-image: url(../img/img_pc/iosBtn1.png);*/
+/*background-size: contain;*/
+/*background-repeat: no-repeat;*/
+/*color: #fff;*/
+/*border-radius: 3px;*/
+/*font-size: 16px;*/
+/*text-align: center;*/
+/*cursor: pointer;*/
+/*position: relative;*/
+/*}*/
+
+/*.downloadBtns .iosContainer:hover {*/
+/*background-image: url(../img/img_pc/iosBtn2.png);*/
+/*!*background-size: contain;*!*/
+/*!*background-repeat: no-repeat;*!*/
+/*}*/
+
+.downloadBtns .androidContainer {
+    width: 200px;
+    height: 44px;
+    line-height: 44px;
+    background-image: url(../img/img_pc/androidBtn1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 16px;
+    cursor: pointer;
+    position: relative;
+}
+
+.downloadBtns .androidContainer:hover {
+    background-image: url(../img/img_pc/androidBtn2.png);
+    /*background-size: contain;*/
+    /*background-repeat: no-repeat;*/
+}
+
+.downloadBtns a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.downloadBtns a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.sixthPage {
+    background-image: url(../img/img_pc/p6bg.jpg);
+    background-size: 100% 100%;
+}
+
+.sixthContent {
+    width: 1254px;
+    height: 720px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -627px;
+    margin-top: -385px;
+    clear: both;
+    overflow: hidden;
+}
+
+.p6nameleft {
+    float: left;
+    margin-top: 50px;
+}
+
+.p6nameright {
+    float: left;
+}
+
+@media screen and (max-width: 1610px) {
+    .fancyooLogo {
+        width: 390px;
+        margin-left: -195px;
+        top: 180px;
+    }
+
+    .qrContainer {
+        right: 80px;
+        bottom: 13px;
+    }
+
+    .slogan {
+        top: 370px;
+    }
+
+    .downloadBtnContainer {
+        top: 464px;
+    }
+
+    .p2Container {
+        width: 1100px;
+        height: 600px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -550px;
+        margin-top: -278px;
+    }
+
+    .p2title {
+        width: 330px;
+    }
+
+    .secondContent {
+        position: absolute;
+        left: 50%;
+        margin-left: -425px;
+        top: 144px;
+    }
+
+    .p2content {
+        width: 850px;
+    }
+
+    .thirdContent {
+        width: 1054px;
+        height: 632px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -527px;
+        margin-top: -316px;
+    }
+
+    .thirdYard {
+        left: 48px;
+        top: -94px;
+    }
+
+    .p3title {
+        width: 320px;
+    }
+
+    .bjperson {
+        position: absolute;
+        width: 647px;
+        top: 78px;
+        left: 0;
+    }
+
+    .beijing {
+        width: 500px;
+        margin-left: 40px;
+    }
+
+    .shanghai {
+        width: 500px;
+        margin-left: 40px;
+    }
+
+    .guangzhou {
+        width: 500px;
+        margin-left: 40px;
+    }
+
+    .nanjing {
+        width: 500px;
+        margin-left: 40px;
+    }
+
+    .suzhou {
+        width: 500px;
+        margin-left: 40px;
+    }
+
+    .shperson {
+        position: absolute;
+        width: 630px;
+        top: 94px;
+        left: 4px;
+    }
+
+    .gzperson {
+        position: absolute;
+        width: 642px;
+        top: 80px;
+        /* left: -25px; */
+    }
+
+    .njperson {
+        position: absolute;
+        width: 642px;
+        top: 96px;
+        left: 0;
+    }
+
+    .szperson {
+        position: absolute;
+        width: 630px;
+        top: 87px;
+        left: 9px;
+    }
+
+    .cityPhone {
+        position: absolute;
+        width: 890px;
+        left: 50%;
+        margin-left: -500px;
+        top: 432px;
+        text-align: center;
+    }
+
+    .cityPhoneImg {
+        width: 890px;
+    }
+
+    .p4Container {
+        width: 984px;
+        height: 570px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -492px;
+        margin-top: -285px;
+    }
+
+    .p4title {
+        width: 330px;
+    }
+
+    .fifthContent {
+        width: 1254px;
+        height: 614px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -627px;
+        margin-top: -307px;
+    }
+
+    .p4content {
+        width: 650px;
+    }
+
+    .fourthContent {
+        margin-left: -325px;
+        top: 181px;
+    }
+
+    .p5title {
+        width: 350px;
+    }
+
+    .p5Yard {
+        position: absolute;
+        left: 108px;
+        width: 1072px;
+    }
+
+    .p5People {
+        position: absolute;
+        z-index: 10;
+        left: 382px;
+        top: 344px;
+        width: 633px;
+    }
+
+    .slideContainer {
+        width: 327px;
+        height: 250px;
+        position: absolute;
+        right: 294px;
+        top: 280px;
+    }
+
+    .sixthContent {
+        width: 871px;
+        height: 590px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -435.5px;
+        margin-top: -295px;
+        clear: both;
+        overflow: hidden;
+    }
+
+    .p6nameleft {
+        float: left;
+        margin-top: 50px;
+        width: 500px;
+    }
+
+    .p6nameright {
+        float: left;
+        width: 350px;
+    }
+}

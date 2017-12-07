@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit"> <!--国产浏览器高速模式-->
+    <link rel="shortcut icon" type="image/x-icon" href="../../../img/img_pc/logo-icon.png">
+    <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link href="../../css/help.css" rel="stylesheet" type="text/css">
+    <script src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script> <!--用于解决iphone中点击两下页面会放大-->
+    <title>帮助中心</title>
+    <style>
+        .navbar-border-padding{
+            margin-bottom: 10px !important;
+            border-bottom: 1px solid #ededed !important;
+            padding-bottom: 10px !important;
+        }
+    </style>
+</head>
+<body>
+<main class="main_pc">
+    <?php
+    include(__DIR__ . '/../component/header.phtml');
+    ?>
+    <!--    <div class="content">-->
+    <div class="container container-top">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a class="title_question chosen">常见问题</a>
+            </li>
+            <li role="presentation">
+                <a class="title_feedback">用户反馈</a>
+            </li>
+        </ul>
+        <div class="question">
+            <h2>如何开通Fancyoo？</h2>
+            <P>首先下载最新版本的Fancyoo，然后通过微信或者手机号注册即可。</P>
+            <h2>登录时一直显示加载中是怎么回事？</h2>
+            <p>
+                网络环境弱的情况下，应用获取最新信息时需要较长的加载时间。如果一直不能进入，请在设置里将应用进程停止，再点击Fancyoo，重新启动进入应用就可以了。
+                如果是安卓手机，请保证手机系统是在安卓4.4版本以上。
+            </p>
+            <h2>忘记登录密码了怎么办？</h2>
+            <p>如果是使用微信帐号注册的Fancyoo，登录时请选择相应的帐号进入。如果是使用手机账号注册的Fancyoo，那么点击忘记密码后，收取手机验证码后重新设置密码即可。</p>
+            <h2>Fancyoo来消息没有提醒？</h2>
+            <P>如果你是iPhone手机，打开设置里的收到消息时震动或声音，并且在iphone手机设置的通知中心里，将Fancyoo的提醒样式选择为横幅，并打开声音或震动开关，同时打开在锁定屏幕上显示。</P>
+            <P>如果你是安卓手机在设置里选择收到消息时震动或声音。</P>
+        </div>
+        <div class="feedback">
+            <div class="user_email_div">
+                <span class="user_email-help">您的邮箱:</span>
+                <input type="text" class="form-control user_email_input" placeholder="请填写您的邮箱">
+            </div>
+            <div class="feedback_div">
+                <span class="user_name">您的反馈:</span>
+                <textarea class="form-control user_feedback_input" placeholder="我们期待您的使用回复和建议"></textarea>
+            </div>
+
+            <button type="button" class="btn btn-default send">立即发送</button>
+            <P></P>
+        </div>
+    </div>
+    <!--    </div>-->
+</main>
+
+<div class="feedback_mask">
+    <div class="alert alert-warning alert-dismissable feedback_remind" role="alert">
+        <p class="feedback_remind_p">反馈我们已经收到</p>
+        <button type="button" class="btn btn-primary closeBtn">确定</button>
+    </div>
+</div>
+
+<?php
+include(__DIR__ . '/../component/footer.phtml');
+?>
+</body>
+<script>
+    $(function () {
+        var userCookie;
+        
+
+        $(".help").addClass("chosen");
+        $(".title_question").click(function () {
+            $(".title_question").addClass("chosen").parent().addClass("active");
+            $(".title_feedback").removeClass("chosen").parent().removeClass("active");
+            $(".question").show();
+            $(".feedback").hide();
+        });
+        $(".title_feedback").click(function () {
+            $(".title_feedback").addClass("chosen").parent().addClass("active");
+            $(".title_question").removeClass("chosen").parent().removeClass("active");
+            $(".feedback").show();
+            $(".question").hide();
+        });
+
+        //关闭反馈提示框
+        $(".closeBtn").click(function(){
+            feedback_mask.hide()
+        });
+
+        var feedback_mask = $(".feedback_mask"),feedback_remind_p =$(".feedback_remind_p"),send=$(".send"),userId = false;
+        send.click(function () {
+//            var user_ID_input = $(".user_name_input-help").val();
+            var user_email_input = $(".user_email_input").val(),user_feedback = $(".user_feedback_input").val();
+            var checkMail= /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+            //检测邮箱是否正确
+            if(checkMail.test(user_email_input)){
+                console.log("邮箱正确");
+            }else{
+                feedback_mask.show();
+                feedback_remind_p.text("您输入的邮箱格式错误");
+            }
+            //判断是否已登录，登录后才能反馈
+            if(logintokenCookie != '' && logintokenCookie){
+             console.log("用户已登录");
+            }else{
+                feedback_mask.show();
+                feedback_remind_p.text("登陆后才可以进行反馈");
+            }
+            //输入栏为空
+            if (user_email_input == '' || user_feedback == '') {
+                send.removeClass("feedback_chosen");
+                feedback_mask.show();
+                feedback_remind_p.text("请确认您的信息是否完整");
+            } else if (user_feedback != '' && logintokenCookie != '' && logintokenCookie) { //输入栏非空
+                send.addClass("feedback_chosen").css("color", "#fff");
+                if (userId = true) {
+                    $.post("/api/v2/users/my/feedback", {
+                        'token': logintokenCookie,
+                        'content': user_feedback,
+                        'contact': user_email_input
+                    }, function (data) {
+                        console.log(data);
+                        if (data.code != 10000) {
+//                            alert("谢谢您的反馈，我们已经收到");
+                            feedback_mask.show();
+                            feedback_remind_p.text("谢谢您的反馈，我们已经收到");
+                        }
+                    })
+                }
+            }
+        });
+    });
+</script>
+</html>
